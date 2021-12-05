@@ -12,7 +12,7 @@
       >
         Thank you for registering, please sign in.
       </div>
-      <label for="username" class="sr-only">Username</label>
+      <label for="username" class="sr-only">Username
       <input
         type="text"
         id="username"
@@ -22,7 +22,8 @@
         required
         autofocus
       />
-      <label for="password" class="sr-only">Password</label>
+      </label>
+      <label for="password" class="sr-only">Password
       <input
         type="password"
         id="password"
@@ -31,6 +32,7 @@
         v-model="user.password"
         required
       />
+      </label>
     
       <button type="submit">Sign in</button>
 
@@ -78,14 +80,16 @@ export default {
 </script>
 
 <style>
-body {
-  background-color: #fafaff;
+
+html,body {
+  height: 100%;
+  margin: 0px;
 }
 
 #app {
   width: 100%;
   height: 100%;
-  background-color: #fbfbfb;
+  background-color: #E1E5F2;
   align-items: center;
   filter: drop-shadow(0px 4px 4px rgba(221, 221, 221, 0.25));
 }
@@ -104,5 +108,24 @@ form.form-signin {
   display: flex;
   flex-direction: column;
   background-color: #ffffff;
+  border-radius: 6px;
+  filter: drop-shadow(0px 4px 4px rgba(221, 221, 221, 0.25));
+  padding: 25px;
+}
+label.sr-only {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 6px;
+}
+input[type=text], input[type=password] {
+  margin-top: 4px;
+  padding: 10px;
+  background-color: #E1E5F2;
+  border: none;
+  border-radius: 4px;
+}
+::placeholder {
+  color: rgb(0, 0, 0);
+  opacity: 60%;
 }
 </style>
