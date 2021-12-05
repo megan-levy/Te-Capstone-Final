@@ -31,8 +31,10 @@
         v-model="user.password"
         required
       />
-      <router-link :to="{ name: 'register' }">Need an account?</router-link>
+    
       <button type="submit">Sign in</button>
+
+      <router-link :to="{ name: 'register' }">Need an account?</router-link>
     </form>
   </div>
 </template>
@@ -83,11 +85,24 @@ body {
 #app {
   width: 100%;
   height: 100%;
-  
-  background-color: white;
-  
+  background-color: #fbfbfb;
   align-items: center;
-
   filter: drop-shadow(0px 4px 4px rgba(221, 221, 221, 0.25));
+}
+div#login {
+  width: 100%;
+  height: calc(100% - 18px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+form.form-signin {
+  min-height: 420px;
+  height: fit-content;
+  min-width: 350px;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
 }
 </style>
