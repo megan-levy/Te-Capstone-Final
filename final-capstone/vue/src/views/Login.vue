@@ -38,7 +38,7 @@
         />
       </label>
     
-      <button type="submit">Sign in</button>
+      <button type="submit">Sign In</button>
       <br>
       <router-link tag="a" class="helper-link" :to="{ name: 'register' }">Need an account?</router-link>
     </form>
