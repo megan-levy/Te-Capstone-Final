@@ -72,7 +72,7 @@
   label.sr-only span {
     margin-bottom: 4px;
   }
-  input[type=text], input[type=password] {
+  input[type=text], input[type=password], input[type=email] {
     /* margin-top: 4px; */
     padding: 10px;
     background-color: #E1E5F2;
