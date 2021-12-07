@@ -12,4 +12,6 @@ public interface ListDao {
     boolean findByListClaimed (Boolean listClaimed);
 
     List findListByGroupName(String groupName);
+
+    boolean create(String listName);
 }
