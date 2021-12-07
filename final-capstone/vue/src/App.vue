@@ -72,7 +72,7 @@
   label.sr-only span {
     margin-bottom: 4px;
   }
-  input[type=text], input[type=password] {
+  input[type=text], input[type=password], input[type=email] {
     /* margin-top: 4px; */
     padding: 10px;
     background-color: #E1E5F2;
@@ -84,18 +84,20 @@
   }
   button {
     padding: 8px;
-    background-color: #E1E5F2;
+    background-color: #1F7A8C;
     border: none;
     border-radius: 4px;
     margin-top: 1rem;
     font-weight: 600;
     border: 2px solid transparent;
-    color: #555b6d;
+    color: #ffffff;
     transition: all 250ms cubic-bezier(0.23, 1, 0.320, 1);
   }
   button:hover {
     cursor: pointer;
-    border: 2px solid hsl(226deg 40% 70%);
+    background-color: #ffffff;
+    color:  #1F7A8C;
+    border: 2px solid  #1F7A8C;
   }
   ::placeholder {
     color: rgba(0, 0, 0, 0.4);

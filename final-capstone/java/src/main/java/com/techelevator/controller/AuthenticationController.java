@@ -2,6 +2,8 @@ package com.techelevator.controller;
 
 import javax.validation.Valid;
 
+import com.techelevator.dao.GroupDao;
+import com.techelevator.model.*;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +16,6 @@ import org.springframework.web.bind.annotation.*;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.techelevator.dao.UserDao;
-import com.techelevator.model.LoginDTO;
-import com.techelevator.model.RegisterUserDTO;
-import com.techelevator.model.User;
-import com.techelevator.model.UserAlreadyExistsException;
 import com.techelevator.security.jwt.JWTFilter;
 import com.techelevator.security.jwt.TokenProvider;
 
@@ -28,6 +26,7 @@ public class AuthenticationController {
     private final TokenProvider tokenProvider;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private UserDao userDao;
+    private GroupDao groupDao;
 
     public AuthenticationController(TokenProvider tokenProvider, AuthenticationManagerBuilder authenticationManagerBuilder, UserDao userDao) {
         this.tokenProvider = tokenProvider;
@@ -60,6 +59,17 @@ public class AuthenticationController {
             throw new UserAlreadyExistsException();
         } catch (UsernameNotFoundException e) {
             userDao.create(newUser.getUsername(),newUser.getPassword(), newUser.getRole());
+        }
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @RequestMapping(value = "/new-group", method = RequestMethod.POST)
+    public void createGroup(@Valid @RequestBody GroupDTO newGroup) {
+        try {
+            Group group = groupDao.findGroupByName(newGroup.getGroupname());
+            throw new GroupAlreadyExistsException();
+        } catch (Exception e) {
+            groupDao.create(newGroup.getGroupname(),newGroup.getRole());
         }
     }
 
