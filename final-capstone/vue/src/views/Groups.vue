@@ -6,12 +6,16 @@
         <h1>Groups</h1>
         <br>
          <router-link class="addBtn" v-bind:to="{ name: 'new-group' }" v-if="$store.state.token != ''">+</router-link>
-        <ul id="example-1">
+
+        <hr/>
+        <div>
+        <ul id="group-name">
             <li v-for="group in $store.state.groups" :key="group.groupId">
                 <h1>{{group.name}}</h1>
                 <p>{{group.description}}</p>
             </li>
         </ul>
+        </div>
     </div>
 </template>
 
@@ -37,7 +41,8 @@
  .groups {
     height: fit-content;
     min-width: 350px;
-    width: fit-content;
+    margin: 15px;
+    width: calc(100% - 80px);
     display: flex;
     flex-direction: column;
     background-color: #ffffff;
@@ -57,5 +62,19 @@
     color: #e6e6e6;
     font-weight: 200;
     font-size: 3.5rem;
+    border: 2px solid transparent;
  }
+ .addBtn:hover {
+     cursor: pointer;
+    background-color: #FFFFFF;
+    color:  #1F7A8C;
+    border: 2px solid  #1F7A8C;
+ }
+
+li {
+    background-color: #E1E5F2;
+    padding: 15px;
+    margin: 10px;
+}
+
 </style>
