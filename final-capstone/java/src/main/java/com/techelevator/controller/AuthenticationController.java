@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import com.techelevator.dao.GroupDao;
 import com.techelevator.model.*;
+import org.springframework.data.auditing.CurrentDateTimeProvider;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -69,7 +70,7 @@ public class AuthenticationController {
             Group group = groupDao.findGroupByName(newGroup.getGroupname());
             throw new GroupAlreadyExistsException();
         } catch (Exception e) {
-            groupDao.create(newGroup.getGroupname(), newGroup.getGroupDescription(), newGroup.getRole());
+            groupDao.create(newGroup.getGroupname(), newGroup.getGroupDescription(),newGroup.getJoined_on());
         }
     }
 

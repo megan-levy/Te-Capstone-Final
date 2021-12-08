@@ -2,6 +2,7 @@ package com.techelevator.dao;
 
 import com.techelevator.model.Group;
 
+import java.util.Date;
 import java.util.List;
 
 public interface GroupDao {
@@ -16,5 +17,9 @@ public interface GroupDao {
     //Return groups based solely on userId
     Group findGroupByUserId(Long userId);
 
-    boolean create(String name, String description, String role);
+    Group createGroup(Group group);
+
+    Group getGroup(Long groupId);
+
+    boolean create(String name, String groupDescription, Date joinedOn);
 }
