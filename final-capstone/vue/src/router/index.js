@@ -6,6 +6,7 @@ import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
 import NewGroup from '../views/NewGroup.vue'
+import Groups from '../views/Groups.vue'
 
 Vue.use(Router)
 
@@ -52,6 +53,14 @@ const router = new Router({
       component: Register,
       meta: {
         requiresAuth: false
+      }
+    },
+    {
+      path: '/groups',
+      name: 'groups',
+      component: Groups,
+      meta: {
+        requiresAuth: false // change after testing
       }
     },
     {
