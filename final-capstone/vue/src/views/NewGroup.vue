@@ -13,15 +13,9 @@
              placeholder="Group Name..."
              required/>
          </label>
-         <label for='email' class="sr-only">
-             <span>Add Email of Member:</span>
-             <input 
-             type='email'
-             id='new-email'
-             class="form-control"
-             placeholder="Member Email"
-             required
-             />
+         <label for='text' class="sr-only">
+             <span>Add Group Description:</span>
+             <textarea placeholder="Enter A Description..." class="form-control"/>
          </label>
           <button class="btn btn-lg btn-primary btn-block" type="submit">
         Send Invites

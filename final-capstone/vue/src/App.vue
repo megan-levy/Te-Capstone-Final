@@ -79,7 +79,7 @@
     border: none;
     border-radius: 4px;
   }
-  input[type=text]:focus-visible, input[type=password]:focus-visible {
+  input[type=text]:focus-visible, input[type=password]:focus-visible, textarea:focus-visible {
     outline-color: hsl(226deg 40% 70%);
   }
   button {
@@ -107,6 +107,18 @@
     color: #1F7A8C;
     font-size: .8rem;
     font-weight: 600;
+  }
+
+  textarea {
+    min-width: 350px;
+    max-width: 350px;
+    box-sizing: border-box;
+    background-color: #E1E5F2;
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
   }
 
 </style>
