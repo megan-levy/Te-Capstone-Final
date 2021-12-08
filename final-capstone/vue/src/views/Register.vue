@@ -8,9 +8,9 @@
         {{ registrationErrorMsg }}
       </div>
       <label for="username" class="sr-only">
-        <span>Username</span>
+        <span>Username (Email)</span>
         <input
-          type="text"
+          type="email"
           id="username"
           class="form-control"
           placeholder="Username"
