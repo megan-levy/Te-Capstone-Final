@@ -69,7 +69,7 @@ public class AuthenticationController {
             Group group = groupDao.findGroupByName(newGroup.getGroupname());
             throw new GroupAlreadyExistsException();
         } catch (Exception e) {
-            groupDao.create(newGroup.getGroupname(),newGroup.getRole());
+            groupDao.create(newGroup.getGroupname(), newGroup.getGroupDescription(), newGroup.getRole());
         }
     }
 
