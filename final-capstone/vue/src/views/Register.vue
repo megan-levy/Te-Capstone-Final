@@ -70,55 +70,55 @@ export default {
   },
   methods: {
     register() {
-      // let password = this.user.password;
-      // let passwordChar = password.split("");
-      // let isMatch = false;
+      let password = this.user.password;
+      let passwordChar = password.split("");
+      let passLen = passwordChar.length;
+      let hasUpper = false;
+      let hasLower = false;
+      let hasNum = false;
 
-      // if (password.length >= 8) {
-      //  for (let i = 0; i < password.length; i++) {
-      //    //console.log(passwordChar[i]);
-      //    if (!passwordChar[i] == passwordChar[i].toUpperCase) {
-      //      isMatch;
-      //      alert("Password must contain at least one capital letter")
-      //    } 
-      //    if (!typeof passwordChar[i] === 'number') {
-      //      isMatch
-      //      alert("Password must contain at least one number")
-      //    }
-      //    if
-      //  }
+      if (passLen >= 8) {
+        for (let i = 0; i < passLen; i++) {
+          
+          if (passwordChar[i] === passwordChar[i].toUpperCase())  hasUpper = true;
+          if (passwordChar[i] === passwordChar[i].toLowerCase()) hasLower = true;
+          if (typeof parseInt(passwordChar[i]) === "number") hasNum = true;
+        }
 
-     
-
-      if (this.user.password != this.user.confirmPassword) {
-        this.registrationErrors = true;
-        this.registrationErrorMsg = 'Password & Confirm Password do not match.';
-      } else {
-        authService
-          .register(this.user)
-          .then((response) => {
-            if (response.status == 201) {
-              this.$router.push({
-                path: '/login',
-                query: { registration: 'success' },
-              });
-            }
-          })
-          .catch((error) => {
-            const response = error.response;
+        if (hasUpper && hasLower && hasNum) {
+          console.log("Conditions Met.");
+          if (this.user.password != this.user.confirmPassword) {
             this.registrationErrors = true;
-            if (response.status === 400) {
-              this.registrationErrorMsg = 'Bad Request: Validation Errors';
-            }
-          });
-        } 
+            this.registrationErrorMsg = 'Password & Confirm Password do not match.';
+          } else {
+            authService
+            .register(this.user)
+            .then((response) => {
+              if (response.status == 201) {
+                this.$router.push({
+                  path: '/login',
+                  query: { registration: 'success' },
+                });
+              }
+            })
+            .catch((error) => {
+              const response = error.response;
+              this.registrationErrors = true;
+              if (response.status === 400) {
+                this.registrationErrorMsg = 'Bad Request: Validation Errors';
+              }
+            });
+          } 
+        } else {
+          console.log("Conditions not met.")
+        }
       }
     },
     clearErrors() {
       this.registrationErrors = false;
       this.registrationErrorMsg = 'There were problems registering this user.';
     },
-  
+  }
 };
 </script>
 
