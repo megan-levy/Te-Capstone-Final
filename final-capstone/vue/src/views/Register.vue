@@ -70,6 +70,26 @@ export default {
   },
   methods: {
     register() {
+      // let password = this.user.password;
+      // let passwordChar = password.split("");
+      // let isMatch = false;
+
+      // if (password.length >= 8) {
+      //  for (let i = 0; i < password.length; i++) {
+      //    //console.log(passwordChar[i]);
+      //    if (!passwordChar[i] == passwordChar[i].toUpperCase) {
+      //      isMatch;
+      //      alert("Password must contain at least one capital letter")
+      //    } 
+      //    if (!typeof passwordChar[i] === 'number') {
+      //      isMatch
+      //      alert("Password must contain at least one number")
+      //    }
+      //    if
+      //  }
+
+     
+
       if (this.user.password != this.user.confirmPassword) {
         this.registrationErrors = true;
         this.registrationErrorMsg = 'Password & Confirm Password do not match.';
@@ -91,13 +111,14 @@ export default {
               this.registrationErrorMsg = 'Bad Request: Validation Errors';
             }
           });
+        } 
       }
     },
     clearErrors() {
       this.registrationErrors = false;
       this.registrationErrorMsg = 'There were problems registering this user.';
     },
-  },
+  
 };
 </script>
 
