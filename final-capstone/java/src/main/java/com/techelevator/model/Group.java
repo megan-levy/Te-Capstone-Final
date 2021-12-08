@@ -13,6 +13,7 @@ public class Group {
     private Long userId;
     @JsonIgnore
     private Boolean inviteSent;
+    private String groupDescription;
     private Date joinedOn;
     // not sure if we need this but have left in since on the user Model not sure if related to security/roles access
     private Set<Authority> authorities = new HashSet<>();
@@ -20,11 +21,13 @@ public class Group {
     public Group() {
     }
 
-    public Group(Long groupId, String name, Long userId, Boolean inviteSent, Date joinedOn, String authorities) {
+    public Group(Long groupId, String name, Long userId, Boolean inviteSent,
+                 String groupDescription, Date joinedOn, String authorities) {
         this.groupId = groupId;
         this.name = name;
         this.userId = userId;
         this.inviteSent = true;
+        this.groupDescription = groupDescription;
         this.joinedOn = joinedOn;
     }
 
@@ -50,6 +53,18 @@ public class Group {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public String getGroupDescription() {
+        return groupDescription;
+    }
+
+    public void setGroupDescription(String groupDescription) {
+        this.groupDescription = groupDescription;
+    }
+
+    public void setAuthorities(Set<Authority> authorities) {
+        this.authorities = authorities;
     }
 
     public Boolean getInviteSent() {

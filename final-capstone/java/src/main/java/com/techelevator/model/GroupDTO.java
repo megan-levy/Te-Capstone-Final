@@ -8,6 +8,7 @@ public class GroupDTO {
     private String groupname;
     @NotEmpty
     private String role;
+    private String groupDescription;
 
     public String getGroupname() {
         return groupname;
@@ -23,5 +24,13 @@ public class GroupDTO {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getGroupDescription() {
+        return groupDescription;
+    }
+
+    public void setGroupDescription(String groupDescription) {
+        this.groupDescription = groupDescription;
     }
 }
