@@ -10,8 +10,6 @@ public class Group {
     private Long groupId;
     private String name;
     @JsonIgnore
-    private Long userId;
-    @JsonIgnore
     private Boolean inviteSent;
     private String groupDescription;
     private Date joinedOn;
@@ -21,11 +19,10 @@ public class Group {
     public Group() {
     }
 
-    public Group(Long groupId, String name, Long userId, Boolean inviteSent,
+    public Group(Long groupId, String name, Boolean inviteSent,
                  String groupDescription, Date joinedOn, String authorities) {
         this.groupId = groupId;
         this.name = name;
-        this.userId = userId;
         this.inviteSent = true;
         this.groupDescription = groupDescription;
         this.joinedOn = joinedOn;
@@ -45,14 +42,6 @@ public class Group {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
     }
 
     public String getGroupDescription() {

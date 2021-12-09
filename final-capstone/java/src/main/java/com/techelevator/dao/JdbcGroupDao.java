@@ -1,19 +1,21 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Group;
-import com.techelevator.model.List;
 import com.techelevator.model.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.task.DelegatingSecurityContextAsyncTaskExecutor;
+import org.springframework.stereotype.Service;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
-public abstract class JdbcGroupDao implements GroupDao {
+@Service
+public class JdbcGroupDao implements GroupDao {
 // need to add in implements GroupDao
 
     //Might need to have the @Service above this class. @Service usually has the business logic of an application
@@ -25,6 +27,11 @@ public abstract class JdbcGroupDao implements GroupDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    @Override
+    public List<Group> findAll() {
+        return null;
+    }
+
     //@Override
     public String findGroupByGroupId(Long groupId) {
         return jdbcTemplate.queryForObject("select name from groups where group_id = ?", String.class, groupId);
@@ -33,6 +40,11 @@ public abstract class JdbcGroupDao implements GroupDao {
     // @Override
     public Group findGroupByName(String name) {
         return jdbcTemplate.queryForObject("select * from groups where name = ?", Group.class, name);
+    }
+
+    @Override
+    public Group findGroupByUserId(Long userId) {
+        return null;
     }
 
 //    @Override
@@ -67,6 +79,11 @@ public abstract class JdbcGroupDao implements GroupDao {
     @Override
     public Group getGroup(Long groupId) {
         return null;
+    }
+
+    @Override
+    public boolean create(String name, String groupDescription, Date joinedOn) {
+        return false;
     }
     //GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
 //        String id_column = "group_id";
