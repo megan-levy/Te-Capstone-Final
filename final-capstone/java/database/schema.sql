@@ -1,6 +1,6 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS users, groups, lists, items, retailers, member_of CASCADE;
+DROP TABLE IF EXISTS users, groups, lists, items, retailers, member_of, retailer_store CASCADE;
 DROP SEQUENCE IF EXISTS seq_user_id;
 
 CREATE SEQUENCE seq_user_id
@@ -20,15 +20,11 @@ CREATE TABLE users (
 	
 	 
  
-	
-	
-
 
 CREATE TABLE groups (
  group_id SERIAL,
  name varchar(50)UNIQUE NOT NULL,
  group_description varchar(50) UNIQUE,
- role varchar(10) NOT NULL,
  created_on DATE DEFAULT CURRENT_TIMESTAMP ,
  CONSTRAINT PK_group_id PRIMARY KEY (group_id)
  );
@@ -36,12 +32,11 @@ CREATE TABLE groups (
  CREATE TABLE member_of (
   user_id int,
   group_id int,
-
+  role varchar(10) NOT NULL,
   invite_accepted boolean,
   joined_on DATE DEFAULT CURRENT_TIMESTAMP ,
   CONSTRAINT FK_users_table_join FOREIGN KEY (user_id) REFERENCES users(user_id),
-  CONSTRAINT FK_member_join_group FOREIGN KEY (group_id) REFERENCES groups(group_id)
-		);
+  CONSTRAINT FK_member_join_group FOREIGN KEY (group_id) REFERENCES groups(group_id));
 	
 
 
@@ -62,11 +57,8 @@ CREATE TABLE groups (
  retailer_id SERIAL,
  retail_name varchar(50) UNIQUE,
  rewards varchar(100) UNIQUE,
- group_id int,
  CONSTRAINT PK_retailer_store PRIMARY KEY (retailer_id),
- CONSTRAINT FK_retailer_list FOREIGN KEY (retail_name) REFERENCES lists(retail_name),
- CONSTRAINT FK_one_more_key FOREIGN KEY (group_id) REFERENCES groups (group_id)
- 
+ CONSTRAINT FK_retailer_list FOREIGN KEY (retail_name) REFERENCES lists(retail_name)
  );
  
  
@@ -89,11 +81,11 @@ CREATE TABLE groups (
 INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
 
-INSERT INTO groups (name,invite_sent,role,group_description) VALUES ('Administrator','true', 'ROLE_ADMIN', 'house_and_home');
-INSERT INTO groups (name, invite_sent, role,group_description) VALUES ('Mickey_Mouse', 'true', 'ROLE_USER', 'Dave_home');
-INSERT INTO lists (list_name, group_name, retail_name, list_claimed) VALUES ('Magic', 'Mickey_Mouse', 'Kroger', 'false');
-INSERT INTO retailer_store (retail_name, rewards) VALUES ('Kroger', '5133161752');
-INSERT INTO items (list_item_id,item_name, item_amount, list_name, favorite, rewards_id) VALUES ('1', 'Spaghetti_squash', '1', 'Magic','false', '5133161752');
+--INSERT INTO groups (name, group_description) VALUES ('Administrator','house_and_home');
+--INSERT INTO groups (name, group_description) VALUES ('Mickey_Mouse', 'Dave_home');
+--INSERT INTO lists (list_name, group_name, retail_name, list_claimed) VALUES ('Magic', 'Mickey_Mouse', 'Kroger', 'false');
+--INSERT INTO retailer_store (retail_name, rewards) VALUES ('Kroger', '5133161752');
+--INSERT INTO items (list_item_id,item_name, item_amount, list_name, favorite, rewards_id) VALUES ('1', 'Spaghetti_squash', '1', 'Magic','false', '5133161752');
 
 
 COMMIT TRANSACTION;
