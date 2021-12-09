@@ -18,15 +18,16 @@
              <textarea placeholder="Enter A Description..." class="form-control"/>
          </label>
           <button class="btn btn-lg btn-primary btn-block" type="submit">
-        Send Invites
+        Create Group
       </button>
-       <router-link tag="a" class="helper-link" :to="{ name: 'login' }">Cancel</router-link>
+       <router-link tag="a" class="helper-link" :to="{ name: 'groups' }">Cancel</router-link>
       </form>
   </div>
 </template>
 
 <script>
 export default {
+
 
 }
 </script>

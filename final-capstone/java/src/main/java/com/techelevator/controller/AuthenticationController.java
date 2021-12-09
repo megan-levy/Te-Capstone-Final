@@ -74,6 +74,7 @@ public class AuthenticationController {
         }
     }
 
+
     /**
      * Object to return as body in JWT Authentication.
      */
