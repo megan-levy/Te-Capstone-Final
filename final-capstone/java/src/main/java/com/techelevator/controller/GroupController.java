@@ -29,6 +29,12 @@ public class GroupController {
 //        int groupId = userDao.findIdByUsername(principal.getName());
 //        return groupDao.getGroup(groupId).getName();
 //    }
+
+//    @RequestMapping(path = "/groups", method = RequestMethod.POST)
+//    public Group createGroup() {
+//
+//    }
+
     @GetMapping(path = "/groups")
     public List<Group> findAll(){
       //  List <Group> groups = groupDao.findAll();

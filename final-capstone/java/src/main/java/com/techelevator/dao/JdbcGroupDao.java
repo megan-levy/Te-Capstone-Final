@@ -68,8 +68,8 @@ public class JdbcGroupDao implements GroupDao {
         // boolean groupCreated = false;
 
         // create group
-        String insertGroup = "INSERT INTO groups(name, group_description, joined_on)" +
-                " VALUES(?,?,?) RETURNING group_id;";
+        String insertGroup = "INSERT INTO groups(name, group_description)" +
+                " VALUES(?,?) RETURNING group_id;";
         Long newGroupId = jdbcTemplate.queryForObject(insertGroup, Long.class, group.getName(), group.getGroupDescription(), group.getJoinedOn());
 
         return getGroup(newGroupId);

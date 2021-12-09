@@ -27,17 +27,18 @@ CREATE TABLE users (
 CREATE TABLE groups (
  group_id SERIAL,
  name varchar(50)UNIQUE NOT NULL,
- invite_sent boolean ,
- role varchar(10) NOT NULL,
  group_description varchar(50) UNIQUE,
- joined_on DATE DEFAULT CURRENT_TIMESTAMP ,
+ role varchar(10) NOT NULL,
+ created_on DATE DEFAULT CURRENT_TIMESTAMP ,
  CONSTRAINT PK_group_id PRIMARY KEY (group_id)
  );
  
  CREATE TABLE member_of (
-	user_id int,
+  user_id int,
   group_id int,
-  group_name varchar(50) UNIQUE,
+
+  invite_accepted boolean,
+  joined_on DATE DEFAULT CURRENT_TIMESTAMP ,
   CONSTRAINT FK_users_table_join FOREIGN KEY (user_id) REFERENCES users(user_id),
   CONSTRAINT FK_member_join_group FOREIGN KEY (group_id) REFERENCES groups(group_id)
 		);
