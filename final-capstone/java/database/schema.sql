@@ -37,7 +37,7 @@ CREATE TABLE groups (
   joined_on DATE DEFAULT CURRENT_TIMESTAMP ,
   CONSTRAINT FK_users_table_join FOREIGN KEY (user_id) REFERENCES users(user_id),
   CONSTRAINT FK_member_join_group FOREIGN KEY (group_id) REFERENCES groups(group_id));
-	
+
 
  
  CREATE TABLE lists (
