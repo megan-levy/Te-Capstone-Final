@@ -7,6 +7,7 @@ import Register from '../views/Register.vue'
 import store from '../store/index'
 import NewGroup from '../views/NewGroup.vue'
 import Groups from '../views/Groups.vue'
+import ShoppingList from '../views/ShoppingList.vue'
 
 Vue.use(Router)
 
@@ -24,7 +25,7 @@ const router = new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/',
+      path: '/', //this will need to be /:userId in order to show only groups for that user
       name: 'groups',
       component: Groups,
       meta: {
@@ -67,6 +68,14 @@ const router = new Router({
       path: "/new-group",
       name: "new-group",
       component: NewGroup,
+      meta: {
+        requiresAuth: false
+      }
+    }, 
+    {
+      path: "/lists/:listId",
+      name: 'shopping-list',
+      component: ShoppingList,
       meta: {
         requiresAuth: false
       }

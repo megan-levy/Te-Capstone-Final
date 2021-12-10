@@ -1,6 +1,8 @@
 <template>
-  <div>
-      <h1>List</h1>
+  <div id="shopping-list" class="shopping-list">
+      <hi>{{shoppingList.name}}</hi>
+      <p></p>
+      <div></div>
   </div>
 </template>
 
