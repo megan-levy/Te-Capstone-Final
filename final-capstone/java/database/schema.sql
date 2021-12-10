@@ -32,7 +32,6 @@ CREATE TABLE groups (
  CREATE TABLE member_of (
   user_id int,
   group_id int,
-  role varchar(10) NOT NULL,
   invite_accepted boolean,
   joined_on DATE DEFAULT CURRENT_TIMESTAMP ,
   CONSTRAINT FK_users_table_join FOREIGN KEY (user_id) REFERENCES users(user_id),

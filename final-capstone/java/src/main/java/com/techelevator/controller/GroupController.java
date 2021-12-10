@@ -32,12 +32,14 @@ public class GroupController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(value = "/groups", method = RequestMethod.POST)
-    public void createGroup(@Valid @RequestBody GroupDTO newGroup) {
+    public void createGroup(@Valid @RequestBody GroupDTO newGroup, Principal user) {
         try {
             Group group = groupDao.findGroupByName(newGroup.getGroupname());
             throw new GroupAlreadyExistsException();
         } catch (Exception e) {
-            groupDao.create(newGroup.getGroupname(), newGroup.getGroupDescription());
+            System.out.println(user);
+            Long userId = (long) userDao.findIdByUsername(user.getName());
+            groupDao.create(newGroup.getGroupname(), newGroup.getGroupDescription(), userId);
         }
     }
 

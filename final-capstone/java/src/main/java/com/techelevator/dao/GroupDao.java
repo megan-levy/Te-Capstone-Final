@@ -19,5 +19,5 @@ public interface GroupDao {
 
     Group getGroup(Long groupId);
 
-    Long create(String name, String groupDescription);
+    void create(String name, String groupDescription, Long userId);
 }

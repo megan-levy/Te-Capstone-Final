@@ -74,17 +74,20 @@ public class JdbcGroupDao implements GroupDao {
 
     @Override
     //public boolean create(String name, String groupDescription, Date joinedOn) {
-    public Long create(String name, String groupDescription) {
-        // boolean groupCreated = false;
-
-        // create group
+    public void create(String name, String groupDescription, Long userId) {
         String insertGroup = "INSERT INTO groups(name, group_description)" +
                 " VALUES(?,?) RETURNING group_id;";
         Long newGroupId = jdbcTemplate.queryForObject(insertGroup, Long.class, name, groupDescription);
+        int groupId = (int)newGroupId.longValue();
 
-        return newGroupId;
 
 
+
+        String insertMember = "INSERT INTO member_of(user_id, group_id, invite_accepted)" +
+                " VALUES(?,?,?)";
+        jdbcTemplate.update(insertMember, userId, groupId, true);
+
+//        jdbcTemplate.query(insertMember, userId, groupId, true);
     }
 
     //Below Override was to make implements happy for now until we figure out why
