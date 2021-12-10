@@ -1,19 +1,20 @@
 <template>
 
-    <div class="groups">
+    <div class="groups" v-if="$store.state.group">
        
          <!-- <router-view /> -->
          <div class="title-add">
-            <h1>Group</h1>
-            <router-link class="addBtn" v-bind:to="{ name: 'new-group' }" v-if="$store.state.token != ''">+</router-link>
+            <h1>{{$store.state.group.name}}</h1>
+            <p>{{$store.state.group.groupDescription}}</p>
+            <router-link class="addBtn" v-bind:to="{ name: 'new-list' }" v-if="$store.state.token != ''">+</router-link>
          </div>
         
         <hr/>
         <div>
-        <ul id="group-name">
-            <li v-for="group in $store.state.groups" :key="group.groupId">
-                <h1>{{group.name}}</h1>
-                <p>{{group.description}}</p>
+        <ul class="vertical-list">
+            <li v-for="list in $store.state.lists" :key="list.listId">
+                <h1>{{list.name}}</h1>
+                <p>{{list.description}}</p>
             </li>
         </ul>
         </div>
@@ -26,14 +27,20 @@
     export default {
     name: "groups",
     mounted() {
-        this.listGroups();
-        // console.log("howdy");
-        GroupService.list();
+        this.displayGroupLists(this.$route.params.groupId);
+        console.log();
+        this.getGroup(this.$route.params.groupId);
     },
     methods: {
-            listGroups() {
-                let groups = GroupService.list();
-                this.$store.commit("SET_GROUPS", (groups.data));
+            displayGroupLists(groupId) {
+                console.log(groupId);
+                // let groups = GroupService.list();
+                // this.$store.commit("SET_GROUPS", (groups.data));
+            },
+            async getGroup(groupId) {
+                GroupService.getSingle(groupId).then(group => {
+                    this.$store.commit("SET_GROUP", group.data);
+                });
             }
         }
     };

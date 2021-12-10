@@ -10,17 +10,24 @@
       >+</router-link
     >
 
+
     <hr />
     <div>
-      <ul id="group-name">
-        <li v-for="group in $store.state.groups" :key="group.groupId">
+      <ul class="vertical-list" v-if="$store.state.token != ''">
+        <router-link 
+          tag="a" 
+          class="group-list-item" 
+          v-bind:to="{ name: 'group-home', params: { groupId: `${group.groupId}` }}"  
+          v-for="group in $store.state.groups" 
+          :key="group.groupId"
+        >
           <h1>{{ group.name }}
             | <span class="date">
               {{group.createdOn}}
             </span>
           </h1>
           <p>{{ group.groupDescription }}</p>
-        </li>
+        </router-link>
       </ul>
     </div>
   </div>
@@ -33,6 +40,7 @@ export default {
   name: "groups",
   mounted() {
     this.listGroups();
+    console.log(this.$route.params);
     // console.log("howdy");
     //GroupService.list();
   },
@@ -80,7 +88,7 @@ export default {
   border: 2px solid #1f7a8c;
 }
 
-li {
+.group-list-item {
   background-color: #e1e5f2;
   padding: 15px;
   margin: 10px;
@@ -91,4 +99,5 @@ li {
   font-size: 16px;
 
 }
+
 </style>

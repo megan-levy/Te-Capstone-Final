@@ -93,7 +93,14 @@ public class JdbcGroupDao implements GroupDao {
     //Below Override was to make implements happy for now until we figure out why
     @Override
     public Group getGroup(Long groupId) {
-        return null;
+        Group group = null;
+        String getGroup = "SELECT * FROM groups WHERE group_id = ?";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(getGroup, groupId);
+        if (results.next()) {
+            group = mapRowToGroup(results);
+        }
+        return group;
     }
 
 //    @Override

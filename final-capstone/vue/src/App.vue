@@ -133,5 +133,9 @@ div#nav {
     font-family: 'Inter', sans-serif;
     font-weight: 500;
   }
+  .vertical-list {
+    display: flex;
+    flex-direction: column;
+  }
 
 </style>

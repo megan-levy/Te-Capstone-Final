@@ -7,8 +7,10 @@ export default {
         return axios.get('/groups')
     },
     createGroup(group) { 
-        return axios.post('/groups', group)
-    //console.log(group)
+        return axios.post('/groups', group);
+    },
+    getSingle(groupId) {
+        return axios.get(`/groups/${groupId}`, { params: { groupId } });
     }
 
 }

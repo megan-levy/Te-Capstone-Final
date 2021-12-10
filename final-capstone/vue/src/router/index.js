@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 // import Home from '../views/Home.vue'
+import GroupHome from '../views/GroupHome.vue';
 import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
@@ -56,14 +57,14 @@ const router = new Router({
         requiresAuth: false
       }
     },
-    // {
-    //   path: '/groups',
-    //   name: 'groups',
-    //   component: Groups,
-    //   meta: {
-    //     requiresAuth: false // change after testing
-    //   }
-    // },
+    {
+      path: "/:groupId",
+      name: 'group-home',
+      component: GroupHome,
+      meta: {
+        requiresAuth: false
+      }
+    },
     {
       path: "/new-group",
       name: "new-group",
