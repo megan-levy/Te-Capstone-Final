@@ -9,23 +9,18 @@ import java.util.Set;
 public class Group {
     private Long groupId;
     private String name;
-    @JsonIgnore
-    private Boolean inviteSent;
     private String groupDescription;
-    private Date joinedOn;
-    // not sure if we need this but have left in since on the user Model not sure if related to security/roles access
-    private Set<Authority> authorities = new HashSet<>();
+    private Date createdOn;
 
     public Group() {
     }
 
-    public Group(Long groupId, String name, Boolean inviteSent,
-                 String groupDescription, Date joinedOn, String authorities) {
+    public Group(Long groupId, String name,
+                 String groupDescription, Date createdOn) {
         this.groupId = groupId;
         this.name = name;
-        this.inviteSent = true;
         this.groupDescription = groupDescription;
-        this.joinedOn = joinedOn;
+        this.createdOn = createdOn;
     }
 
     public Long getGroupId() {
@@ -52,36 +47,11 @@ public class Group {
         this.groupDescription = groupDescription;
     }
 
-    public void setAuthorities(Set<Authority> authorities) {
-        this.authorities = authorities;
+    public Date getCreatedOn() {
+        return createdOn;
     }
 
-    public Boolean getInviteSent() {
-        return inviteSent;
-    }
-
-    public void setInviteSent(Boolean inviteSent) {
-        this.inviteSent = inviteSent;
-    }
-
-    public Date getJoinedOn() {
-        return joinedOn;
-    }
-
-    public void setJoinedOn(Date joinedOn) {
-        this.joinedOn = joinedOn;
-    }
-
-    public Set<Authority> getAuthorities() {
-        return authorities;
-    }
-
-    //Setter setAuthorities was copied from User model.. Not sure if appropriate here
-    public void setAuthorities(String authorities) {
-        String[] roles = authorities.split(",");
-        for (String role : roles) {
-            String authority = role.contains("ROLE_") ? role : "ROLE_" + role;
-            this.authorities.add(new Authority(authority));
-        }
+    public void setCreatedOn(Date createdOn) {
+        this.createdOn = createdOn;
     }
 }

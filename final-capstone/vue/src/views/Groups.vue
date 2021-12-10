@@ -14,7 +14,11 @@
     <div>
       <ul id="group-name">
         <li v-for="group in $store.state.groups" :key="group.groupId">
-          <h1>{{ group.name }}</h1>
+          <h1>{{ group.name }}
+            | <span class="date">
+              {{group.createdOn}}
+            </span>
+          </h1>
           <p>{{ group.groupDescription }}</p>
         </li>
       </ul>
@@ -35,6 +39,7 @@ export default {
   methods: {
     listGroups() {
       GroupService.list().then((groups) => {
+        console.log(groups)
         this.$store.commit("SET_GROUPS", groups.data);
       });
     },
@@ -79,5 +84,11 @@ li {
   background-color: #e1e5f2;
   padding: 15px;
   margin: 10px;
+}
+
+.date{
+  font-weight: 400;
+  font-size: 16px;
+
 }
 </style>

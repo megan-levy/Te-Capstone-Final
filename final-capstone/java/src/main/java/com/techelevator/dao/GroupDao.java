@@ -17,9 +17,7 @@ public interface GroupDao {
     //Return groups based solely on userId
     Group findGroupByUserId(Long userId);
 
-    Group createGroup(Group group);
-
     Group getGroup(Long groupId);
 
-    boolean create(String name, String groupDescription, Date joinedOn);
+    Long create(String name, String groupDescription);
 }

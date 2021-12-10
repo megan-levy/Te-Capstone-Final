@@ -27,9 +27,19 @@ public class JdbcGroupDao implements GroupDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+
+
     @Override
     public List<Group> findAll() {
-        return null;
+        List<Group> groupList = new ArrayList<>();
+        String sql = "SELECT * FROM groups ORDER BY groups.name ASC;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+
+        while (results.next()) {
+            groupList.add(mapRowToGroup(results));
+        }
+
+        return groupList;
     }
 
     //@Override
@@ -64,15 +74,16 @@ public class JdbcGroupDao implements GroupDao {
 
     @Override
     //public boolean create(String name, String groupDescription, Date joinedOn) {
-    public Group createGroup(Group group) {
+    public Long create(String name, String groupDescription) {
         // boolean groupCreated = false;
 
         // create group
         String insertGroup = "INSERT INTO groups(name, group_description)" +
                 " VALUES(?,?) RETURNING group_id;";
-        Long newGroupId = jdbcTemplate.queryForObject(insertGroup, Long.class, group.getName(), group.getGroupDescription(), group.getJoinedOn());
+        Long newGroupId = jdbcTemplate.queryForObject(insertGroup, Long.class, name, groupDescription);
 
-        return getGroup(newGroupId);
+        return newGroupId;
+
     }
 
     //Below Override was to make implements happy for now until we figure out why
@@ -81,10 +92,10 @@ public class JdbcGroupDao implements GroupDao {
         return null;
     }
 
-    @Override
-    public boolean create(String name, String groupDescription, Date joinedOn) {
-        return false;
-    }
+//    @Override
+//    public boolean create(String name, String groupDescription) {
+//        return false;
+    // }
     //GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
 //        String id_column = "group_id";
 //        groupCreated = jdbcTemplate.update(con -> {
@@ -105,10 +116,9 @@ public class JdbcGroupDao implements GroupDao {
         Group group = new Group();
         group.setGroupId(rs.getLong("group_id"));
         group.setName(rs.getString("name"));
-        group.setInviteSent(rs.getBoolean("invite_sent"));
         //group.setAuthorities(rs.getString("role")); -- not sure how to deal with the role
         group.setGroupDescription(rs.getString("group_description"));
-        group.setJoinedOn(rs.getDate("joined-on"));
+        group.setCreatedOn(rs.getDate("created_on"));
         return group;
     }
 

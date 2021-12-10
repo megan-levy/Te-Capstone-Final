@@ -63,16 +63,7 @@ public class AuthenticationController {
         }
     }
 
-    @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping(value = "/new-group", method = RequestMethod.POST)
-    public void createGroup(@Valid @RequestBody GroupDTO newGroup) {
-        try {
-            Group group = groupDao.findGroupByName(newGroup.getGroupname());
-            throw new GroupAlreadyExistsException();
-        } catch (Exception e) {
-            groupDao.create(newGroup.getGroupname(), newGroup.getGroupDescription(),newGroup.getJoined_on());
-        }
-    }
+
 
 
     /**

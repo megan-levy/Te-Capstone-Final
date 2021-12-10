@@ -1,6 +1,6 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS users, groups, lists, items, retailers, member_of, retailer_store CASCADE;
+DROP TABLE IF EXISTS users, groups, lists, items, member_of CASCADE;
 DROP SEQUENCE IF EXISTS seq_user_id;
 
 CREATE SEQUENCE seq_user_id
@@ -22,9 +22,9 @@ CREATE TABLE users (
  
 
 CREATE TABLE groups (
- group_id SERIAL,
- name varchar(50)UNIQUE NOT NULL,
- group_description varchar(50) UNIQUE,
+ group_id SERIAL UNIQUE,
+ name varchar(50) NOT NULL,
+ group_description varchar(50),
  created_on DATE DEFAULT CURRENT_TIMESTAMP ,
  CONSTRAINT PK_group_id PRIMARY KEY (group_id)
  );
@@ -43,37 +43,44 @@ CREATE TABLE groups (
  
  CREATE TABLE lists (
  list_id SERIAL ,
- list_name varchar(50)UNIQUE NOT NULL,
+ list_name varchar(50)NOT NULL,
  group_id int ,
- group_name varchar(50) UNIQUE ,
- retail_name varchar(50) UNIQUE,
  list_claimed boolean,
- list_description varchar(50) UNIQUE,
+ list_description varchar(50),
  CONSTRAINT PK_lists PRIMARY KEY (list_id),
-  CONSTRAINT FK_lists_group_name FOREIGN KEY (group_name) REFERENCES groups (name)
+ CONSTRAINT FK_lists_group_id FOREIGN KEY (group_id) REFERENCES groups (group_id)
  );
  
- CREATE TABLE retailer_store (
- retailer_id SERIAL,
- retail_name varchar(50) UNIQUE,
- rewards varchar(100) UNIQUE,
- CONSTRAINT PK_retailer_store PRIMARY KEY (retailer_id),
- CONSTRAINT FK_retailer_list FOREIGN KEY (retail_name) REFERENCES lists(retail_name)
- );
+-- CREATE TABLE retailer_store (
+-- retailer_id SERIAL,
+-- retail_name varchar(50),
+-- rewards varchar(100),
+-- CONSTRAINT PK_retailer_store PRIMARY KEY (retailer_id)
+-- --CONSTRAINT FK_retailer_list FOREIGN KEY (retail_name) REFERENCES lists(retail_name)
+-- );
+-- 
+-- CREATE TABLE retailer_list (
+-- retailer_id int, 
+-- list_id int,
+-- CONSTRAINT PK_retailer_id PRIMARY KEY (retailer_id, list_id),
+-- CONSTRAINT FK_retailer_list_retailer_id FOREIGN KEY (retailer_id) REFERENCES retailer_store(retailer_id),
+-- CONSTRAINT FK_retailer_list_list_id FOREIGN KEY (list_id) REFERENCES lists(list_id)
+-- );
  
+
  
  CREATE TABLE items (
  list_item_id varchar(50) NOT NULL ,
- item_name varchar UNIQUE NOT NULL,
+ item_name varchar NOT NULL,
  item_amount int,
- list_name varchar UNIQUE NOT NULL,
+ list_id int NOT NULL,
  date_added DATE DEFAULT CURRENT_TIMESTAMP,
  user_id int,
  favorite boolean,
- rewards_id varchar(100) UNIQUE,
+ --rewards_id varchar(100) UNIQUE,
  CONSTRAINT PK_items_table PRIMARY KEY (list_item_id),
- CONSTRAINT FK_items_list_name FOREIGN KEY (list_name) REFERENCES lists(list_name),
- CONSTRAINT FK_item_savings FOREIGN KEY (rewards_id) REFERENCES retailer_store(rewards)
+ CONSTRAINT FK_items_list_id FOREIGN KEY (list_id) REFERENCES lists(list_id)
+ --CONSTRAINT FK_item_savings FOREIGN KEY (rewards_id) REFERENCES retailer_store(rewards)
  );
  
 

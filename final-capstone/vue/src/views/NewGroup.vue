@@ -1,6 +1,6 @@
 <template>
   <div id="new-group" class="text-center auth-container">
-      <form class="form-new-group">
+      <form class="form-new-group" @submit.prevent="createGroup">
         <h1 class="h3 mb-3 font-weight-normal">Create New Group</h1>
          <hr>
          <br>
@@ -10,12 +10,13 @@
              type="text"
              id="group-name"
              class="form-control"
+             v-model="group.groupname"
              placeholder="Group Name..."
              required/>
          </label>
          <label for='text' class="sr-only">
              <span>Add Group Description:</span>
-             <textarea placeholder="Enter A Description..." class="form-control"/>
+             <textarea placeholder="Enter A Description..." class="form-control" v-model="group.groupDescription"/>
          </label>
           <button class="btn btn-lg btn-primary btn-block" type="submit">
         Create Group
@@ -26,8 +27,35 @@
 </template>
 
 <script>
+import groupService from "../services/GroupService";
 export default {
+  name: "newgroup",
+   data() {
+    return {
+      group: {
+        groupname: "",
+        groupDescription: "",
+      },
+    };
+  },
+  methods: {
+    createGroup() {
+     groupService.createGroup(this.group)
+      .then((response) => {
+        console.log(response.status)
+          if (response.status == 200 || response.status == 201) {
+            this.$router.push("/");
+          }
+        })
+        .catch((error) => {
+          const response = error.response;
 
+          if (response.status === 401) {
+            this.invalidCredentials = true;
+          }
+        });
+    }
+  }
 
 }
 </script>
