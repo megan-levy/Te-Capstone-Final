@@ -22,11 +22,12 @@ public class ShoppingListController {
         //this.shoppingList = shoppingList;
     }
 
-//    @ResponseStatus(HttpStatus.CREATED)
-//    @RequestMapping(value = "/group/{id}/lists", method = RequestMethod.POST)
-//    public void createShoppingList(@Valid @RequestBody ShoppingListDAO newList) {
-//        shoppingListDAO.create(shoppingList.getListName(), shoppingList.getListDescription());
-//    }
+    @ResponseStatus(HttpStatus.CREATED)
+    @RequestMapping(value = "/group/{groupId}/lists", method = RequestMethod.POST)
+    public void createShoppingList(@RequestParam String groupId, @Valid @RequestBody ShoppingListDAO newList) {
+
+        shoppingListDAO.create(shoppingList.getListName(), shoppingList.getListDescription(), Long.parseLong(groupId));
+    }
 }
 
 

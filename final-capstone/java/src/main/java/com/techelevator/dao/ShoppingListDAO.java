@@ -11,5 +11,5 @@ public interface ShoppingListDAO {
     //Trying to get the lists that have not been claimed. Not sure if this is how.
     boolean findByListClaimed (Boolean listClaimed);
 
-    Long create(String listName, String listDescription);
+    void create(String listName, String listDescription, Long groupId);
 }

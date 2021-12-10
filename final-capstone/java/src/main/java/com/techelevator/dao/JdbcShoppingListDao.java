@@ -29,12 +29,10 @@ public class JdbcShoppingListDao implements ShoppingListDAO {
     }
 
     @Override
-    public Long create(String listName, String listDescription) {
-        String insertList ="INSERT INTO lists(list_name, list_description)" +
-                " VALUES(?,?) RETURNING list_id;";
-        Long newListId = jdbcTemplate.queryForObject(insertList, Long.class, listName, listDescription);
-
-        return newListId;
+    public void create(String listName, String listDescription, Long groupId) {
+        String insertList ="INSERT INTO lists(list_name, list_description, group_id)" +
+                " VALUES(?,?,?) RETURNING list_id;";
+        jdbcTemplate.update(insertList, listName, listDescription);
     }
 
 }
