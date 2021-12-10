@@ -5,18 +5,19 @@ public class ShoppingList {
     private Long listId;
     private String listName;
     private Long groupId;
-    private String groupName;
-    private String retailName;
+    //private String retailName;
     private Boolean listClaimed;
+    private String listDescription;
 
     public ShoppingList() { }
 
-    public ShoppingList(Long listId, String listName, Long groupId, String groupName, String retailName, Boolean listClaimed){
+    public ShoppingList(Long listId, String listName, Long groupId, String groupName, Boolean listClaimed, String listDescription){
         this.listId = listId;
         this.listName = listName;
         this.groupId = groupId;
-        this.retailName = retailName;
+        //this.retailName = retailName;
         this.listClaimed = listClaimed;
+        this.listDescription = listDescription;
     }
 
     public Long getListId() {
@@ -43,21 +44,14 @@ public class ShoppingList {
         this.groupId = groupId;
     }
 
-    public String getGroupName() {
-        return groupName;
-    }
 
-    public void setGroupName(String groupName) {
-        this.groupName = groupName;
-    }
-
-    public String getRetailName() {
-        return retailName;
-    }
-
-    public void setRetailName(String retailName) {
-        this.retailName = retailName;
-    }
+//    public String getRetailName() {
+//        return retailName;
+//    }
+//
+//    public void setRetailName(String retailName) {
+//        this.retailName = retailName;
+//    }
 
     public Boolean getListClaimed() {
         return listClaimed;
@@ -65,5 +59,13 @@ public class ShoppingList {
 
     public void setListClaimed(Boolean listClaimed) {
         this.listClaimed = listClaimed;
+    }
+
+    public String getListDescription() {
+        return listDescription;
+    }
+
+    public void setListDescription(String listDescription) {
+        this.listDescription = listDescription;
     }
 }
