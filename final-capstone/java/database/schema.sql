@@ -39,7 +39,6 @@ CREATE TABLE groups (
   CONSTRAINT FK_member_join_group FOREIGN KEY (group_id) REFERENCES groups(group_id));
 	
 
-
  
  CREATE TABLE lists (
  list_id SERIAL ,

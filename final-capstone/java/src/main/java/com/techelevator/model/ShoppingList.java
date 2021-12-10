@@ -1,6 +1,6 @@
 package com.techelevator.model;
 
-public class List {
+public class ShoppingList {
 
     private Long listId;
     private String listName;
@@ -9,9 +9,9 @@ public class List {
     private String retailName;
     private Boolean listClaimed;
 
-    public List() { }
+    public ShoppingList() { }
 
-    public List(Long listId, String listName, Long groupId, String groupName, String retailName, Boolean listClaimed){
+    public ShoppingList(Long listId, String listName, Long groupId, String groupName, String retailName, Boolean listClaimed){
         this.listId = listId;
         this.listName = listName;
         this.groupId = groupId;

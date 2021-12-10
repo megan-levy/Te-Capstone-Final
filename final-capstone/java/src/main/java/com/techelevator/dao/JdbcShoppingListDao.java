@@ -1,6 +1,6 @@
 package com.techelevator.dao;
 
-public class JdbcListDao {
+public class JdbcShoppingListDao {
 
   //  private JdbcTemplate jdbcTemplate;
 //
