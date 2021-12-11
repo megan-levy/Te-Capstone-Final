@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ItemDao {
 
-   List<Item> findAll();
+   List<Item> getItemsByListId(Long listId);
 
    Item getItemByName (String itemName);
 
@@ -17,7 +17,9 @@ public interface ItemDao {
 
    Item getItemByFavorite(Boolean isFavorite);
 
-   boolean create(String name, int itemAmount);
+   Item getItemByListId (String item);
+
+   void create(String name, int itemAmount, int itemId);
 
    //Decide if we want to include Coupon and Favorite Item when created or is it done with user input once Item created
 

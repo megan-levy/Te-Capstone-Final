@@ -7,7 +7,7 @@ public class Item {
     private Long listItemId;
     private String itemName;
     private int itemAmount;
-    private String listName;
+    private Long listId;
     private Date dateAdded;
     private Long userId;
     private Boolean favorite;
@@ -15,12 +15,12 @@ public class Item {
 
     public Item() {}
 
-    public Item (Long listItemId, String itemName, int itemAmount, String listName, Date dateAdded,
+    public Item (Long listItemId, String itemName, int itemAmount, Long listId, Date dateAdded,
                  Long userId, Boolean favorite, Boolean coupon) {
         this.listItemId = listItemId;
         this.itemName = itemName;
         this.itemAmount = itemAmount;
-        this.listName = listName;
+        this.listId = listId;
         this.dateAdded = dateAdded;
         this.userId = userId;
         this.favorite = favorite;
@@ -51,12 +51,12 @@ public class Item {
         this.itemAmount = itemAmount;
     }
 
-    public String getListName() {
-        return listName;
+    public Long getListId() {
+        return listId;
     }
 
-    public void setListName(String listName) {
-        this.listName = listName;
+    public void setListId(Long listId) {
+        this.listId = listId;
     }
 
     public Date getDateAdded() {
