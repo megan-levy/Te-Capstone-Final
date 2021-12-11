@@ -19,6 +19,8 @@ public interface ItemDao {
 
    Item getItemByListId (String item);
 
+   int getItemCount (int listId);
+
    void create(String name, int itemAmount, int itemId);
 
    //Decide if we want to include Coupon and Favorite Item when created or is it done with user input once Item created

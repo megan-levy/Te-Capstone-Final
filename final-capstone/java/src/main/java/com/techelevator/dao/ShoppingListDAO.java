@@ -13,6 +13,7 @@ public interface ShoppingListDAO {
 
     ShoppingList findListByUserId(Long userId);
 
+
     //Trying to get the lists that have not been claimed. Not sure if this is how.
     boolean findByListClaimed (Boolean listClaimed);
 

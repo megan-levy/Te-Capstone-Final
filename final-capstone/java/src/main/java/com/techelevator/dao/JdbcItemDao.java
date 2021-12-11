@@ -57,6 +57,12 @@ public class JdbcItemDao implements ItemDao {
     }
 
     @Override
+    public int getItemCount (int listId){
+        String count ="SELECT COUNT(list_id) FROM lists";
+        return Integer.parseInt(count);
+    }
+
+    @Override
     public void create(String name, int itemAmount, int itemId) {
         // does this need to be in query list_id, date_added, user_id,
                 String insertItem ="INSERT INTO items(list_item_id, item_name, item_amount, list_id, user_id, favorite" +
