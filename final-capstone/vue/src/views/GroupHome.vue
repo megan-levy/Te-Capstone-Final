@@ -11,10 +11,11 @@
         
         <hr/>
         <div>
-        <ul class="vertical-list">
+        <ul class="vertical-list" id='lists-listed'>
             <li v-for="list in $store.state.lists" :key="list.listId">
                 <h1>{{list.listName}}</h1>
                 <p>{{list.listDescription}}</p>
+                <p>Item quantity</p>
             </li>
         </ul>
         </div>
@@ -52,10 +53,21 @@
 
 li {
     text-decoration: none;
-
+    
 }
- /* .groups { */
-    /* height: fit-content;
+
+#list-listed {
+  display: grid;
+  grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+  width: 100%;
+  padding-inline-start: 0px;
+}
+
+h1 {
+    margin-top: 1px;
+}
+ .groups { 
+     height: fit-content;
     min-width: 350px;
     margin: 15px;
     width: calc(100% - 80px);
@@ -65,7 +77,7 @@ li {
     border-radius: 6px;
     filter: drop-shadow(0px 4px 4px rgba(221, 221, 221, 0.25));
     padding: 25px;
- } */
+ } 
  /* .addBtn {
     width: 50px;
     height: 50px;
