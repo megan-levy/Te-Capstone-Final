@@ -94,6 +94,7 @@ p {
 h3 {
   font-size: 18px;
   margin-block-start: 0;
+  color: #1f7a8c;
 }
 
 li span {
@@ -107,6 +108,11 @@ li {
   border-radius: 6px;
   list-style-type: none;
   display: flex;
+  border: 3px solid none;
+  transition: all 350ms;
   
+}
+li:hover {
+  border: 3px solid #1f7a8c5d;
 }
 </style>
