@@ -8,7 +8,6 @@
         <ul class="vertical-list" id="items-listed">
           <li>  
            <div>
-             
              <h3>
                Lots of wine
              </h3>
@@ -126,13 +125,13 @@ li:hover {
   border: 3px solid #1f7a8c5d;
 }
 
-/* #x {
+#x {
   
 	width: 23px;
 	height: 23px;
 	border: 2px solid #eef5df;
 	
 	border-radius: 50%;
-} */
+}
 
 </style>

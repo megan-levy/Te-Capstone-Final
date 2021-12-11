@@ -1,8 +1,10 @@
 <template>
   <div id="app">
     <div id="nav">
+      <span id='title-of-project'> Shared Shopping List </span>
       <!-- <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp; -->
       <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
+      
     </div>
     <router-view />
   </div>
@@ -136,6 +138,10 @@ div#nav {
   .vertical-list {
     display: flex;
     flex-direction: column;
+  }
+
+  span {
+    text-align: right;
   }
 
 </style>

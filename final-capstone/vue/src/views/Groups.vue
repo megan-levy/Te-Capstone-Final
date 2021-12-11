@@ -13,7 +13,7 @@
 
     <hr />
     <div>
-      <ul class="vertical-list" v-if="$store.state.token != ''">
+      <ul class="vertical-list" v-if="$store.state.token != ''" id='groups-listed'>
         <router-link 
           tag="a" 
           class="group-list-item" 
@@ -92,12 +92,21 @@ export default {
   background-color: #e1e5f2;
   padding: 15px;
   margin: 10px;
+  text-decoration: none;
+  color: #1f7a8c;
+  border-radius: 6px;
+  
 }
 
 .date{
   font-weight: 400;
   font-size: 16px;
-
 }
 
+#groups-listed {
+  display: grid;
+  grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+  width: 100%;
+  padding-inline-start: 0px;
+}
 </style>

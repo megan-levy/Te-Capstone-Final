@@ -49,6 +49,11 @@
     };
 </script>
 <style>
+
+li {
+    text-decoration: none;
+
+}
  /* .groups { */
     /* height: fit-content;
     min-width: 350px;
