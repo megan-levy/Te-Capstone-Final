@@ -40,6 +40,9 @@ export default new Vuex.Store({
     SET_GROUP(state, group) {
       state.group = group;
     },
+    SET_LISTS(state, lists) {
+      state.lists = lists;
+    },
     LOGOUT(state) {
       localStorage.removeItem('token');
       localStorage.removeItem('user');

@@ -13,8 +13,8 @@
         <div>
         <ul class="vertical-list">
             <li v-for="list in $store.state.lists" :key="list.listId">
-                <h1>{{list.name}}</h1>
-                <p>{{list.description}}</p>
+                <h1>{{list.listName}}</h1>
+                <p>{{list.listDescription}}</p>
             </li>
         </ul>
         </div>
@@ -23,6 +23,7 @@
 
 <script>
     import GroupService from '@/services/GroupService.js';
+    import ShoppingListService from '@/services/ShoppingListService.js';
 
     export default {
     name: "groups",
@@ -34,8 +35,10 @@
     methods: {
             displayGroupLists(groupId) {
                 console.log(groupId);
-                // let groups = GroupService.list();
-                // this.$store.commit("SET_GROUPS", (groups.data));
+                ShoppingListService.list(this.$route.params.groupId).then(lists => {
+                    this.$store.commit("SET_LISTS", lists.data);
+                });
+                
             },
             async getGroup(groupId) {
                 GroupService.getSingle(groupId).then(group => {

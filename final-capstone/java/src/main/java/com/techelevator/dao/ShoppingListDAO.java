@@ -1,8 +1,13 @@
 package com.techelevator.dao;
 
+import com.techelevator.model.Group;
 import com.techelevator.model.ShoppingList;
 
+import java.util.List;
+
 public interface ShoppingListDAO {
+
+    List<ShoppingList> getListsByGroupId(Long groupId);
 
     ShoppingList getListByGroupId(Long groupId);
 

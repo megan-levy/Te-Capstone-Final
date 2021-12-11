@@ -10,6 +10,10 @@ export default {
         //     return shoppingLists.find(shoppingList => shoppingList.listId == listId);
         // })
     },
-    
-
+    createShoppingList(groupId, list) {
+        return axios.post(`/group/${groupId}/lists`, list, { params: { groupId } });
+    },
+    list(groupId) {
+        return axios.get(`/group/${groupId}/lists`, { params: { groupId } })
+    },
 }
