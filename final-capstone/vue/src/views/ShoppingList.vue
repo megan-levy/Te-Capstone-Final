@@ -2,10 +2,13 @@
   <div id="shopping-list" class="shopping-list">
       <h1>{{listName}}</h1>
       <p>{{listDescription}}</p>
+
+       <hr />
       <div class="grocery-list">
         <ul class="vertical-list" id="items-listed">
           <li>  
            <div>
+             
              <h3>
                Lots of wine
              </h3>
@@ -37,6 +40,10 @@
              </div>
           </li>
         </ul>
+      </div>
+
+      <div>
+        <button type="submit">Add Item +</button>
       </div>
   </div>
 </template>
@@ -84,11 +91,13 @@ export default {
 }
 
 h1 {
-  padding: 15px;
+  padding: 10px;
+  
 }
 
 p {
   margin: 20px;
+  font-style: italic;
 }
 
 h3 {
@@ -110,9 +119,20 @@ li {
   display: flex;
   border: 3px solid none;
   transition: all 350ms;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   
 }
 li:hover {
   border: 3px solid #1f7a8c5d;
 }
+
+/* #x {
+  
+	width: 23px;
+	height: 23px;
+	border: 2px solid #eef5df;
+	
+	border-radius: 50%;
+} */
+
 </style>
