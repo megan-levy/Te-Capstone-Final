@@ -58,7 +58,7 @@ public class JdbcItemDao implements ItemDao {
 
     @Override
     public int getItemCount (int listId){
-        String count ="SELECT COUNT(list_id) FROM lists";
+        String count ="SELECT COUNT(list_id) FROM lists WHERE list_id = ?";
         return Integer.parseInt(count);
     }
 
