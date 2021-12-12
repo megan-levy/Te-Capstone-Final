@@ -2,7 +2,7 @@
   <div id="shopping-list" class="shopping-list">
       <h1>{{listName}}</h1>
       <p>{{listDescription}}</p>
-
+     
        <hr />
       <div class="grocery-list">
         <ul class="vertical-list" id="items-listed">
@@ -42,7 +42,8 @@
       </div>
 
       <div>
-        <button type="submit">Add Item +</button>
+        <!-- <button type="submit">Add Item +</button> -->
+         <router-link  button type = "submit" class="addBtn" v-bind:to =" {name: 'new-item'}" v-if="$store.state.token != ''">Add Item</router-link> 
       </div>
   </div>
 </template>

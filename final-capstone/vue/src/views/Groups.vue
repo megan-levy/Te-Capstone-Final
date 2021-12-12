@@ -49,6 +49,7 @@ export default {
       GroupService.list().then((groups) => {
         console.log(groups)
         this.$store.commit("SET_GROUPS", groups.data);
+      
       });
     },
   },

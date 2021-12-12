@@ -22,7 +22,8 @@ export default new Vuex.Store({
     user: currentUser || {},
     groups: [],
     group: {},
-    shoppingLists: []
+    shoppingLists: [],
+    items: [],
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -42,6 +43,9 @@ export default new Vuex.Store({
     },
     SET_LISTS(state, lists) {
       state.lists = lists;
+    },
+    SET_ITEMS(state, items) {
+      state.items = items;
     },
     LOGOUT(state) {
       localStorage.removeItem('token');
