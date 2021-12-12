@@ -68,12 +68,12 @@ CREATE TABLE groups (
 
  
  CREATE TABLE items (
- list_item_id varchar(50) NOT NULL ,
+ list_item_id SERIAL,
  item_name varchar NOT NULL,
  item_amount int,
  list_id int NOT NULL,
  date_added DATE DEFAULT CURRENT_TIMESTAMP,
- user_id int,
+ user_id char(50) DEFAULT CURRENT_USER,
  favorite boolean,
  --rewards_id varchar(100) UNIQUE,
  CONSTRAINT PK_items_table PRIMARY KEY (list_item_id),
