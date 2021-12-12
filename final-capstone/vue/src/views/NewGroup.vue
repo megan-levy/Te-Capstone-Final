@@ -42,7 +42,6 @@ export default {
     createGroup() {
      groupService.createGroup(this.group)
       .then((response) => {
-        console.log(response.status)
           if (response.status == 200 || response.status == 201) {
             this.$router.push("/");
           }

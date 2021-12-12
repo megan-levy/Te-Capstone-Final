@@ -32,8 +32,16 @@ public class JdbcShoppingListDao implements ShoppingListDAO {
     }
 
     @Override
-    public ShoppingList getListByGroupId(Long groupId) {
-        return null;
+    public ShoppingList getIndividualList(Long listId) {
+        ShoppingList shoppingList = null;
+        String sql = "SELECT list_id, list_name, group_id, list_claimed, list_description FROM lists WHERE lists.list_id = ?";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, listId);
+        if (results.next()) {
+            shoppingList = mapRowToList(results);
+        }
+
+        return shoppingList;
+//        return jdbcTemplate.queryForObject(sql, ShoppingList.class, listId);
     }
 
     @Override

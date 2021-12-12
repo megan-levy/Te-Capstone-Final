@@ -9,7 +9,7 @@ public interface ShoppingListDAO {
 
     List<ShoppingList> getListsByGroupId(Long groupId);
 
-    ShoppingList getListByGroupId(Long groupId);
+    ShoppingList getIndividualList(Long listId);
 
     ShoppingList findListByUserId(Long userId);
 

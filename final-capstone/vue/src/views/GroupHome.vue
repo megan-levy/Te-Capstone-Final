@@ -11,37 +11,37 @@
         
         <hr/>
         <div>
-        <ul class="vertical-list" id='lists-listed'>
-            <router-link 
-                tag="a" 
-                class="group-list-item" 
-                v-bind:to="{ name: 'shopping-list', params: { listId: `${list.listId}` }}"  
+        <ul class="vertical-list" id='lists-listed' >
+            <list-card
                 v-for="list in $store.state.lists" 
                 :key="list.listId"
-            >
-                <h1>{{list.listName}}</h1>
-                <p>{{list.listDescription}}</p>
-                <p>Item quantity</p>
-            </router-link>
+                v-bind:id="list.listId"
+                v-bind:type="'list'"
+                v-bind:title="list.listName"
+                v-bind:description="list.listDescription"
+                v-bind:date="null"
+            />
         </ul>
         </div>
     </div>
 </template>
 
 <script>
+    import ListCard from '../components/ui/ListCard.vue';
     import GroupService from '@/services/GroupService.js';
     import ShoppingListService from '@/services/ShoppingListService.js';
 
     export default {
-    name: "groups",
-    mounted() {
-        this.displayGroupLists(this.$route.params.groupId);
-        console.log();
-        this.getGroup(this.$route.params.groupId);
-    },
-    methods: {
-            displayGroupLists(groupId) {
-                console.log(groupId);
+        name: "groups",
+        components: {
+            ListCard
+        },
+        mounted() {
+            this.displayGroupLists(this.$route.params.groupId);
+            this.getGroup(this.$route.params.groupId);
+        },
+        methods: {
+            displayGroupLists() {
                 ShoppingListService.list(this.$route.params.groupId).then(lists => {
                     this.$store.commit("SET_LISTS", lists.data);
                 });

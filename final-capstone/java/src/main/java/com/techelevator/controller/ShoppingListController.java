@@ -34,14 +34,12 @@ public class ShoppingListController {
 
     @RequestMapping(value = "/group/{groupId}/lists", method = RequestMethod.GET)
     public List<ShoppingList> findAll(@RequestParam String groupId) {
-        //  List <Group> groups = groupDao.findAll();
         return shoppingListDAO.getListsByGroupId(Long.parseLong(groupId));
-//        group.setGroupId(1L);
-//        group.setGroupDescription("This Is A Group");
-//        group.setName("Party");
-//        List <Group> groups = new ArrayList<>();
-//        groups.add(group);
-//        return groups;
+    }
+
+    @RequestMapping(value = "/lists/{listId}", method = RequestMethod.GET)
+    public ShoppingList getSingleList(@RequestParam String listId) {
+        return shoppingListDAO.getIndividualList(Long.parseLong(listId));
     }
 }
 

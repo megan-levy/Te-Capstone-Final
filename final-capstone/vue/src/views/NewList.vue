@@ -42,7 +42,6 @@ export default {
     createList() {
      shoppingListService.createShoppingList(this.$store.state.group.groupId, this.list)
       .then((response) => {
-        console.log(response.status)
           if (response.status == 200 || response.status == 201) {
             this.$router.push("/");
           }

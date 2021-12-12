@@ -138,6 +138,7 @@ div#nav {
   .vertical-list {
     display: flex;
     flex-direction: column;
+    padding-inline-start: 0px;
   }
 
   span {

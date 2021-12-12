@@ -14,7 +14,7 @@
     <hr />
     <div>
       <ul class="vertical-list" v-if="$store.state.token != ''" id='groups-listed'>
-        <router-link 
+        <!-- <router-link 
           tag="a" 
           class="group-list-item" 
           v-bind:to="{ name: 'group-home', params: { groupId: `${group.groupId}` }}"  
@@ -27,7 +27,19 @@
             </span>
           </h1>
           <p>{{ group.groupDescription }}</p>
-        </router-link>
+        </router-link> -->
+        <list-card
+          v-for="group in $store.state.groups" 
+          :key="group.groupId"
+          v-bind:id="group.groupId"
+          v-bind:type="'group'"
+          v-bind:title="group.name"
+          v-bind:description="group.groupDescription"
+          v-bind:date="group.createdOn"
+      />
+
+
+
       </ul>
     </div>
   </div>
@@ -35,21 +47,20 @@
 
 <script>
 import GroupService from "@/services/GroupService.js";
+import ListCard from '../components/ui/ListCard.vue';
 
 export default {
   name: "groups",
+  components: {
+    ListCard
+  },
   mounted() {
     this.listGroups();
-    console.log(this.$route.params);
-    // console.log("howdy");
-    //GroupService.list();
   },
   methods: {
     listGroups() {
       GroupService.list().then((groups) => {
-        console.log(groups)
         this.$store.commit("SET_GROUPS", groups.data);
-      
       });
     },
   },
