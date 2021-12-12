@@ -12,11 +12,17 @@
         <hr/>
         <div>
         <ul class="vertical-list" id='lists-listed'>
-            <li v-for="list in $store.state.lists" :key="list.listId">
+            <router-link 
+                tag="a" 
+                class="group-list-item" 
+                v-bind:to="{ name: 'shopping-list', params: { listId: `${list.listId}` }}"  
+                v-for="list in $store.state.lists" 
+                :key="list.listId"
+            >
                 <h1>{{list.listName}}</h1>
                 <p>{{list.listDescription}}</p>
                 <p>Item quantity</p>
-            </li>
+            </router-link>
         </ul>
         </div>
     </div>

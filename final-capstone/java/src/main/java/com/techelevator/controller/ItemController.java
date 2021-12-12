@@ -23,8 +23,14 @@ public class ItemController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(value= "/lists/{listId}/items", method = RequestMethod.POST)
-    public void createItem(@RequestParam Long listId, @Valid @RequestBody Item newItem){
+    public void createItem(@RequestParam String listId, @Valid @RequestBody Item newItem){
 
-        itemDao.create(newItem.getItemName(), newItem.getItemAmount(), Math.toIntExact(listId));
+        itemDao.create(newItem.getItemName(), newItem.getItemAmount(), Integer.parseInt(listId));
+    }
+
+    @RequestMapping(value= "/lists/{listId}/items/count", method = RequestMethod.GET)
+    public void getItemCount(@RequestParam String listId){
+
+        itemDao.getItemCount(Integer.parseInt(listId));
     }
 }

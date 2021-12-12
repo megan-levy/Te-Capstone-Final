@@ -111,19 +111,20 @@ li span {
   padding-top: 20px;
 }
 li {
-  background-color: #e1e5f2;
-  padding: 15px;
-  margin: 10px;
-  border-radius: 6px;
-  list-style-type: none;
-  display: flex;
-  border: 3px solid none;
-  transition: all 350ms;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  
+      background-color: #e1e5f2;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 6px;
+    list-style-type: none;
+    display: flex;
+    border: 2px solid transparent;
+    transition: all 250ms cubic-bezier(0.215, 0.610, 0.355, 1);
+    /* box-shadow: 0px 0px 5px 5px rgb(237 237 237 / 25%); */
 }
 li:hover {
-  border: 3px solid #1f7a8c5d;
+  border: 2px solid #1f7a8c;
+  box-shadow: 0px 0px 5px 5px rgb(237 237 237 / 35%);
+  cursor: pointer;
 }
 
 #x {
