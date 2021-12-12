@@ -60,7 +60,7 @@ const router = new Router({
       }
     },
     {
-      path: "/:groupId",
+      path: "/groups/:groupId/lists",
       name: 'group-home',
       component: GroupHome,
       meta: {
@@ -84,7 +84,7 @@ const router = new Router({
       }
     }, 
     {
-      path: "/lists/:listId",
+      path: "/groups/:groupId/lists/:listId",
       name: 'shopping-list',
       component: ShoppingList,
       meta: {
