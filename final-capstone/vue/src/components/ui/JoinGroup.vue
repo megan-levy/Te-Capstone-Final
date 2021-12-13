@@ -19,7 +19,7 @@
         <button class="btn btn-lg btn-primary btn-block" type="submit">
           Join
         </button>
-       <router-link tag="a" class="helper-link" :to="{ name: 'shopping-list' }">Cancel</router-link>
+       <a class="helper-link" v-on:click="toggleForm = !toggleForm">Cancel</a>
       </form>
   </div>
 </template>
@@ -28,35 +28,37 @@
 
 <script>
 
-import shoppingListService from "../services/ShoppingListService";
+//import shoppingListService from "../services/ShoppingListService";
 export default {
   name: "join-group",
+  props:['toggleForm'],
    data() {
        return{
            item: {
                itemName:"",
                itemAmount: "",
+               toggleForm: this.$props.toggleForm
            }
        };
    },  
    methods: {
       createNewItem() {
-        if (this.$store.state.listId !== 0){
-     shoppingListService.createNewItem(this.$store.state.listId, this.item)
-      .then((response) => {
-          if (response.status == 200 || response.status == 201) {
-            let newRoute = this.$route.fullPath.split('/');
-            newRoute.splice(newRoute.length - 1);
-            this.$router.push(newRoute.join('/'));
-          }
-        })
-        .catch((error) => {
-          const response = error.response;
+      //    if (this.$store.state.listId !== 0){
+    //  shoppingListService.createNewItem(this.$store.state.listId, this.item)
+    //   .then((response) => {
+    //       if (response.status == 200 || response.status == 201) {
+    //         let newRoute = this.$route.fullPath.split('/');
+    //         newRoute.splice(newRoute.length - 1);
+    //         this.$router.push(newRoute.join('/'));
+    //       }
+    //     })
+    //     .catch((error) => {
+    //       const response = error.response;
 
-          if (response.status === 401) {
-            this.invalidCredentials = true;
-          }
-        });}
+    //       if (response.status === 401) {
+    //         this.invalidCredentials = true;
+    //       }
+    //     });}
     }
   }
 
@@ -65,6 +67,14 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
 
+form.form-new-group{
+  min-width: 250px;
+}
+
+#new-group {
+  z-index: 10;
+  position: relative;
+}
 </style>
