@@ -74,6 +74,11 @@ public class JdbcItemDao implements ItemDao {
         jdbcTemplate.update(insertItem, name, itemAmount, itemId);
     }
 
+    @Override
+    public void delete(String name){
+            String deleteItem ="DELETE FROM items WHERE item_name = 'banana'";
+    }
+
     private Item mapRowToList(SqlRowSet rowSet) {
         Item item = new Item();
         item.setItemName(rowSet.getString("item_name"));

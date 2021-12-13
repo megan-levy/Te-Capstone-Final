@@ -28,6 +28,11 @@ public class ItemController {
         itemDao.create(newItem.getItemName(), newItem.getItemAmount(), Integer.parseInt(listId));
     }
 
+
+    @DeleteMapping(path="/lists/{listId}/items/{itemName}" ) //need to confirm this is correct path
+    public void deleteItem(@PathVariable String itemName){itemDao.delete(itemName);}
+
+
     @RequestMapping(value= "/lists/{listId}/items/count", method = RequestMethod.GET)
     public int getItemCount(@RequestParam String listId){
         long id = Long.parseLong(listId);

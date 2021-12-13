@@ -23,6 +23,8 @@ public interface ItemDao {
 
    void create(String name, int itemAmount, int itemId);
 
+   void delete(String name);
+
    //Decide if we want to include Coupon and Favorite Item when created or is it done with user input once Item created
 
 
