@@ -1,6 +1,5 @@
 <template>
   <div class="groups">
-    <!-- <router-view /> -->
     <h1>Groups</h1>
     <br />
     <router-link
@@ -9,25 +8,9 @@
       v-if="$store.state.token != ''"
       >+</router-link
     >
-
-
     <hr />
     <div>
       <ul class="vertical-list" v-if="$store.state.token != ''" id='groups-listed'>
-        <!-- <router-link 
-          tag="a" 
-          class="group-list-item" 
-          v-bind:to="{ name: 'group-home', params: { groupId: `${group.groupId}` }}"  
-          v-for="group in $store.state.groups" 
-          :key="group.groupId"
-        >
-          <h1>{{ group.name }}
-            | <span class="date">
-              {{group.createdOn}}
-            </span>
-          </h1>
-          <p>{{ group.groupDescription }}</p>
-        </router-link> -->
         <list-card
           v-for="group in $store.state.groups" 
           :key="group.groupId"
@@ -37,9 +20,6 @@
           v-bind:description="group.groupDescription"
           v-bind:date="group.createdOn"
       />
-
-
-
       </ul>
     </div>
   </div>
