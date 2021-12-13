@@ -19,7 +19,7 @@ public interface ItemDao {
 
    Item getItemByListId (String item);
 
-   int getItemCount (int listId);
+   long getItemCount (long listId);
 
    void create(String name, int itemAmount, int itemId);
 

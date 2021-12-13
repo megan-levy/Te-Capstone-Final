@@ -30,7 +30,7 @@ public class ItemController {
 
     @RequestMapping(value= "/lists/{listId}/items/count", method = RequestMethod.GET)
     public int getItemCount(@RequestParam String listId){
-
-       return itemDao.getItemCount(Integer.parseInt(listId));
+        long id = Long.parseLong(listId);
+        return (int) itemDao.getItemCount(id);
     }
 }

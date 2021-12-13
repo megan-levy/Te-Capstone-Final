@@ -5,7 +5,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Service;
 
-import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -57,9 +56,14 @@ public class JdbcItemDao implements ItemDao {
     }
 
     @Override
-    public int getItemCount (int listId){
-        String count ="SELECT COUNT(list_item_id) FROM items WHERE list_id = ?";
-        return Integer.parseInt(count);
+    public long getItemCount (long listId){
+        String sql ="SELECT COUNT(list_item_id) FROM items WHERE list_id = ?";
+        int count = jdbcTemplate.queryForObject(sql, Integer.class, listId);
+
+        if (count <= 0) {
+            return 0;
+        }
+        return Long.parseLong(String.valueOf(count));
     }
 
     @Override

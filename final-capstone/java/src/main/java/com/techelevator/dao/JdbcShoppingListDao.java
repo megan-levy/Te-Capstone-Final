@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Group;
+import com.techelevator.dao.ItemDao;
 import com.techelevator.model.ShoppingList;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -13,9 +14,11 @@ import java.util.List;
 public class JdbcShoppingListDao implements ShoppingListDAO {
 
     private JdbcTemplate jdbcTemplate;
+    private ItemDao itemDao;
 
-    public JdbcShoppingListDao(JdbcTemplate jdbcTemplate) {
+    public JdbcShoppingListDao(JdbcTemplate jdbcTemplate, ItemDao itemDao) {
         this.jdbcTemplate = jdbcTemplate;
+        this.itemDao = itemDao;
     }
 
     @Override
@@ -68,6 +71,8 @@ public class JdbcShoppingListDao implements ShoppingListDAO {
         shoppingList.setListName(rs.getString("list_name"));
         shoppingList.setListDescription(rs.getString("list_description"));
         shoppingList.setListClaimed(rs.getBoolean("list_claimed"));
+
+        shoppingList.setItemCount(itemDao.getItemCount((long)shoppingList.getListId()));
         return shoppingList;
     }
 

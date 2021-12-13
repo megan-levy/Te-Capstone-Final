@@ -20,7 +20,7 @@
                 v-bind:title="list.listName"
                 v-bind:description="list.listDescription"
                 v-bind:date="null"
-                v-bind:item_count="$store.state.itemCount"
+                v-bind:item_count="list.itemCount"
             />
         </ul>
         </div>
@@ -40,7 +40,6 @@
         mounted() {
             this.displayGroupLists(this.$route.params.groupId);
             this.getGroup(this.$route.params.groupId);
-            this.getTotalItemsInList(this.$route.params.listId);
         },
         methods: {
             displayGroupLists() {
@@ -49,17 +48,17 @@
                 });
                 
             },
-             getGroup(groupId) {
+            getGroup(groupId) {
                 GroupService.getSingle(groupId).then(group => {
                     this.$store.commit("SET_GROUP", group.data);
                 });
             },
-            getTotalItemsInList(listId) {
-                ShoppingListService.getTotalItemsInList(listId).then(item_count => {
-                    this.$store.commit("SET_TOTAL_ITEM_COUNT", item_count.data);
-                    console.log(item_count);
-                })
-            }
+            // getTotalItemsInList(listId) {
+            //     ShoppingListService.getTotalItemsInList(listId).then(item_count => {
+            //         this.$store.commit("SET_TOTAL_ITEM_COUNT", item_count.data);
+            //         console.log(item_count);
+            //     })
+            // }
         }
     };
 </script>
