@@ -10,6 +10,7 @@ import store from '../store/index'
 import NewGroup from '../views/NewGroup.vue'
 import Groups from '../views/Groups.vue'
 import ShoppingList from '../views/ShoppingList.vue'
+import NewItem from '../views/NewItem.vue'
 
 
 Vue.use(Router)
@@ -91,14 +92,14 @@ const router = new Router({
         requiresAuth: false
       }
     },
-    // {
-    //   path: "/new-item",
-    //   name: "new-item",
-    //   component: NewItem,
-    //   meta:{
-    //     requiresAuth: false
-    //   }
-   // }
+    {
+      path: "/new-item",
+      name: "new-item",
+      component: NewItem,
+      meta:{
+        requiresAuth: false
+      }
+   }
   ]
 })
 

@@ -29,6 +29,8 @@
 
 
 <script>
+
+//import shoppingListService from "../services/ShoppingListService";
 export default {
   name: "new-item",
    data() {
@@ -39,6 +41,23 @@ export default {
            },
        };
    },  
+  //  methods: {
+  //     createNewItem() {
+  //    shoppingListService.createNewItem(this.item)
+  //     .then((response) => {
+  //         if (response.status == 200 || response.status == 201) {
+  //           this.$router.push("/");
+  //         }
+  //       })
+  //       .catch((error) => {
+  //         const response = error.response;
+
+  //         if (response.status === 401) {
+  //           this.invalidCredentials = true;
+  //         }
+  //       });
+  //   }
+  // }
 
 }
 

@@ -42,8 +42,8 @@
       </div>
 
       <div>
-        <!-- <button type="submit">Add Item +</button> -->
-         <router-link  button type = "submit" class="addBtn" v-bind:to =" {name: 'new-item'}" v-if="$store.state.token != ''">Add Item</router-link> 
+        <router-link class="addBtn" v-bind:to="{ name: 'new-item' }" v-if="$store.state.token != ''">+</router-link>
+       
       </div>
   </div>
 </template>
