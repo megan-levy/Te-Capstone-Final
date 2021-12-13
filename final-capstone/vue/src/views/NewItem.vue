@@ -21,7 +21,7 @@
         <button class="btn btn-lg btn-primary btn-block" type="submit">
           Create Item
         </button>
-       <router-link tag="a" class="helper-link" :to="{ name: 'groups' }">Cancel</router-link>
+       <router-link tag="a" class="helper-link" :to="{ name: 'shopping-list' }">Cancel</router-link>
       </form>
   </div>
 </template>
