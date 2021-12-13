@@ -15,9 +15,13 @@
             required/>
         </label>
         <label for='text' class="sr-only">
-            <span>Add Quantity Needed:</span>
-            <textarea placeholder="Enter A Quantity" class="form-control" v-model="item.itemAmount"/>
+            <!-- <span>Add Quantity Needed:</span>
+            <textarea placeholder="Enter A Quantity" class="form-control" v-model="item.itemAmount"/> -->
+            <label for="item-counts">Enter Item Quantity (1-10): </label>
+            <input type="number" class="form-control" name="item-counts" v-model="item.itemAmount" min="1" max="10" >
+
         </label>
+
         <button class="btn btn-lg btn-primary btn-block" type="submit">
           Create Item
         </button>
