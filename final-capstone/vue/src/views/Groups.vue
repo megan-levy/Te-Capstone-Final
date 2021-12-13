@@ -100,16 +100,6 @@ export default {
   border: 2px solid #1f7a8c;
 }
 
-.group-list-item {
-  background-color: #e1e5f2;
-  padding: 15px;
-  margin: 10px;
-  text-decoration: none;
-  color: #1f7a8c;
-  border-radius: 6px;
-  
-}
-
 .date{
   font-weight: 400;
   font-size: 16px;

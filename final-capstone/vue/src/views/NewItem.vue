@@ -51,7 +51,9 @@ export default {
      shoppingListService.createNewItem(this.$store.state.listId, this.item)
       .then((response) => {
           if (response.status == 200 || response.status == 201) {
-            this.$router.push("/");
+            let newRoute = this.$route.fullPath.split('/');
+            newRoute.splice(newRoute.length - 1);
+            this.$router.push(newRoute.join('/'));
           }
         })
         .catch((error) => {

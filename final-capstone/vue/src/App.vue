@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <span id='title-of-project'> Shared Shopping List </span>
+      <router-link v-bind:to="{ name: 'groups' }" id='title-of-project'> Shared Shopping List </router-link>
       <!-- <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp; -->
       <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
       
@@ -140,9 +140,25 @@ div#nav {
     flex-direction: column;
     padding-inline-start: 0px;
   }
-
   span {
     text-align: left;
+  }
+  .group-list-item {
+    background-color: #e1e5f2;
+    padding: 15px;
+    margin: 10px;
+    text-decoration: none;
+    color: #1f7a8c;
+    border-radius: 6px;
+    border: 2px solid transparent;
+    transition: all 250ms cubic-bezier(0.23, 1, 0.320, 1);
+  }
+  .group-list-item:hover {
+    border: 2px solid #1f7a8c;
+  }
+  #title-of-project {
+    text-decoration: none;
+    color: #1f7a8c;
   }
 
 </style>
