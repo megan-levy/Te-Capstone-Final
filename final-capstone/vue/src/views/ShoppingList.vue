@@ -57,7 +57,9 @@ export default {
   },
   created() {
     this.setListId();
-    ShoppingListService.getShoppingList(this.$route.params.groupId).then(response => {
+    // console.log(this.$route.params);
+    ShoppingListService.getShoppingList(this.$route.params.listId).then(response => {
+      console.log(response);
       this.listName = response.data.listName;
       this.listDescription = response.data.listDescription;
     });

@@ -8,6 +8,12 @@
       v-if="$store.state.token != ''"
       >+</router-link
     >
+    <router-link
+      class="addBtn"
+      v-bind:to="{ name: 'join-group' }"
+      v-if="$store.state.token != ''"
+      >Join</router-link
+    >
     <hr />
     <div>
       <ul class="vertical-list" v-if="$store.state.token != ''" id='groups-listed'>

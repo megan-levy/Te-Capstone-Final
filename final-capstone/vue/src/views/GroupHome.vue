@@ -41,6 +41,7 @@
         methods: {
             displayGroupLists() {
                 ShoppingListService.list(this.$route.params.groupId).then(lists => {
+                    console.log(lists);
                     this.$store.commit("SET_LISTS", lists.data);
                 });
                 

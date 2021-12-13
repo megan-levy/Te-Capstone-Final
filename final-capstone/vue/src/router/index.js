@@ -3,6 +3,7 @@ import Router from 'vue-router'
 // import Home from '../views/Home.vue'
 import NewList from '../views/NewList.vue'
 import GroupHome from '../views/GroupHome.vue'
+import JoinGroup from '../views/JoinGroup.vue'
 import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
@@ -28,78 +29,86 @@ const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
-    {
-      path: '/', //this will need to be /:userId in order to show only groups for that user
-      name: 'groups',
-      component: Groups,
-      meta: {
-        requiresAuth: true
-      }
+      {
+        path: '/', //this will need to be /:userId in order to show only groups for that user
+        name: 'groups',
+        component: Groups,
+        meta: {
+          requiresAuth: true
+        }
+      },
+      {
+        path: "/login",
+        name: "login",
+        component: Login,
+        meta: {
+          requiresAuth: false
+        }
+      },
+      {
+        path: "/logout",
+        name: "logout",
+        component: Logout,
+        meta: {
+          requiresAuth: false
+        }
+      },
+      {
+        path: "/register",
+        name: "register",
+        component: Register,
+        meta: {
+          requiresAuth: false
+        }
+      },
+      {
+        path: "/groups/:groupId/lists",
+        name: 'group-home',
+        component: GroupHome,
+        meta: {
+          requiresAuth: false
+        }
+      },
+      {
+        path: "/new-group",
+        name: "new-group",
+        component: NewGroup,
+        meta: {
+          requiresAuth: false
+        }
+      }, 
+      {
+        path: "/groups/:groupId/lists/new-list",
+        name: "new-list",
+        component: NewList,
+        meta: {
+          requiresAuth: false
+        }
+      }, 
+      {
+        path: "/groups/:groupId/lists/:listId",
+        name: 'shopping-list',
+        component: ShoppingList,
+        meta: {
+          requiresAuth: false
+        }
+      },
+      {
+        path: "/groups/:groupId/lists/:listId/new-item",
+        name: "new-item",
+        component: NewItem,
+        meta:{
+          requiresAuth: false
+        }
     },
     {
-      path: "/login",
-      name: "login",
-      component: Login,
-      meta: {
-        requiresAuth: false
-      }
-    },
-    {
-      path: "/logout",
-      name: "logout",
-      component: Logout,
-      meta: {
-        requiresAuth: false
-      }
-    },
-    {
-      path: "/register",
-      name: "register",
-      component: Register,
-      meta: {
-        requiresAuth: false
-      }
-    },
-    {
-      path: "/groups/:groupId/lists",
-      name: 'group-home',
-      component: GroupHome,
-      meta: {
-        requiresAuth: false
-      }
-    },
-    {
-      path: "/new-group",
-      name: "new-group",
-      component: NewGroup,
-      meta: {
-        requiresAuth: false
-      }
-    }, 
-    {
-      path: "/groups/:groupId/lists/new-list",
-      name: "new-list",
-      component: NewList,
-      meta: {
-        requiresAuth: false
-      }
-    }, 
-    {
-      path: "/groups/:groupId/lists/:listId",
-      name: 'shopping-list',
-      component: ShoppingList,
-      meta: {
-        requiresAuth: false
-      }
-    },
-    {
-      path: "/groups/:groupId/lists/:listId/new-item",
-      name: "new-item",
-      component: NewItem,
+      path: "/groups/join",
+      name: "join-group",
+      component: JoinGroup,
       meta:{
         requiresAuth: false
       }
-   }
+    }
   ]
 })
 

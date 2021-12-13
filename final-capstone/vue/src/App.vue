@@ -3,21 +3,9 @@
     <div id="nav">
         <div>
             <router-link v-bind:to="{ name: 'groups' }" id='title-of-project'> Shared Shopping List </router-link>
-            <!-- <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp; -->
             <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
             
         </div>
-        <div class="breadcrumbs">
-          <a 
-          v-for="(item, index) in routeArr" 
-          :key="`crumb-${index}`"
-          v-on:click="(e) => routeMe(e)">
-            <span v-if="item === ''">~</span>
-            <span v-else>{{ item }}</span>
-            <span style="color: #555b6d !important;">/</span>
-          </a>
-        </div>
-    
     </div>
     <router-view />
   </div>
@@ -35,35 +23,6 @@ export default {
     this.routeArr = this.route.split('/');
     console.log(this.routeArr);
   },
-  methods: {
-    routeMe(e) {
-      let arrCopy = [...this.routeArr];
-      let selectedRouteCrumb = e.target.textContent;
-      let selectedIndex = arrCopy.indexOf(selectedRouteCrumb);
-      // console.log(selectedIndex);
-      // console.log(this.route);
-      if (selectedIndex === (-1) && '/' !== this.route.toString()) {
-        this.$router.push("/");
-        this.route = "/";
-      } else if (selectedIndex === (-1) && '/' == this.route.toString()) {
-        return;
-      } else {
-        console.log("wrong route?");
-        console.log(selectedIndex === (-1));
-        console.log( '/' == this.route.toString());
-        console.log(this.route);
-
-
-        arrCopy.splice(selectedIndex + 1 );
-        this.$router.push(this.routeArr.join('/'));
-        this.route = this.routeArr.join('/');
-      }
-     
-      console.log(arrCopy);
-
-      // 
-    }
-  }
 }
 </script>
 

@@ -9,7 +9,7 @@
             <p>{{itemDescription}}</p>
             
             <div v-if="itemType === 'list'">
-                <p>{{itemCount}}</p>
+                <p>Number of Items: {{itemCount}}</p>
             </div>
             <div v-if="itemType === 'group'">
                 |
