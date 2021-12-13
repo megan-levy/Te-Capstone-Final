@@ -1,7 +1,18 @@
 <template>
   <div id="shopping-list" class="shopping-list">
+     
       <h1>{{listName}}</h1>
+     
       <p>{{listDescription}}</p>
+
+       <router-link
+        id = "return"
+        tag="a"
+        class="helper-link"
+        :to="{ name: 'group-home' }"
+      >
+        Return to My Groups
+      </router-link>
      
        <hr />
       <div class="grocery-list">
@@ -40,9 +51,9 @@ export default {
   name: "shopping-list",
   data() {
     return {
-      listId: 13,
-      listName: 'Test List',
-      listDescription: 'Please work'
+      listId: '',
+      listName: '',
+      listDescription: ''
     }
   },
   created() {
@@ -67,6 +78,8 @@ export default {
 </script>
 
 <style>
+
+
 .shopping-list {
   height: fit-content;
   min-width: 350px;
@@ -78,6 +91,11 @@ export default {
   border-radius: 6px;
   filter: drop-shadow(0px 4px 4px rgba(221, 221, 221, 0.25));
   padding: 25px;
+}
+
+#return {
+   margin-block-end: 0px;
+   padding: 10px;
 }
 
 #items-listed {
