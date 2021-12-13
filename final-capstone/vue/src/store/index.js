@@ -23,6 +23,7 @@ export default new Vuex.Store({
     groups: [],
     group: {},
     shoppingLists: [],
+    lists: [],
     items: [],
     listId: 0,
     item: {},
