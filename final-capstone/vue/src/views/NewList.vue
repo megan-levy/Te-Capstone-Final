@@ -43,7 +43,9 @@ export default {
      shoppingListService.createShoppingList(this.$store.state.group.groupId, this.list)
       .then((response) => {
           if (response.status == 200 || response.status == 201) {
-            this.$router.push("/");
+            let newRoute = this.$route.fullPath.split('/');
+            newRoute.splice(newRoute.length - 1);
+            this.$router.push(newRoute.join('/'));
           }
         })
         .catch((error) => {

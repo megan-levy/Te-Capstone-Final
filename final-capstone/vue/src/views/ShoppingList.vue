@@ -2,7 +2,6 @@
   <div id="shopping-list" class="shopping-list">
       <h1>{{listName}}</h1>
       <p>{{listDescription}}</p>
-     
        <hr />
       <div class="grocery-list">
         <ul class="vertical-list" id="items-listed">

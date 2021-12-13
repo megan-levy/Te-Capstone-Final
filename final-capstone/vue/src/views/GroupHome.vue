@@ -1,14 +1,11 @@
 <template>
 
     <div class="groups" v-if="$store.state.group">
-       
-         <!-- <router-view /> -->
          <div class="title-add">
             <h1>{{$store.state.group.name}}</h1>
             <p>{{$store.state.group.groupDescription}}</p>
             <router-link class="addBtn" v-bind:to="{ name: 'new-list' }" v-if="$store.state.token != ''">+</router-link>
          </div>
-        
         <hr/>
         <div>
         <ul class="vertical-list" id='lists-listed' >
@@ -53,12 +50,6 @@
                     this.$store.commit("SET_GROUP", group.data);
                 });
             },
-            // getTotalItemsInList(listId) {
-            //     ShoppingListService.getTotalItemsInList(listId).then(item_count => {
-            //         this.$store.commit("SET_TOTAL_ITEM_COUNT", item_count.data);
-            //         console.log(item_count);
-            //     })
-            // }
         }
     };
 </script>
