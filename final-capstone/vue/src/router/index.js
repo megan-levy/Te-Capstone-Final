@@ -93,7 +93,7 @@ const router = new Router({
       }
     },
     {
-      path: "/new-item",
+      path: "/groups/:groupId/lists/:listId/new-item",
       name: "new-item",
       component: NewItem,
       meta:{

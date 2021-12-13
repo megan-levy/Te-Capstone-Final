@@ -24,14 +24,13 @@
           v-for="item in $store.state.items" 
           :key="item.itemId"
         >
-          <li>  
-           <div>
-             <h3>
-               {{item.itemName}}
-             </h3>
+          <div>
+            <h3>
+              {{item.itemName}}
+              </h3>
             <span>Quantity: {{item.itemAmount}}</span>
-            </div>
-          </li>
+          </div>
+        
         </router-link>
          
         </ul>
