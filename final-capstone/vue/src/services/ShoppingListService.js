@@ -19,7 +19,10 @@ export default {
     // getTotalItemsInList(listId) {
     //     return axios.get(`/lists/${listId}/items/count`, {params: {"listId": listId}});
     // },
-    // createNewItem(listId, item) {
-    //     return axios.post(`/lists/${listId}/items`, item, {params: {"listId": listId}});
-    // }
+    createNewItem(listId, item) {
+        console.log(listId);
+        console.log("-----------");
+        console.log(item);
+        return axios.post(`/lists/${listId}/items`, item, {params: {"listId": listId}});
+    }
 }

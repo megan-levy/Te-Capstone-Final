@@ -1,6 +1,6 @@
 <template>
   <div id="new-group" class="text-center auth-container">
-      <form class="form-new-group" @submit.prevent="createItem">
+      <form class="form-new-group" @submit.prevent="createNewItem">
         <h1 class="h3 mb-3 font-weight-normal">Create New Item</h1>
         <hr>
         <br>
@@ -34,7 +34,7 @@
 
 <script>
 
-//import shoppingListService from "../services/ShoppingListService";
+import shoppingListService from "../services/ShoppingListService";
 export default {
   name: "new-item",
    data() {
@@ -45,23 +45,24 @@ export default {
            },
        };
    },  
-  //  methods: {
-  //     createNewItem() {
-  //    shoppingListService.createNewItem(this.item)
-  //     .then((response) => {
-  //         if (response.status == 200 || response.status == 201) {
-  //           this.$router.push("/");
-  //         }
-  //       })
-  //       .catch((error) => {
-  //         const response = error.response;
+   methods: {
+      createNewItem() {
+        if (this.$store.state.listId !== 0){
+     shoppingListService.createNewItem(this.$store.state.listId, this.item)
+      .then((response) => {
+          if (response.status == 200 || response.status == 201) {
+            this.$router.push("/");
+          }
+        })
+        .catch((error) => {
+          const response = error.response;
 
-  //         if (response.status === 401) {
-  //           this.invalidCredentials = true;
-  //         }
-  //       });
-  //   }
-  // }
+          if (response.status === 401) {
+            this.invalidCredentials = true;
+          }
+        });}
+    }
+  }
 
 }
 

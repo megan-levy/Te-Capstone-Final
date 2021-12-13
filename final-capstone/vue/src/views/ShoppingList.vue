@@ -42,7 +42,7 @@
       </div>
 
       <div>
-        <router-link class="addBtn" v-bind:to="{ name: 'new-item' }" v-if="$store.state.token != ''">+</router-link>
+        <router-link class="addBtn" v-on:click="setListId"  v-bind:to="{ name: 'new-item' }" v-if="$store.state.token != ''">+</router-link>
        
       </div>
   </div>
@@ -61,10 +61,16 @@ export default {
     }
   },
   created() {
+    this.setListId();
     ShoppingListService.getShoppingList(this.$route.params.groupId).then(response => {
       this.listName = response.data.listName;
       this.listDescription = response.data.listDescription;
     });
+  },
+  methods: {
+    setListId(){
+       this.$store.commit("SET_LIST_ID", this.$route.params.listId);
+    }
   }
 }
 </script>

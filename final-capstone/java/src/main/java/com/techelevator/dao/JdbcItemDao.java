@@ -71,12 +71,12 @@ public class JdbcItemDao implements ItemDao {
         // does this need to be in query list_id, date_added, user_id,
                 String insertItem ="INSERT INTO items( item_name, item_amount, list_id, favorite)" +
                 " VALUES (?, ?, ?, ?)";
-        jdbcTemplate.update(insertItem, name, itemAmount, itemId);
+        jdbcTemplate.update(insertItem, name, itemAmount, itemId, false);
     }
 
     @Override
     public void delete(String name){
-            String deleteItem ="DELETE FROM items WHERE item_name = 'banana'";
+            String deleteItem ="DELETE FROM items WHERE item_name = ?";
     }
 
     private Item mapRowToList(SqlRowSet rowSet) {

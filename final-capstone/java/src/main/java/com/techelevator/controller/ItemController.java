@@ -24,8 +24,8 @@ public class ItemController {
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(value= "/lists/{listId}/items", method = RequestMethod.POST)
     public void createItem(@RequestParam String listId, @Valid @RequestBody Item newItem){
-
-        itemDao.create(newItem.getItemName(), newItem.getItemAmount(), Integer.parseInt(listId));
+        int id = Integer.parseInt(listId);
+        itemDao.create(newItem.getItemName(), newItem.getItemAmount(), id);
     }
 
 
