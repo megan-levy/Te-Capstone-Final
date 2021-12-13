@@ -9,7 +9,7 @@
             <p>{{itemDescription}}</p>
             
             <div v-if="itemType === 'list'">
-                <p>Item quantity</p>
+                <p>{{itemCount}}</p>
             </div>
             <div v-if="itemType === 'group'">
                 |
@@ -23,7 +23,7 @@
 <script>
 
     export default {
-        props: ['id', 'type', 'title', 'description', 'date'],
+        props: ['id', 'type', 'title', 'description', 'date','item_count'],
         data() {
             return {
                 itemId: this.$props.id,
@@ -32,7 +32,8 @@
                 params: {},
                 itemTitle: this.$props.title,
                 itemDescription: this.$props.description,
-                itemDate: this.$props.date
+                itemDate: this.$props.date,
+                itemCount: this.$props.item_count
             }
         },
         mounted() {

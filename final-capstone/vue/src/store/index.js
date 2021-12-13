@@ -47,6 +47,10 @@ export default new Vuex.Store({
     SET_ITEMS(state, items) {
       state.items = items;
     },
+    SET_TOTAL_ITEM_COUNT(state, item_count) {
+      state.item_count = item_count;
+    },
+    
     LOGOUT(state) {
       localStorage.removeItem('token');
       localStorage.removeItem('user');

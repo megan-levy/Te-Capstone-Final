@@ -29,8 +29,8 @@ public class ItemController {
     }
 
     @RequestMapping(value= "/lists/{listId}/items/count", method = RequestMethod.GET)
-    public void getItemCount(@RequestParam String listId){
+    public int getItemCount(@RequestParam String listId){
 
-        itemDao.getItemCount(Integer.parseInt(listId));
+       return itemDao.getItemCount(Integer.parseInt(listId));
     }
 }

@@ -64,7 +64,7 @@ export default {
     ShoppingListService.getShoppingList(this.$route.params.groupId).then(response => {
       this.listName = response.data.listName;
       this.listDescription = response.data.listDescription;
-    })
+    });
   }
 }
 </script>

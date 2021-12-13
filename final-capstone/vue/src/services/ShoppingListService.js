@@ -16,7 +16,7 @@ export default {
     list(groupId) {
         return axios.get(`/group/${groupId}/lists`, { params: { "groupId": groupId } })
     },
-    getQTY(listId) {
-        return axios.get(`/lists/${listId}/items/count`);
+    getTotalItemsInList(listId) {
+        return axios.get(`/lists/${listId}/items/count`, {params: {"listId": listId}});
     }
 }
