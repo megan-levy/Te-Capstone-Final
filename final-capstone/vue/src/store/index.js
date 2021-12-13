@@ -25,6 +25,7 @@ export default new Vuex.Store({
     shoppingLists: [],
     items: [],
     listId: 0,
+    item: {},
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -53,6 +54,9 @@ export default new Vuex.Store({
     },
     SET_LIST_ID(state, listId) {
       state.listId = listId;
+    },
+    SET_ITEM(state, item) {
+      state.item = item;
     },
     
     LOGOUT(state) {

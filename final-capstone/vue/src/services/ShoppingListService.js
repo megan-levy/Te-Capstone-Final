@@ -24,5 +24,8 @@ export default {
         console.log("-----------");
         console.log(item);
         return axios.post(`/lists/${listId}/items`, item, {params: {"listId": listId}});
+    },
+    getItemList(listId){
+        return axios.get(`/lists/${listId}/items`,  { params: { "listId": listId } })
     }
 }

@@ -21,7 +21,7 @@ public interface ItemDao {
 
    long getItemCount (long listId);
 
-   void create(String name, int itemAmount, int itemId);
+   void create(String name, int itemAmount, int itemId, int userId);
 
    void delete(String name);
 

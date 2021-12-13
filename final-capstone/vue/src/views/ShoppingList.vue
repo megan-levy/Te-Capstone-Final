@@ -6,38 +6,23 @@
        <hr />
       <div class="grocery-list">
         <ul class="vertical-list" id="items-listed">
+          <router-link 
+          tag="a" 
+          class="group-list-item" 
+          v-bind:to="{ name: '', params: { itemId: `${item.itemId}` }}"  
+          v-for="item in $store.state.items" 
+          :key="item.itemId"
+        >
           <li>  
            <div>
              <h3>
-               Lots of wine
+               {{item.itemName}}
              </h3>
-            <span>Quantity: </span>
+            <span>Quantity: {{item.itemAmount}}</span>
             </div>
           </li>
-          <li>  
-            <div>
-             <h3>Pie</h3>
-             <span>Quantity: </span>
-             </div>
-          </li>
-          <li> 
-            <div> 
-             <h3>pizza</h3>
-             <span>Quantity: </span>
-             </div>
-          </li>
-          <li> 
-            <div> 
-             <h3>carrots</h3>
-             <span>Quantity: </span>
-             </div>
-          </li>
-          <li>  
-            <div>
-             <h3>eggs</h3>
-             <span>Quantity: </span>
-             </div>
-          </li>
+        </router-link>
+         
         </ul>
       </div>
 
@@ -66,10 +51,16 @@ export default {
       this.listName = response.data.listName;
       this.listDescription = response.data.listDescription;
     });
+    this.getItemsList();
   },
   methods: {
     setListId(){
        this.$store.commit("SET_LIST_ID", this.$route.params.listId);
+    },
+    getItemsList(){
+      ShoppingListService.getItemList(this.$route.params.listId).then(items => {
+        this.$store.commit("SET_ITEMS", items.data);
+      })
     }
   }
 }

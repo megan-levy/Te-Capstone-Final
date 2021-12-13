@@ -67,11 +67,11 @@ public class JdbcItemDao implements ItemDao {
     }
 
     @Override
-    public void create(String name, int itemAmount, int itemId) {
+    public void create(String name, int itemAmount, int itemId, int userId) {
         // does this need to be in query list_id, date_added, user_id,
-                String insertItem ="INSERT INTO items( item_name, item_amount, list_id, favorite)" +
-                " VALUES (?, ?, ?, ?)";
-        jdbcTemplate.update(insertItem, name, itemAmount, itemId, false);
+                String insertItem ="INSERT INTO items( item_name, item_amount, list_id, favorite, user_id)" +
+                " VALUES (?, ?, ?, ?, ?)";
+        jdbcTemplate.update(insertItem, name, itemAmount, itemId, false, userId);
     }
 
     @Override
