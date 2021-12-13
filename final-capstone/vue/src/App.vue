@@ -142,7 +142,7 @@ div#nav {
   }
 
   span {
-    text-align: right;
+    text-align: left;
   }
 
 </style>
