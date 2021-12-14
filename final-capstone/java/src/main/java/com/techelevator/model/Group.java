@@ -11,6 +11,7 @@ public class Group {
     private String name;
     private String groupDescription;
     private Date createdOn;
+    private String inviteCode;
 
     public Group() {
     }
@@ -54,4 +55,6 @@ public class Group {
     public void setCreatedOn(Date createdOn) {
         this.createdOn = createdOn;
     }
+
+
 }

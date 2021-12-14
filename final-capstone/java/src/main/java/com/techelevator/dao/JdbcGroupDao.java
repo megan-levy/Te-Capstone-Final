@@ -5,6 +5,7 @@ import com.techelevator.model.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.security.config.method.MethodSecurityMetadataSourceBeanDefinitionParser;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.task.DelegatingSecurityContextAsyncTaskExecutor;
 import org.springframework.stereotype.Service;
@@ -16,15 +17,16 @@ import java.util.List;
 
 @Service
 public class JdbcGroupDao implements GroupDao {
-// need to add in implements GroupDao
 
+    private MemberOfDao memberOfDao;
     //Might need to have the @Service above this class. @Service usually has the business logic of an application
     //usually resides within the service layer. Used to indicated that a class belongs to that layer
 
     private JdbcTemplate jdbcTemplate;
 
-    public JdbcGroupDao(JdbcTemplate jdbcTemplate) {
+    public JdbcGroupDao(JdbcTemplate jdbcTemplate, MemberOfDao memberOfDao) {
         this.jdbcTemplate = jdbcTemplate;
+        this.memberOfDao = memberOfDao;
     }
 
 
@@ -103,24 +105,6 @@ public class JdbcGroupDao implements GroupDao {
         return group;
     }
 
-//    @Override
-//    public boolean create(String name, String groupDescription) {
-//        return false;
-    // }
-    //GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
-//        String id_column = "group_id";
-//        groupCreated = jdbcTemplate.update(con -> {
-//            PreparedStatement ps = con.prepareStatement(insertGroup, new String[]{id_column});
-//            ps.setString(1, name);
-//            ps.setString(2, groupDescription);
-//            ps.setDate(3, joinedOn);
-//            return ps;
-//        }
-//        , keyHolder) == 1;
-//
-//        int newGroupId = (int) keyHolder.getKeys().get(id_column);
-//        return groupCreated;
-//    }
 
 
     private Group mapRowToGroup(SqlRowSet rs) {
@@ -130,6 +114,7 @@ public class JdbcGroupDao implements GroupDao {
         //group.setAuthorities(rs.getString("role")); -- not sure how to deal with the role
         group.setGroupDescription(rs.getString("group_description"));
         group.setCreatedOn(rs.getDate("created_on"));
+
         return group;
     }
 

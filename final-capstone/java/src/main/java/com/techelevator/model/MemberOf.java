@@ -3,6 +3,7 @@ package com.techelevator.model;
 public class MemberOf {
     private Long userId;
     private Long groupId;
+    private String inviteCode;
     private boolean inviteAccepted;
 
     public MemberOf(){}
@@ -10,7 +11,8 @@ public class MemberOf {
     public MemberOf(Long userId, Long groupId, boolean inviteAccepted){
         this.userId = userId;
         this.groupId = groupId;
-        this.inviteAccepted = true;
+        this.inviteCode = inviteCode;
+        this.inviteAccepted = false;
     }
 
     public Long getUserId() {
@@ -35,5 +37,13 @@ public class MemberOf {
 
     public void setInviteAccepted(boolean inviteAccepted) {
         this.inviteAccepted = inviteAccepted;
+    }
+
+    public String getInviteCode() {
+        return inviteCode;
+    }
+
+    public void setInviteCode(String inviteCode) {
+        this.inviteCode = inviteCode;
     }
 }
