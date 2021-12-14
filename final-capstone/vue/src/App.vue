@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
+      <!-- <img :src="require('public\shopping_logo.png')"/> -->
         <div>
             <router-link v-bind:to="{ name: 'groups' }" id='title-of-project'> Shared Shopping List </router-link>
             ||
@@ -13,6 +14,7 @@
 </template>
 
 <script>
+
 export default {
   data() {
     return {
