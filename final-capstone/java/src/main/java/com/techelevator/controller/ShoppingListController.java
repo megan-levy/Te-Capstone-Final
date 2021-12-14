@@ -41,6 +41,11 @@ public class ShoppingListController {
     public ShoppingList getSingleList(@RequestParam String listId) {
         return shoppingListDAO.getIndividualList(Long.parseLong(listId));
     }
+
+    @RequestMapping(value = "/lists/", method = RequestMethod.GET)
+    public ShoppingList getUserNameByListId(@RequestParam Long listId){
+        return shoppingListDAO.getUserNameByListId(listId);
+    }
 }
 
 

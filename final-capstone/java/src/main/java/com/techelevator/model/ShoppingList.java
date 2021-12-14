@@ -14,7 +14,7 @@ public class ShoppingList {
 
 
 
-    public ShoppingList(Long listId, String listName, Long groupId, String groupName, Boolean listClaimed, String listDescription, Long itemCount){
+    public ShoppingList(Long listId, String listName, Long groupId, Boolean listClaimed, String listDescription, Long itemCount){
         this.listId = listId;
         this.listName = listName;
         this.groupId = groupId;

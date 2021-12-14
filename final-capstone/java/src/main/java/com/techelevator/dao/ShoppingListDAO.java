@@ -18,4 +18,6 @@ public interface ShoppingListDAO {
     boolean findByListClaimed (Boolean listClaimed);
 
     void create(String listName, String listDescription, Long groupId);
+
+    ShoppingList getUserNameByListId(Long listId);
 }
