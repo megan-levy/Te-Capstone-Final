@@ -3,7 +3,6 @@ import Router from 'vue-router'
 // import Home from '../views/Home.vue'
 import NewList from '../views/NewList.vue'
 import GroupHome from '../views/GroupHome.vue'
-import JoinGroup from '../views/JoinGroup.vue'
 import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
@@ -101,14 +100,6 @@ const router = new Router({
           requiresAuth: false
         }
     },
-    {
-      path: "/groups/join",
-      name: "join-group",
-      component: JoinGroup,
-      meta:{
-        requiresAuth: false
-      }
-    }
   ]
 })
 

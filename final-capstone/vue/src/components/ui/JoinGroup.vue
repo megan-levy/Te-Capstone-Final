@@ -6,7 +6,7 @@
         <hr>
         <br>
         <label for="text" class="sr-only">
-            <span>Enter Access Code:</span>
+            <span>Group Code</span>
             <input
             type="text"
             id="group-name"
@@ -16,13 +16,15 @@
             required/>
         </label>
 
-       <div class="toggleCOntainer">
-        <button class="btn btn-lg btn-primary btn-block" type="submit">
+       <div class="toggleContainer">
+        <button class="join" type="submit">
           Join
         </button>
         
       </div>
+      <br>
        <hr />
+       <br>
        <a class="helper-link" v-on:click="switched(false)">Cancel</a>
       </form>
   </div>
@@ -65,5 +67,14 @@ form.form-new-group{
 #new-group {
   z-index: 10;
   position: relative;
+}
+.join {
+  width: 100%;
+}
+.helper-link {
+  text-decoration: underline;
+}
+.helper-link:hover {
+  cursor: pointer;
 }
 </style>
