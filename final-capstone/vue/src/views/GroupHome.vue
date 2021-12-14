@@ -2,7 +2,10 @@
   <div class="groups" v-if="$store.state.group">
     <div class="title-add">
       <h1>{{ $store.state.group.name }}</h1>
-      <span class="group-code" @click="(e) => copyToClip(e)">4S0FV9</span>
+      <span class="group-code tooltip" @click="(e) => copyToClip(e)">
+         <span class="invite-code">{{this.$store.state.group.interleaveInvite}}</span>
+        <span class="tool-tip-text">Copy to clipboard</span>
+      </span>
       <p>{{ $store.state.group.groupDescription }}</p>
 
       <router-link
@@ -67,6 +70,7 @@ export default {
     },
     copyToClip(e) {
       navigator.clipboard.writeText(e.target.textContent);
+      
     }
   },
 };
@@ -83,6 +87,33 @@ li {
   padding-inline-start: 0px;
 }
 
+.tooltip {
+  position: relative;
+}
+
+.tooltip .tool-tip-text {
+  visibility: hidden;
+  width: 100px;
+  opacity: 0;
+  background-color:#e1e5f273;
+  font-weight: 375;
+  font-size: 14px;
+  letter-spacing: 0 !important;
+  text-align: center;
+  border-radius: 4px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  top: -5px;
+  left: 105%;
+  transition: all 250ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.tooltip:hover .tool-tip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
 .group-code {
   font-weight: 600;
   margin-block-start: 0;
@@ -90,6 +121,10 @@ li {
 }
 .group-code:hover {
   cursor: pointer;
+}
+
+.invite-code:hover {
+  color:#1f7a8c ;
 }
 
 h1 {
