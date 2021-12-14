@@ -105,7 +105,7 @@ export default {
 
 #items-listed {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   width: 100%;
   padding-inline-start: 0px;
 }

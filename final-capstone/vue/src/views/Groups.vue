@@ -4,10 +4,10 @@
     <br />
     <div class="buttons-groups">
       <router-link
-        class="addBtn"
+        class="addBtn new-group-button"
         v-bind:to="{ name: 'new-group' }"
         v-if="$store.state.token != ''"
-        >+</router-link
+        >Add</router-link
       >
       <a
         class="addBtn new-group-button"
