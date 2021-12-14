@@ -44,29 +44,14 @@ public class GroupController {
     }
 
     @RequestMapping(path = "/groups/{groupId}", method = RequestMethod.GET)
-    public Group getGroup(@RequestParam String groupId, Principal principal) {
-//        int groupId = userDao.findIdByUsername(p
-//        rincipal.getName());
-//        return groupDao.getGroup(groupId).getName();
-
-//        Long userId = (long) userDao.findIdByUsername(principal.getName());
-        if (groupId.isEmpty()) {
-            return new Group();
-        }
-
-            return groupDao.getGroup(Long.parseLong(groupId));
+    public Group getGroup(@RequestParam String groupId) {
+        if (groupId.isEmpty()) return new Group();
+        else return groupDao.getGroup(Long.parseLong(groupId));
     }
 
     @GetMapping(path = "/groups")
     public List<Group> findAll() {
-        //  List <Group> groups = groupDao.findAll();
         return groupDao.findAll();
-//        group.setGroupId(1L);
-//        group.setGroupDescription("This Is A Group");
-//        group.setName("Party");
-//        List <Group> groups = new ArrayList<>();
-//        groups.add(group);
-//        return groups;
     }
 
 }
