@@ -51,6 +51,11 @@ public class GroupController {
         return groupDao.findAll();
     }
 
+//    @GetMapping(path = "/groups/{userId}")
+//    public List<Group> findAll() {
+//        return groupDao.findAll();
+//    }
+
 //    @RequestMapping(path = "/join-group", method = RequestMethod.POST)
 //    public void joinGroup(@RequestBody ) {
 //        memberOf.setGroupId();
