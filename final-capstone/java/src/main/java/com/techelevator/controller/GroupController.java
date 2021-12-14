@@ -54,5 +54,4 @@ public class GroupController {
         return groupDao.findAll();
     }
 
-
 }
