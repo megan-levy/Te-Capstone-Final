@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
+      <!-- <img :src="require('public\shopping_logo.png')"/> -->
       <div>
         <router-link v-bind:to="{ name: 'groups' }" id="title-of-project">
           Shared Shopping List
@@ -9,8 +10,9 @@
         <router-link
           v-bind:to="{ name: 'logout' }"
           v-if="$store.state.token != ''"
-          >Logout</router-link
         >
+          Logout
+        </router-link>
       </div>
     </div>
     <router-view />
@@ -18,6 +20,7 @@
 </template>
 
 <script>
+
 export default {
   data() {
     return {
