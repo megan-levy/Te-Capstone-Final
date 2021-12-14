@@ -16,8 +16,8 @@ public interface GroupDao {
 
     Group findGroupByName(String name);
 
-    //Return groups based solely on userId
-    Group findGroupByUserId(Long userId);
+
+    List<Group> findGroupsByUserId(Long userId);
 
     Group getGroup(Long groupId);
 

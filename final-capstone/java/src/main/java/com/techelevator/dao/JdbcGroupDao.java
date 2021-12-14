@@ -75,8 +75,20 @@ public class JdbcGroupDao implements GroupDao {
     }
 
     @Override
-    public Group findGroupByUserId(Long userId) {
-        return null;
+    public List<Group> findGroupsByUserId(Long userId) {
+      List<Group> groupsByUser = new ArrayList<>();
+        String sql = "select * from groups as G\n" +
+                "JOIN member_of AS MO ON G.group_id = MO.group_id\n" +
+                "JOIN users AS U ON U.user_id = MO.user_id\n" +
+                "WHERE U.user_id = 3;";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+
+        while (results.next()) {
+            groupsByUser.add(mapRowToGroup(results));
+        }
+
+        return groupsByUser;
     }
 
 
