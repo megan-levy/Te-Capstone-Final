@@ -108,7 +108,7 @@ export default {
   user-select: none;
   font-size: 1.5rem;
   line-height: 1.5rem;
-  height: 35px;
+  height: 40px;
   position: relative;
   bottom: 0;
   display: flex;
@@ -143,7 +143,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 35px;
+  height: 40px;
 }
 .form-items {
   display: grid;
@@ -154,7 +154,7 @@ export default {
 .amount-label {
   flex-direction: row;
   grid-column-end: 10;
-  grid-column-start: 6;
+  /* grid-column-start: 6; */
 }
 .name-label {
   grid-column-end: 3;

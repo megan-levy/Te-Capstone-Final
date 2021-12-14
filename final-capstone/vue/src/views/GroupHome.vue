@@ -2,7 +2,7 @@
   <div class="groups" v-if="$store.state.group">
     <div class="title-add">
       <h1>{{ $store.state.group.name }}</h1>
-      <span class="group-code">420690</span>
+      <span class="group-code" @click="(e) => copyToClip(e)">4S0FV9</span>
       <p>{{ $store.state.group.groupDescription }}</p>
 
       <router-link
@@ -65,6 +65,9 @@ export default {
         this.$store.commit("SET_GROUP", group.data);
       });
     },
+    copyToClip(e) {
+      navigator.clipboard.writeText(e.target.textContent);
+    }
   },
 };
 </script>
@@ -73,7 +76,7 @@ li {
   text-decoration: none;
 }
 
-#list-listed {
+#lists-listed {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   width: 100%;
@@ -81,8 +84,12 @@ li {
 }
 
 .group-code {
-  font-weight: 300px;
+  font-weight: 600;
   margin-block-start: 0;
+  letter-spacing: 2px;
+}
+.group-code:hover {
+  cursor: pointer;
 }
 
 h1 {

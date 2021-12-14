@@ -118,12 +118,17 @@ label.sr-only span {
 }
 input[type="text"],
 input[type="password"],
-input[type="email"] {
+input[type="email"],
+input[type="number"],
+textarea {
   /* margin-top: 4px; */
   padding: 10px;
   background-color: #e1e5f2;
   border: none;
   border-radius: 4px;
+  font-size: 16px;
+  font-family: "Inter", sans-serif;
+  font-weight: 400 !important;
 }
 input[type="text"]:focus-visible,
 input[type="email"]:focus-visible,
@@ -133,7 +138,7 @@ textarea:focus-visible {
   outline-color: hsl(226deg 40% 70%);
 }
 button {
-  padding: 8px;
+  padding: 10.5px;
   background-color: #1f7a8c;
   border: none;
   border-radius: 4px;
@@ -151,7 +156,7 @@ button:hover {
 }
 ::placeholder {
   color: rgba(0, 0, 0, 0.4);
-  font-weight: 600;
+  font-weight: 500;
 }
 a.helper-link {
   color: #1f7a8c;

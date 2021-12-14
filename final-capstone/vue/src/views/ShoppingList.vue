@@ -27,7 +27,7 @@
       <ul class="vertical-list" id="items-listed">
         <router-link
           tag="a"
-          class="group-list-item"
+          class="group-list-item shopping-list-item"
           v-bind:to="{ name: '', params: { itemId: `${item.itemId}` } }"
           v-for="item in $store.state.items"
           :key="item.itemId"
@@ -157,8 +157,14 @@ li:hover {
   overflow-y: scroll;
   height: 100%;
 }
+.shopping-list-item {
+  max-width: 300px;
+}
 
 @media only screen and (max-width: 600px) {
+  .shopping-list-item {
+    max-width: 100%;
+  }
   #items-listed {
     display: flex;
     width: 100%;
