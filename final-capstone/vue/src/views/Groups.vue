@@ -8,24 +8,32 @@
       v-if="$store.state.token != ''"
       >+</router-link
     >
-    <router-link
+    <a
       class="addBtn"
-      v-bind:to="{ name: 'join-group' }"
+      v-on:click="toggleJoin = !toggleJoin"
       v-if="$store.state.token != ''"
-      >Join</router-link
+      >Join</a
     >
+    <div v-if="toggleJoin" class="join-modal">
+      <join-group v-model="toggleJoin"/>
+    </div>
+
     <hr />
     <div>
-      <ul class="vertical-list" v-if="$store.state.token != ''" id='groups-listed'>
+      <ul
+        class="vertical-list"
+        v-if="$store.state.token != ''"
+        id="groups-listed"
+      >
         <list-card
-          v-for="group in $store.state.groups" 
+          v-for="group in $store.state.groups"
           :key="group.groupId"
           v-bind:id="group.groupId"
           v-bind:type="'group'"
           v-bind:title="group.name"
           v-bind:description="group.groupDescription"
           v-bind:date="group.createdOn"
-      />
+        />
       </ul>
     </div>
   </div>
@@ -33,12 +41,14 @@
 
 <script>
 import GroupService from "@/services/GroupService.js";
-import ListCard from '../components/ui/ListCard.vue';
+import ListCard from "../components/ui/ListCard.vue";
+import JoinGroup from "../components/ui/JoinGroup.vue";
 
 export default {
   name: "groups",
   components: {
-    ListCard
+    ListCard,
+    JoinGroup,
   },
   mounted() {
     this.listGroups();
@@ -49,6 +59,11 @@ export default {
         this.$store.commit("SET_GROUPS", groups.data);
       });
     },
+  },
+  data() {
+    return {
+      toggleJoin: false,
+    };
   },
 };
 </script>
@@ -86,15 +101,25 @@ export default {
   border: 2px solid #1f7a8c;
 }
 
-.date{
+.date {
   font-weight: 400;
   font-size: 16px;
 }
 
 #groups-listed {
   display: grid;
-  grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   width: 100%;
   padding-inline-start: 0px;
+}
+
+.join-modal {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #12121268;
+  top: 0;
+  left: 0;
+  border-radius: 6px;
 }
 </style>
