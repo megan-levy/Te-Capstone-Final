@@ -1,7 +1,7 @@
 <template>
   <div class="groups">
-    <h1>Groups</h1>
-    <br />
+     <h1 class="title">Groups</h1>
+     <hr />
     <div class="buttons-groups">
       <router-link
         class="addBtn new-group-button"
@@ -19,7 +19,6 @@
         <groups-toggle v-model="toggleJoin" />
       </div>
     </div>
-    <br>
     <hr />
     <div class="items-container">
       <ul
@@ -71,6 +70,7 @@ export default {
 };
 </script>
 <style>
+
 .groups {
   height: -webkit-fit-content;
   height: -moz-fit-content;
@@ -86,8 +86,8 @@ export default {
   padding: 25px;
 }
 .addBtn {
-  width: 75px;
-  height: 75px;
+  width: 55px;
+  height: 55px;
   background: #1f7a8c;
   border-radius: 6px;
   display: flex;
@@ -128,13 +128,17 @@ export default {
   border-radius: 6px;
 }
 .new-group-button {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 450 !important;
+  align-items: center;
+ 
 }
 .buttons-groups {
   display: flex;
-  width: calc(175px + 1rem);
-  justify-content: space-between;
+  column-gap:15px ;
+  
+  align-items: center;
+
 }
 .items-container {
   overflow-y: scroll;

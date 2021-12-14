@@ -3,16 +3,30 @@
     <h1>{{ listName }}</h1>
     <p>{{ listDescription }}</p>
         <div>
+      <hr />    
+     <div class="buttons-groups">
       <router-link
-        class="addBtn"
+        class="addBtn new-group-button"
         v-on:click="setListId"
         v-bind:to="{ name: 'new-item' }"
         v-if="$store.state.token != ''"
-        >+</router-link
+        >Add</router-link
       >
+       <a
+        class="addBtn new-group-button"
+        v-on:click="toggleJoin = !toggleJoin"
+        v-if="$store.state.token != ''"
+        >Edit</a
+      >
+       <a
+        class="addBtn new-group-button"
+        v-on:click="toggleJoin = !toggleJoin"
+        v-if="$store.state.token != ''"
+        >Delete</a
+      >
+      </div>
     </div>
-    <br>
-    <br>
+    
     <hr />
     <br>
       <router-link
@@ -185,4 +199,5 @@ li:hover {
     padding: 10px;
   }
 }
+
 </style>

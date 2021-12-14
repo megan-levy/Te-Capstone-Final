@@ -8,8 +8,9 @@
       </span>
       <p>{{ $store.state.group.groupDescription }}</p>
 
+    <hr />
       <router-link
-        class="addBtn add-button"
+        class="addBtn new-group-button"
         v-bind:to="{ name: 'new-list' }"
         v-if="$store.state.token != ''"
         >Add</router-link
@@ -155,4 +156,18 @@ h1 {
   padding: 25px;
 }
 
+.addBtn {
+  width: 50px;
+  height: 50px;
+  background: #1f7a8c;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: #e6e6e6;
+  font-weight: 200;
+  font-size: 3.5rem;
+  border: 2px solid transparent;
+}
 </style>
