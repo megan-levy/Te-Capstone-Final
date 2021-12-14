@@ -2,6 +2,7 @@
   <div class="groups" v-if="$store.state.group">
     <div class="title-add">
       <h1>{{ $store.state.group.name }}</h1>
+      <span class="group-code">420690</span>
       <p>{{ $store.state.group.groupDescription }}</p>
 
       <router-link
@@ -77,6 +78,11 @@ li {
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   width: 100%;
   padding-inline-start: 0px;
+}
+
+.group-code {
+  font-weight: 300px;
+  margin-block-start: 0;
 }
 
 h1 {

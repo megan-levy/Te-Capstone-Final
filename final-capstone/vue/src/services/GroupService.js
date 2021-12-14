@@ -12,4 +12,6 @@ export default {
         return axios.get(`/groups/${groupId}`, { params: { "groupId": groupId } });
     }
 
+    //for joining group with valid id
+
 }

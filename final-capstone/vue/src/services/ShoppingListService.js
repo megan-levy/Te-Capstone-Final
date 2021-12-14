@@ -17,5 +17,9 @@ export default {
     },
     getItemList(listId){
         return axios.get(`/lists/${listId}/items`,  { params: { "listId": listId } })
+    },
+    deleteItemFromList(itemId) {
+        return axios.delete(`/items/${itemId}`, {params: {"itemId": itemId}});
     }
+    
 }
