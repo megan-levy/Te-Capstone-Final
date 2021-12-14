@@ -3,9 +3,6 @@
     <div class="title-add">
       <h1>{{ $store.state.group.name }}</h1>
       <p>{{ $store.state.group.groupDescription }}</p>
-     
-
-     
 
       <router-link
         class="addBtn"
@@ -15,15 +12,16 @@
       >
     </div>
     <hr />
-     <router-link
-        id="return"
-        tag="a"
-        class="helper-link"
-        :to="{ name: 'groups' }"
-      >
-        Return to My Groups
-      </router-link>
-    <div>
+    <br>
+    <router-link
+      id="return"
+      tag="a"
+      class="helper-link"
+      :to="{ name: 'groups' }"
+    >
+      Return to My Groups
+    </router-link>
+    <div class="items-container">
       <ul class="vertical-list" id="lists-listed">
         <list-card
           v-for="list in $store.state.lists"
@@ -84,9 +82,15 @@ li {
 h1 {
   margin-top: 1px;
 }
+.items-container {
+  overflow-y: scroll;
+  height: 100%;
+}
 .groups {
-  height: fit-content;
-  min-width: 350px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: calc(100% - 120px);
+  min-width: 250px;
   margin: 15px;
   width: calc(100% - 80px);
   display: flex;

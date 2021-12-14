@@ -10,7 +10,6 @@
         >+</router-link
       >
       <a
-         
         class="addBtn new-group-button"
         v-on:click="toggleJoin = !toggleJoin"
         v-if="$store.state.token != ''"
@@ -20,8 +19,9 @@
         <groups-toggle v-model="toggleJoin" />
       </div>
     </div>
+    <br>
     <hr />
-    <div>
+    <div class="items-container">
       <ul
         class="vertical-list"
         v-if="$store.state.token != ''"
@@ -71,8 +71,10 @@ export default {
 </script>
 <style>
 .groups {
-  height: fit-content;
-  min-width: 350px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: calc(100% - 120px);
+  min-width: 250px;
   margin: 15px;
   width: calc(100% - 80px);
   display: flex;
@@ -110,7 +112,7 @@ export default {
 
 #groups-listed {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   width: 100%;
   padding-inline-start: 0px;
 }
@@ -127,10 +129,36 @@ export default {
 .new-group-button {
   font-size: 20px;
   font-weight: 450 !important;
-} 
+}
 .buttons-groups {
   display: flex;
   width: calc(175px + 1rem);
   justify-content: space-between;
+}
+.items-container {
+  overflow-y: scroll;
+  height: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+  #groups-listed {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    -webkit-padding-start: 0px;
+    padding-inline-start: 0px;
+  }
+  .groups {
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: calc(100% - 95px);
+    width: calc(100% - 60px);
+    margin: 20px;
+    min-width: 250px;
+    background-color: #ffffff;
+    border-radius: 6px;
+    filter: drop-shadow(0px 4px 4px rgba(221, 221, 221, 0.25));
+    padding: 10px;
+  }
 }
 </style>
