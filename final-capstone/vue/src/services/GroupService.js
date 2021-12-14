@@ -11,8 +11,8 @@ export default {
     getSingle(groupId) {
         return axios.get(`/groups/${groupId}`, { params: { "groupId": groupId } });
     },
-    getSingleByUserId(userId) {
-        return axios.get(`/groups/${userId}`, { params: { "userId" : userId } });
+    listByUserId() {
+        return axios.get(`/groups/user`);
     },
     updateGroup(group, groupId) {
         return axios.put(`/groups/${groupId}`, group, { params: { "groupId": groupId } });

@@ -51,15 +51,20 @@ public class GroupController {
         return groupDao.findAll();
     }
 
-//    @GetMapping(path = "/groups/{userId}")
-//    public List<Group> findAll() {
-//        return groupDao.findAll();
-//    }
+    @GetMapping(path = "/groups/user")
+    public List<Group> findAllByUser(Principal user) {
+        System.out.println(user);
+        return groupDao.findGroupsByUserId((long) userDao.findIdByUsername(user.getName()));
+    }
 
-//    @RequestMapping(path = "/join-group", method = RequestMethod.POST)
-//    public void joinGroup(@RequestBody ) {
-//        memberOf.setGroupId();
-//    }
+    @ResponseStatus(HttpStatus.CREATED)
+    @RequestMapping(path = "/members", method = RequestMethod.POST)
+    public void joinGroup(@RequestBody InviteCode invite, Principal user) {
+
+        System.out.println(invite.getCode());
+
+        groupDao.joinGroup(invite.getCode(), (long) userDao.findIdByUsername(user.getName()));
+    }
 
 
 }

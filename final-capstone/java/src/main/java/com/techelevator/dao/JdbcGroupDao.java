@@ -64,9 +64,9 @@ public class JdbcGroupDao implements GroupDao {
         return groupList;
     }
 
-    //@Override
-    public String findGroupByGroupId(Long groupId) {
-        return jdbcTemplate.queryForObject("select name from groups where group_id = ?", String.class, groupId);
+    @Override
+    public Group findGroupByGroupId(Long groupId) {
+        return jdbcTemplate.queryForObject("select * from groups where group_id = ?", Group.class, groupId);
     }
 
     // @Override
@@ -80,15 +80,29 @@ public class JdbcGroupDao implements GroupDao {
         String sql = "select * from groups as G\n" +
                 "JOIN member_of AS MO ON G.group_id = MO.group_id\n" +
                 "JOIN users AS U ON U.user_id = MO.user_id\n" +
-                "WHERE U.user_id = 3;";
+                "WHERE U.user_id = ?;";
 
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
 
         while (results.next()) {
             groupsByUser.add(mapRowToGroup(results));
         }
 
         return groupsByUser;
+    }
+
+    @Override
+    public Group findGroupByCode(String code) {
+        Group groupByCode = null;
+        String sql = "select * from groups WHERE groups.invite_code = ?";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, code);
+
+        if (results.next()) {
+            groupByCode = mapRowToGroup(results);
+        }
+
+        return groupByCode;
     }
 
 
@@ -123,12 +137,16 @@ public class JdbcGroupDao implements GroupDao {
         jdbcTemplate.update(insertMember, userId, groupId, true);
     }
 
+
+
     @Override
-    public void joinGroup(String inviteCode, RandomCode finalInvite) {
-        if (inviteCode.equals(finalInvite)) {
+    public void joinGroup(String inviteCode, Long userId) {
+        Long groupId = this.findGroupByCode(inviteCode).getGroupId();
+
+        if (groupId != null) {
             String insertMember = "INSERT INTO member_of(user_id, group_id, invite_accepted)" +
                     " VALUES(?,?,?)";
-            jdbcTemplate.update(insertMember, true);
+            jdbcTemplate.update(insertMember, userId, groupId, true);
         }
     }
 

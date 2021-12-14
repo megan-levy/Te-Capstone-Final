@@ -12,10 +12,11 @@ public interface GroupDao {
     //Return a list of all groups in database
     List<Group> findAll();
 
-    String findGroupByGroupId(Long groupId);
+    Group findGroupByGroupId(Long groupId);
 
     Group findGroupByName(String name);
 
+    Group findGroupByCode(String code);
 
     List<Group> findGroupsByUserId(Long userId);
 
@@ -23,7 +24,7 @@ public interface GroupDao {
 
     void create(String name, String groupDescription, Long userId);
 
-    void joinGroup(String inviteCode, RandomCode finalInvite);
+    void joinGroup(String inviteCode, Long userId);
 
     //void joinGroup(String inviteCode, Random randomCode);
 }

@@ -3,8 +3,13 @@ import axios from 'axios';
 export default {
 
     //for joining group with valid id
-    joinGroup(code, groupId) {
-        return axios.post(`/members/${groupId}`, code, { params: { "groupId": groupId }});
+    joinGroup(code) {
+        console.log(code);
+
+        let data = {
+            code
+        }
+        return axios.post(`/members`, data);
     },
     //for joining group with valid id
     leaveGroup(groupId) {

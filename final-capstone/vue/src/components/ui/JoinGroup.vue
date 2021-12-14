@@ -1,7 +1,7 @@
 <template>
   <div id="new-group" class="text-center auth-container">
      
-      <form class="form-new-group" @submit.prevent="createNewItem">
+      <form class="form-new-group" @submit.prevent="joinGroup">
         <h1 class="h3 mb-3 font-weight-normal">Join Group</h1>
         <hr>
         <br>
@@ -11,7 +11,7 @@
             type="text"
             id="group-name"
             class="form-control"
-            v-model="item.itemName"
+            v-model="code"
             placeholder="Enter 6 Digit Access Code..."
             required/>
         </label>
@@ -33,22 +33,21 @@
 
 
 <script>
-
+import MemberService from '../../services/MemberService.js';
 
 export default {
   name: "join-group",
   props:['toggleForm'],
    data() {
        return{
-           item: {
-               itemName:"",
-               itemAmount: "",
-                
-           }
+           code: ""
        };
    },  
    methods: {
-      createNewItem() {},
+      joinGroup() {
+        MemberService.joinGroup(this.code);
+        console.log(this.$route);
+      },
       switched(isOn) {
         this.$emit("input", isOn)
       }

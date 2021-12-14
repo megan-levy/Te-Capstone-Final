@@ -57,7 +57,7 @@ export default {
   },
   methods: {
     listGroups() {
-      GroupService.list().then((groups) => {
+      GroupService.listByUserId().then((groups) => {
 
         this.$store.commit("SET_GROUPS", groups.data);
       });
