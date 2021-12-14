@@ -12,16 +12,18 @@ public class Group {
     private String groupDescription;
     private Date createdOn;
     private String inviteCode;
+    private String interleaveInvite;
 
     public Group() {
     }
 
     public Group(Long groupId, String name,
-                 String groupDescription, Date createdOn) {
+                 String groupDescription, Date createdOn, String interleaveInvite) {
         this.groupId = groupId;
         this.name = name;
         this.groupDescription = groupDescription;
         this.createdOn = createdOn;
+        this.interleaveInvite = interleaveInvite;
     }
 
     public Long getGroupId() {
@@ -56,5 +58,11 @@ public class Group {
         this.createdOn = createdOn;
     }
 
+    public String getInterleaveInvite() {
+        return interleaveInvite;
+    }
 
+    public void setInterleaveInvite(String interleaveInvite) {
+        this.interleaveInvite = interleaveInvite;
+    }
 }

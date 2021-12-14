@@ -2,14 +2,11 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.GroupDao;
 import com.techelevator.dao.UserDao;
-import com.techelevator.model.Group;
+import com.techelevator.model.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.techelevator.model.GroupAlreadyExistsException;
-import com.techelevator.model.GroupDTO;
-import com.techelevator.model.ShoppingList;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -53,5 +50,11 @@ public class GroupController {
     public List<Group> findAll() {
         return groupDao.findAll();
     }
+
+//    @RequestMapping(path = "/join-group", method = RequestMethod.POST)
+//    public void joinGroup(@RequestBody ) {
+//        memberOf.setGroupId();
+//    }
+
 
 }

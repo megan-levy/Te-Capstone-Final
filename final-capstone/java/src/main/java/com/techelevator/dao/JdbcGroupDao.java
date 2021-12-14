@@ -2,6 +2,7 @@ package com.techelevator.dao;
 
 import com.techelevator.model.Group;
 //import com.techelevator.model.User;
+import com.techelevator.model.RandomCode;
 import org.springframework.jdbc.core.JdbcTemplate;
 //import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -99,29 +100,25 @@ public class JdbcGroupDao implements GroupDao {
     @Override
     //public boolean create(String name, String groupDescription, Date joinedOn) {
     public void create(String name, String groupDescription, Long userId) {
-        String insertGroup = "INSERT INTO groups(name, group_description)" +
-                " VALUES(?,?) RETURNING group_id;";
-        Long newGroupId = jdbcTemplate.queryForObject(insertGroup, Long.class, name, groupDescription);
+        RandomCode randomCode = new RandomCode();
+        String groupInviteCode = randomCode.getInviteCode();
+        String insertGroup = "INSERT INTO groups(name, group_description, invite_code)" +
+                " VALUES(?,?,?) RETURNING group_id;";
+        Long newGroupId = jdbcTemplate.queryForObject(insertGroup, Long.class, name, groupDescription, groupInviteCode);
         int groupId = (int)newGroupId.longValue();
         String insertMember = "INSERT INTO member_of(user_id, group_id, invite_accepted)" +
                 " VALUES(?,?,?)";
         jdbcTemplate.update(insertMember, userId, groupId, true);
     }
 
-//    @Override
-//    public void joinGroup(String inviteCode, Random randomCode) {
-//
-//    }
-
-//
-//    Random randomCode = new Random();
-//    public void joinGroup(String inviteCode, Random randomCode) {
-//        if (inviteCode.equals(randomCode)) {
-//            String insertMember = "INSERT INTO member_of(user_id, group_id, invite_accepted)" +
-//                    " VALUES(?,?,?)";
-//            jdbcTemplate.update(insertMember, true);
-//        }
-//    }
+    @Override
+    public void joinGroup(String inviteCode, RandomCode finalInvite) {
+        if (inviteCode.equals(finalInvite)) {
+            String insertMember = "INSERT INTO member_of(user_id, group_id, invite_accepted)" +
+                    " VALUES(?,?,?)";
+            jdbcTemplate.update(insertMember, true);
+        }
+    }
 
     //Below Override was to make implements happy for now until we figure out why
     @Override
@@ -143,6 +140,7 @@ public class JdbcGroupDao implements GroupDao {
         group.setName(rs.getString("name"));
         //group.setAuthorities(rs.getString("role")); -- not sure how to deal with the role
         group.setGroupDescription(rs.getString("group_description"));
+        group.setInterleaveInvite(rs.getString("invite_code"));
         group.setCreatedOn(rs.getDate("created_on"));
 
         return group;

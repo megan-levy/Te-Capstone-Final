@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Group;
+import com.techelevator.model.RandomCode;
 
 import java.util.Date;
 import java.util.List;
@@ -21,6 +22,8 @@ public interface GroupDao {
     Group getGroup(Long groupId);
 
     void create(String name, String groupDescription, Long userId);
+
+    void joinGroup(String inviteCode, RandomCode finalInvite);
 
     //void joinGroup(String inviteCode, Random randomCode);
 }

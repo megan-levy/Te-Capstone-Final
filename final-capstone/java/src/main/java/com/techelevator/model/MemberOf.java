@@ -1,9 +1,10 @@
 package com.techelevator.model;
 
+import java.util.Objects;
+
 public class MemberOf {
     private Long userId;
     private Long groupId;
-    private String inviteCode;
     private boolean inviteAccepted;
 
     public MemberOf(){}
@@ -11,7 +12,6 @@ public class MemberOf {
     public MemberOf(Long userId, Long groupId, boolean inviteAccepted){
         this.userId = userId;
         this.groupId = groupId;
-        this.inviteCode = inviteCode;
         this.inviteAccepted = false;
     }
 
@@ -39,11 +39,4 @@ public class MemberOf {
         this.inviteAccepted = inviteAccepted;
     }
 
-    public String getInviteCode() {
-        return inviteCode;
-    }
-
-    public void setInviteCode(String inviteCode) {
-        this.inviteCode = inviteCode;
-    }
 }
