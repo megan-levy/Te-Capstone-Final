@@ -9,7 +9,7 @@ import org.springframework.security.config.method.MethodSecurityMetadataSourceBe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.task.DelegatingSecurityContextAsyncTaskExecutor;
 import org.springframework.stereotype.Service;
-
+import com.techelevator.dao.MemberOfDao;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,15 +18,17 @@ import java.util.List;
 @Service
 public class JdbcGroupDao implements GroupDao {
 
-    private MemberOfDao memberOfDao;
+    //private MemberOfDao memberOfDao;
     //Might need to have the @Service above this class. @Service usually has the business logic of an application
     //usually resides within the service layer. Used to indicated that a class belongs to that layer
 
     private JdbcTemplate jdbcTemplate;
+    private MemberOfDao memberOfDao;
 
     public JdbcGroupDao(JdbcTemplate jdbcTemplate, MemberOfDao memberOfDao) {
         this.jdbcTemplate = jdbcTemplate;
         this.memberOfDao = memberOfDao;
+
     }
 
 

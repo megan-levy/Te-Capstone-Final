@@ -3,6 +3,7 @@
     <div id="nav">
         <div>
             <router-link v-bind:to="{ name: 'groups' }" id='title-of-project'> Shared Shopping List </router-link>
+            ||
             <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
             
         </div>

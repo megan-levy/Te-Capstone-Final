@@ -1,7 +1,7 @@
 <template>
   <div id="new-group" class="text-center auth-container">
       <form class="form-new-group" @submit.prevent="createList">
-        <h1 class="h3 mb-3 font-weight-normal">Create New List</h1>
+        <h1>Create New List</h1>
         <hr>
         <br>
         <label for="text" class="sr-only">

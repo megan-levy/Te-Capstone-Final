@@ -2,22 +2,24 @@
   <div class="groups">
     <h1>Groups</h1>
     <br />
-    <router-link
-      class="addBtn"
-      v-bind:to="{ name: 'new-group' }"
-      v-if="$store.state.token != ''"
-      >+</router-link
-    >
-    <a
-      class="addBtn"
-      v-on:click="toggleJoin = !toggleJoin"
-      v-if="$store.state.token != ''"
-      >Join</a
-    >
-    <div v-if="toggleJoin" class="join-modal">
-      <join-group v-model="toggleJoin"/>
+    <div class="buttons-groups">
+      <router-link
+        class="addBtn"
+        v-bind:to="{ name: 'new-group' }"
+        v-if="$store.state.token != ''"
+        >+</router-link
+      >
+      <a
+         
+        class="addBtn new-group-button"
+        v-on:click="toggleJoin = !toggleJoin"
+        v-if="$store.state.token != ''"
+        >Join</a
+      >
+      <div v-if="toggleJoin" class="join-modal">
+        <groups-toggle v-model="toggleJoin" />
+      </div>
     </div>
-
     <hr />
     <div>
       <ul
@@ -48,7 +50,7 @@ export default {
   name: "groups",
   components: {
     ListCard,
-    JoinGroup,
+    groupsToggle: JoinGroup,
   },
   mounted() {
     this.listGroups();
@@ -121,5 +123,14 @@ export default {
   top: 0;
   left: 0;
   border-radius: 6px;
+}
+.new-group-button {
+  font-size: 20px;
+  font-weight: 450 !important;
+} 
+.buttons-groups {
+  display: flex;
+  width: calc(175px + 1rem);
+  justify-content: space-between;
 }
 </style>

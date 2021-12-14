@@ -16,10 +16,14 @@
             required/>
         </label>
 
+       <div class="toggleCOntainer">
         <button class="btn btn-lg btn-primary btn-block" type="submit">
           Join
         </button>
-       <a class="helper-link" v-on:click="toggleForm = !toggleForm">Cancel</a>
+        
+      </div>
+       <hr />
+       <a class="helper-link" v-on:click="switched(false)">Cancel</a>
       </form>
   </div>
 </template>
@@ -28,7 +32,7 @@
 
 <script>
 
-//import shoppingListService from "../services/ShoppingListService";
+
 export default {
   name: "join-group",
   props:['toggleForm'],
@@ -37,32 +41,17 @@ export default {
            item: {
                itemName:"",
                itemAmount: "",
-               toggleForm: this.$props.toggleForm
+                
            }
        };
    },  
    methods: {
-      createNewItem() {
-      //    if (this.$store.state.listId !== 0){
-    //  shoppingListService.createNewItem(this.$store.state.listId, this.item)
-    //   .then((response) => {
-    //       if (response.status == 200 || response.status == 201) {
-    //         let newRoute = this.$route.fullPath.split('/');
-    //         newRoute.splice(newRoute.length - 1);
-    //         this.$router.push(newRoute.join('/'));
-    //       }
-    //     })
-    //     .catch((error) => {
-    //       const response = error.response;
+      createNewItem() {},
+      switched(isOn) {
+        this.$emit("input", isOn)
+      }
 
-    //       if (response.status === 401) {
-    //         this.invalidCredentials = true;
-    //       }
-    //     });}
-    }
-  }
-
-}
+}}
 
 
 </script>

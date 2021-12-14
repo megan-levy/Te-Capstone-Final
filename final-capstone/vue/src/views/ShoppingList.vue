@@ -11,7 +11,7 @@
         class="helper-link"
         :to="{ name: 'group-home' }"
       >
-        Return to My Groups
+        Return to My Lists
       </router-link>
      
        <hr />
