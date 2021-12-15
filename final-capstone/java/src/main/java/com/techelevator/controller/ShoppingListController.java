@@ -50,7 +50,7 @@ public class ShoppingListController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @RequestMapping(value = "/lists/", method = RequestMethod.GET)
+    @RequestMapping(value = "/lists/{listId}", method = RequestMethod.GET)
     public ShoppingList getUserNameByListId(@RequestParam Long listId){
         return shoppingListDAO.getUserNameByListId(listId);
     }
