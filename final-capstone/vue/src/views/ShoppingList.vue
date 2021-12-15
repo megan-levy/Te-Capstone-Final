@@ -1,39 +1,45 @@
 <template>
   <div id="shopping-list" class="shopping-list">
-    <h1>{{ listName }}</h1>
+    <div>
+      <h1>{{ listName }}</h1>
+      <!-- <span v-if="listClaimed">List claimed by: userId</span> -->
+    </div>
     <p>{{ listDescription }}</p>
-        <div>
-      <hr />    
-     <div class="buttons-groups">
-      <router-link
-        class="addBtn new-group-button"
-        v-on:click="setListId"
-        v-bind:to="{ name: 'new-item' }"
-        v-if="$store.state.token != ''"
-        >Add</router-link
-      >
-       <a
-        class="addBtn new-group-button"
-         v-on:click="toggleJoin = !toggleJoin"
-        v-if="$store.state.token != ''"
-        >Edit</a
-      >
-      <div v-if="toggleJoin" class="join-modal">
-         <edits-toggle v-model="toggleJoin" 
-          v-bind:list='{"listId":$route.params.listId, listName, listDescription}' />
-      </div>
-       <a
-        class="addBtn new-group-button"
-       
-        v-if="$store.state.token != ''"
-        >Delete</a
-      >
+    <div>
+      <hr />
+      <div class="buttons-groups">
+        <router-link
+          class="addBtn new-group-button"
+          v-on:click="setListId"
+          v-bind:to="{ name: 'new-item' }"
+          v-if="$store.state.token != ''"
+          >Add</router-link
+        >
+        <a
+          class="addBtn new-group-button"
+          v-on:click="toggleJoin = !toggleJoin"
+          v-if="$store.state.token != ''"
+          >Edit</a
+        >
+        <div v-if="toggleJoin" class="join-modal">
+          <edits-toggle
+            v-model="toggleJoin"
+            v-bind:list="{
+              listId: $route.params.listId,
+              listName,
+              listDescription,
+            }"
+          />
+        </div>
+        <a class="addBtn new-group-button" v-if="$store.state.token != ''"
+          >Delete</a
+        >
       </div>
     </div>
-    
+
     <hr />
-    <br>
-      <router-link
+    <br />
+    <router-link
       id="return"
       tag="a"
       class="helper-link"
@@ -59,25 +65,25 @@
         </router-link>
       </ul>
     </div>
-    
   </div>
 </template>
 
 <script>
 import ShoppingListService from "@/services/ShoppingListService.js";
-import EditList from "../components/EditList.vue"
+import EditList from "../components/EditList.vue";
 
 export default {
   name: "shopping-list",
   components: {
-    editsToggle: EditList
+    editsToggle: EditList,
   },
   data() {
     return {
       listId: "",
       listName: "",
       listDescription: "",
-      toggleJoin: false
+      toggleJoin: false,
+      listClaimed: false
     };
   },
   created() {
@@ -87,6 +93,7 @@ export default {
       (response) => {
         console.log(response);
         this.listName = response.data.listName;
+        this.listClaimed = response.data.listClaimed;
         this.listDescription = response.data.listDescription;
       }
     );
@@ -209,5 +216,4 @@ li:hover {
     padding: 10px;
   }
 }
-
 </style>

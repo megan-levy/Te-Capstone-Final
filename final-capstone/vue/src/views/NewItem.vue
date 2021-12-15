@@ -83,7 +83,10 @@ export default {
             if (response.status == 200 || response.status == 201) {
               let newRoute = this.$route.fullPath.split("/");
               newRoute.splice(newRoute.length - 1);
-              this.$router.push(newRoute.join("/"));
+              //console.log(this.$store.state.lists)
+              let newLists = this.$store.state.lists;
+              console.log(newLists);
+             // this.$router.push(newRoute.join("/"));
             }
           })
           .catch((error) => {

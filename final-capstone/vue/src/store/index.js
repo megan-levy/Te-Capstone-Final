@@ -24,6 +24,7 @@ export default new Vuex.Store({
     group: {},
     shoppingLists: [],
     lists: [],
+    list: {},
     items: [],
     listId: 0,
     item: {},
@@ -59,6 +60,7 @@ export default new Vuex.Store({
     SET_ITEM(state, item) {
       state.item = item;
     },
+    
     
     LOGOUT(state) {
       localStorage.removeItem('token');

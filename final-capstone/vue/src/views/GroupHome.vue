@@ -72,7 +72,14 @@ export default {
     copyToClip(e) {
       navigator.clipboard.writeText(e.target.textContent);
       
-    }
+    },
+     getItemsList(listId) {
+      ShoppingListService.getItemList(listId).then(
+        (items) => {
+          this.$store.commit("SET_ITEMS", items.data);
+        }
+      );
+    },
   },
 };
 </script>

@@ -4,6 +4,10 @@
         <h1>Edit List</h1>
       <hr />
       <br />
+
+      <input type="checkbox" class="checkbox" v-model="checked">
+      <label for="checkbox">Claim List</label>
+
       <label for="text" class="sr-only">
         <span>Name (optional)</span>
         <input
@@ -52,12 +56,6 @@ export default {
   },
   methods: {
       updateListContent() {
-        //deconstructing the listContent
-        //   let {
-        //       id,
-        //       name,
-        //       description  
-        //   } = {...JSON.parse(JSON.stringify(this.listContent))}
 
         console.log(this.listContent.listId)
         console.log(this.listContent.listName)
