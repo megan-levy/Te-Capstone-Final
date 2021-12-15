@@ -49,10 +49,15 @@ public class ShoppingListController {
         return shoppingListDAO.getIndividualList(Long.parseLong(listId));
     }
 
+    @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = "/lists/", method = RequestMethod.GET)
     public ShoppingList getUserNameByListId(@RequestParam Long listId){
         return shoppingListDAO.getUserNameByListId(listId);
     }
+
+
+
+
 }
 
 
