@@ -7,14 +7,14 @@ public class ShoppingList {
     private Long groupId;
     private Long itemCount;
     //private String retailName;
-    private String listClaimedBy;
+    private Integer listClaimedBy;
     private String listDescription;
 
     public ShoppingList() { }
 
 
 
-    public ShoppingList(Long listId, String listName, Long groupId, String listClaimedBy, String listDescription, Long itemCount){
+    public ShoppingList(Long listId, String listName, Long groupId, Integer listClaimedBy, String listDescription, Long itemCount){
         this.listId = listId;
         this.listName = listName;
         this.groupId = groupId;
@@ -65,11 +65,11 @@ public class ShoppingList {
 //        this.retailName = retailName;
 //    }
 
-    public String getListClaimedBy() {
+    public Integer getListClaimedBy() {
         return listClaimedBy;
     }
 
-    public void setListClaimedBy(String listClaimedBy) {
+    public void setListClaimedBy(Integer listClaimedBy) {
         this.listClaimedBy = listClaimedBy;
     }
 

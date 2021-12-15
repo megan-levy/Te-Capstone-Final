@@ -72,7 +72,7 @@ public class JdbcShoppingListDao implements ShoppingListDAO {
     }
 
     @Override
-    public String findByListClaimed(String listClaimedBy) {
+    public Integer findByListClaimed(Integer listClaimedBy) {
 
         return listClaimedBy;
     }
@@ -85,7 +85,7 @@ public class JdbcShoppingListDao implements ShoppingListDAO {
     }
 
     @Override
-    public void updateShoppingList(String listName, String listDescription, Long listId, String listClaimedBy){
+    public void updateShoppingList(String listName, String listDescription, Long listId, Integer listClaimedBy){
         String updateList ="UPDATE lists SET list_name = ?, list_description = ?, list_claimed_By = ? WHERE list_id = ?";
         jdbcTemplate.update(updateList, listName, listDescription, listClaimedBy, listId);
     }
@@ -98,7 +98,7 @@ public class JdbcShoppingListDao implements ShoppingListDAO {
         shoppingList.setGroupId(rs.getLong("group_id"));
         shoppingList.setListName(rs.getString("list_name"));
         shoppingList.setListDescription(rs.getString("list_description"));
-        shoppingList.setListClaimedBy(rs.getString("list_claimed_by"));
+        shoppingList.setListClaimedBy(rs.getInt("list_claimed_by"));
 
         shoppingList.setItemCount(itemDao.getItemCount((long)shoppingList.getListId()));
         return shoppingList;
