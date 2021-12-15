@@ -43,11 +43,13 @@ CREATE TABLE groups (
  CREATE TABLE lists (
  list_id SERIAL ,
  list_name varchar(50)NOT NULL,
- group_id int ,
- list_claimed_by varchar(50),
+ group_id int,
+ list_claimed_by int,
  list_description varchar(50),
  CONSTRAINT PK_lists PRIMARY KEY (list_id),
- CONSTRAINT FK_lists_group_id FOREIGN KEY (group_id) REFERENCES groups (group_id)
+ CONSTRAINT FK_lists_group_id FOREIGN KEY (group_id) REFERENCES groups (group_id),
+ CONSTRAINT FK_lists_list_claimed_by FOREIGN KEY (list_claimed_by) REFERENCES users (user_id)
+
  );
  
 -- CREATE TABLE retailer_store (
