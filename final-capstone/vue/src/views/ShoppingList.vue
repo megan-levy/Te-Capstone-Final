@@ -14,13 +14,17 @@
       >
        <a
         class="addBtn new-group-button"
-        v-on:click="toggleJoin = !toggleJoin"
+         v-on:click="toggleJoin = !toggleJoin"
         v-if="$store.state.token != ''"
         >Edit</a
       >
+      <div v-if="toggleJoin" class="join-modal">
+         <edits-toggle v-model="toggleJoin" 
+          v-bind:list='{"listId":$route.params.listId, listName, listDescription}' />
+      </div>
        <a
         class="addBtn new-group-button"
-        v-on:click="toggleJoin = !toggleJoin"
+       
         v-if="$store.state.token != ''"
         >Delete</a
       >
@@ -55,19 +59,25 @@
         </router-link>
       </ul>
     </div>
+    
   </div>
 </template>
 
 <script>
 import ShoppingListService from "@/services/ShoppingListService.js";
+import EditList from "../components/EditList.vue"
 
 export default {
   name: "shopping-list",
+  components: {
+    editsToggle: EditList
+  },
   data() {
     return {
       listId: "",
       listName: "",
       listDescription: "",
+      toggleJoin: false
     };
   },
   created() {
