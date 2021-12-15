@@ -23,6 +23,6 @@ public interface ShoppingListDAO {
 
     ShoppingList getUserNameByListId(Long listId);
 
-    String getUserNameFromUserId (Long userId, Long listId);
+    String getUserNameFromUserId ( Long listId);
 
 }

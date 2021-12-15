@@ -92,8 +92,8 @@ public class JdbcShoppingListDao implements ShoppingListDAO {
 
 
     @Override
-    public String getUserNameFromUserId(Long userId, Long listId) {
-        return jdbcTemplate.queryForObject("select username FROM users JOIN lists ON lists.list_claimed_by = users.user_id WHERE list.list_id = ?", String.class, userId, listId);
+    public String getUserNameFromUserId( Long listId) {
+        return jdbcTemplate.queryForObject("select username FROM users JOIN lists ON lists.list_claimed_by = users.user_id WHERE lists.list_id = ?", String.class, listId);
     }
 
 
@@ -106,12 +106,16 @@ public class JdbcShoppingListDao implements ShoppingListDAO {
         shoppingList.setListClaimedBy(rs.getInt("list_claimed_by"));
 
         shoppingList.setItemCount(itemDao.getItemCount((long) shoppingList.getListId()));
-        shoppingList.setClaimedByName(
-                this.getUserNameFromUserId(
-                        (long) (shoppingList.getListClaimedBy()
-                        ),
-                        shoppingList.getListId()));
-        return shoppingList;
+        System.out.println(shoppingList.getListClaimedBy());
+       if (shoppingList.getListClaimedBy() != null && shoppingList.getListClaimedBy() != 0) {
+           shoppingList.setClaimedByName(
+                   this.getUserNameFromUserId(
+                           shoppingList.getListId()));
+           System.out.println(shoppingList.getClaimedByName());
+       }
+
+           return shoppingList;
+
     }
 
 }

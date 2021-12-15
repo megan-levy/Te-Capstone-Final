@@ -5,7 +5,7 @@
     </div>
     <p>{{ list.listDescription }}</p>
 
-    <p>This list is claimed by: {{list.claimedByName}}</p>
+    <p v-if="list.listClaimed">This list is claimed by: {{list.claimedByName}}</p>
     <div>
       <hr />
       <div class="buttons-groups">
