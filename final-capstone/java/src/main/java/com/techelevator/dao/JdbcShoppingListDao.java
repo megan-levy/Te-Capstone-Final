@@ -72,22 +72,22 @@ public class JdbcShoppingListDao implements ShoppingListDAO {
     }
 
     @Override
-    public boolean findByListClaimed(Boolean listClaimed) {
+    public String findByListClaimed(String listClaimedBy) {
 
-        return false;
+        return listClaimedBy;
     }
 
     @Override
     public void create(String listName, String listDescription, Long groupId) {
-        String insertList ="INSERT INTO lists(list_name, list_description, group_id, list_claimed)" +
+        String insertList ="INSERT INTO lists(list_name, list_description, group_id, list_claimed_By)" +
                 " VALUES(?,?,?,?)";
         jdbcTemplate.update(insertList, listName, listDescription, groupId, false);
     }
 
     @Override
-    public void updateShoppingList(String listName, String listDescription, Long listId, Boolean listClaimed){
-        String updateList ="UPDATE lists SET list_name = ?, list_description = ?, list_claimed = ? WHERE list_id = ?";
-        jdbcTemplate.update(updateList, listName, listDescription, listClaimed, listId);
+    public void updateShoppingList(String listName, String listDescription, Long listId, String listClaimedBy){
+        String updateList ="UPDATE lists SET list_name = ?, list_description = ?, list_claimed_By = ? WHERE list_id = ?";
+        jdbcTemplate.update(updateList, listName, listDescription, listClaimedBy, listId);
     }
 
 
@@ -98,7 +98,7 @@ public class JdbcShoppingListDao implements ShoppingListDAO {
         shoppingList.setGroupId(rs.getLong("group_id"));
         shoppingList.setListName(rs.getString("list_name"));
         shoppingList.setListDescription(rs.getString("list_description"));
-        shoppingList.setListClaimed(rs.getBoolean("list_claimed"));
+        shoppingList.setListClaimedBy(rs.getString("list_claimed_by"));
 
         shoppingList.setItemCount(itemDao.getItemCount((long)shoppingList.getListId()));
         return shoppingList;
