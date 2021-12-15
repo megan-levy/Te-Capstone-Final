@@ -81,8 +81,8 @@ export default {
       set(listClaimed) {
         this.$store.commit("SET_LIST", { listClaimed});
         if (listClaimed) {
-          this.$store.commit("SET_LIST", { listClaimedBy: this.user.id });
-          console.log(this.user.id);
+          this.$store.commit("SET_LIST", { listClaimedBy: this.user.id});
+          // console.log(this.user.username);
         } else {
           this.$store.commit("SET_LIST", {'listClaimedBy': null});
         }

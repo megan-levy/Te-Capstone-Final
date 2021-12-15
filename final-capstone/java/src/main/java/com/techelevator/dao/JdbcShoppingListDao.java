@@ -46,7 +46,7 @@ public class JdbcShoppingListDao implements ShoppingListDAO {
     }
 
     @Override
-    public ShoppingList getUserNameByListId(Long listId){
+    public ShoppingList getUserNameByListId(Long listId) {
 
         return jdbcTemplate.queryForObject("SELECT username FROM users \n" +
                 "JOIN member_of ON users.user_id = member_of.user_id\n" +
@@ -79,17 +79,22 @@ public class JdbcShoppingListDao implements ShoppingListDAO {
 
     @Override
     public void create(String listName, String listDescription, Long groupId, Long userId) {
-        String insertList ="INSERT INTO lists(list_name, list_description, group_id, list_claimed_By)" +
+        String insertList = "INSERT INTO lists(list_name, list_description, group_id, list_claimed_By)" +
                 " VALUES(?,?,?,?)";
         jdbcTemplate.update(insertList, listName, listDescription, groupId, userId);
     }
 
     @Override
-    public void updateShoppingList(String listName, String listDescription, Long listId, Integer listClaimedBy){
-        String updateList ="UPDATE lists SET list_name = ?, list_description = ?, list_claimed_By = ? WHERE list_id = ?";
+    public void updateShoppingList(String listName, String listDescription, Long listId, Integer listClaimedBy) {
+        String updateList = "UPDATE lists SET list_name = ?, list_description = ?, list_claimed_By = ? WHERE list_id = ?";
         jdbcTemplate.update(updateList, listName, listDescription, listClaimedBy, listId);
     }
 
+
+    @Override
+    public String getUserNameFromUserId(Long userId, Long listId) {
+        return jdbcTemplate.queryForObject("select username FROM users JOIN lists ON lists.list_claimed_by = users.user_id WHERE list.list_id = ?", String.class, userId, listId);
+    }
 
 
     private ShoppingList mapRowToList(SqlRowSet rs) {
@@ -100,7 +105,12 @@ public class JdbcShoppingListDao implements ShoppingListDAO {
         shoppingList.setListDescription(rs.getString("list_description"));
         shoppingList.setListClaimedBy(rs.getInt("list_claimed_by"));
 
-        shoppingList.setItemCount(itemDao.getItemCount((long)shoppingList.getListId()));
+        shoppingList.setItemCount(itemDao.getItemCount((long) shoppingList.getListId()));
+        shoppingList.setClaimedByName(
+                this.getUserNameFromUserId(
+                        (long) (shoppingList.getListClaimedBy()
+                        ),
+                        shoppingList.getListId()));
         return shoppingList;
     }
 

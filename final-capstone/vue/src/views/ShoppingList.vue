@@ -2,11 +2,10 @@
   <div id="shopping-list" class="shopping-list">
     <div>
       <h1>{{ list.listName }}</h1>
-      <!-- <span v-if="listClaimed">List claimed by: userId</span> -->
     </div>
     <p>{{ list.listDescription }}</p>
 
-    <p>This list is claimed by: {{list.listClaimedBy}}</p>
+    <p>This list is claimed by: {{list.claimedByName}}</p>
     <div>
       <hr />
       <div class="buttons-groups">

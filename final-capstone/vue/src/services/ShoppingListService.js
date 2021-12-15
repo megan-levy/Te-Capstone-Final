@@ -23,7 +23,8 @@ export default {
     },
     getItemList(listId){
         return axios.get(`/lists/${listId}/items`,  { params: { "listId": listId } });
-    },
+    }
+   
 
     
     // updateItem(item, itemId){
