@@ -32,6 +32,11 @@ public class ShoppingListController {
         shoppingListDAO.create(newList.getListName(), newList.getListDescription(), Long.parseLong(groupId));
     }
 
+    @RequestMapping(value ="/lists/{listId}", method = RequestMethod.PUT)
+    public void updateShopList(@RequestBody ShoppingList shoppingList, @PathVariable Long listId){
+        shoppingList.setListId(listId);
+    }
+
     @RequestMapping(value = "/group/{groupId}/lists", method = RequestMethod.GET)
     public List<ShoppingList> findAll(@RequestParam String groupId) {
         return shoppingListDAO.getListsByGroupId(Long.parseLong(groupId));

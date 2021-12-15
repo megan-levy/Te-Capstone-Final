@@ -1,7 +1,5 @@
 package com.techelevator.dao;
 
-import com.techelevator.model.Group;
-import com.techelevator.dao.ItemDao;
 import com.techelevator.model.ShoppingList;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -79,6 +77,14 @@ public class JdbcShoppingListDao implements ShoppingListDAO {
                 " VALUES(?,?,?,?)";
         jdbcTemplate.update(insertList, listName, listDescription, groupId, false);
     }
+
+    @Override
+    public void updateShoppingList(String listName, String listDescription, Long groupId){
+        String updateList ="UPDATE lists SET list_name = ?, list_description =? WHERE list_id =?";
+        jdbcTemplate.update(updateList, listName, listDescription, groupId);
+    }
+
+
 
     private ShoppingList mapRowToList(SqlRowSet rs) {
         ShoppingList shoppingList = new ShoppingList();

@@ -61,6 +61,8 @@ public class GroupController {
     @RequestMapping(path = "/members", method = RequestMethod.POST)
     public void joinGroup(@RequestBody InviteCode invite, Principal user) {
         //Need to have something so you can't join the same group more than once.
+
+
 //        System.out.println(invite.getCode());
 
         groupDao.joinGroup(invite.getCode(), (long) userDao.findIdByUsername(user.getName()));

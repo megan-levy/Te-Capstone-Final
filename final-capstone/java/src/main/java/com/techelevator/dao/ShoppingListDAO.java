@@ -19,5 +19,8 @@ public interface ShoppingListDAO {
 
     void create(String listName, String listDescription, Long groupId);
 
+    void updateShoppingList(String listName, String listDescription, Long groupId);
+
     ShoppingList getUserNameByListId(Long listId);
+
 }

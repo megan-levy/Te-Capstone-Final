@@ -35,7 +35,7 @@ public class ItemController {
     }
 
 
-    @DeleteMapping(path="/lists/{listId}/items/{itemName}" ) //need to confirm this is correct path
+    @DeleteMapping(path="/groups/{groupId}/lists/{listId}" ) //need to confirm this is correct path
     public void deleteItem(@PathVariable String itemName){itemDao.delete(itemName);}
 
 
