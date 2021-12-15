@@ -7,6 +7,15 @@ public class ShoppingListDTO {
     @NotEmpty
     private String listName;
     private String listDescription;
+    private Boolean isClaimed;
+
+    public Boolean getClaimed() {
+        return isClaimed;
+    }
+
+    public void setClaimed(Boolean claimed) {
+        isClaimed = claimed;
+    }
 
     public String getListName() {
         return listName;

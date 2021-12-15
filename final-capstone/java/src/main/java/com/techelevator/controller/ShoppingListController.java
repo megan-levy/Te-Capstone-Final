@@ -31,9 +31,9 @@ public class ShoppingListController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(value = "/group/{groupId}/lists", method = RequestMethod.POST)
-    public void createShoppingList(@RequestParam String groupId, @Valid @RequestBody ShoppingListDTO newList, Principal user) {
+    public void createShoppingList(@RequestParam String groupId, @Valid @RequestBody ShoppingListDTO newList) {
 
-        shoppingListDAO.create(newList.getListName(), newList.getListDescription(), Long.parseLong(groupId), (long)userDao.findIdByUsername((user.getName())));
+        shoppingListDAO.create(newList.getListName(), newList.getListDescription(), Long.parseLong(groupId), null);
     }
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value ="/lists/{listId}", method = RequestMethod.PUT)

@@ -35,9 +35,7 @@
         Update List
       </button>
       <br />
-      <a class="helper-link" v-on:click="switched(false)">
-        Cancel
-      </a>
+      <a class="helper-link" v-on:click="switched(false)"> Cancel </a>
     </form>
   </div>
 </template>
@@ -50,9 +48,9 @@ export default {
 
   // computed allows us to two-way-bind our state with v-model
   computed: {
-    // get the list 'subtree'?...to use 'this.list' 
+    // get the list 'subtree'?...to use 'this.list'
     // in reactive var getters
-    ...mapState(["list"]),
+    ...mapState(["list", "user"]),
 
     // this is the listName 'reactive var' we want to use in
     // the html
@@ -66,7 +64,6 @@ export default {
       },
     },
 
-
     // this is the listDescription 'reactive var' we want to use in
     // the html
     listDescription: {
@@ -78,16 +75,21 @@ export default {
       },
     },
 
-
     // this is the listClaimed 'reactive var' we want to use in
     // the html
     listClaimed: {
       set(listClaimed) {
-        this.$store.commit("SET_LIST", { listClaimed });
-        //console.log()
+        this.$store.commit("SET_LIST", { listClaimed});
+        if (listClaimed) {
+          this.$store.commit("SET_LIST", { listClaimedBy: this.user.id });
+          console.log(this.user.id);
+        } else {
+          this.$store.commit("SET_LIST", {'listClaimedBy': null});
+        }
       },
       get() {
-        return this.list.listClaimed;
+        return this.list.listClaimed
+       
       },
     },
   },
@@ -96,33 +98,37 @@ export default {
       this.$emit("input", isOn);
     },
     saveList() {
+     // console.log(((this.list.listClaimedBy) && (!this.list.listClaimed)));
+     if ((this.list.listClaimedBy) && (!this.list.listClaimed)) {
+        this.$store.commit("SET_LIST", { listClaimedBy: null })
+     }
       this.$store.dispatch("UPDATE_LIST");
       this.switched(false);
     },
-    
   },
+
 };
 </script>
 
 <style>
-  .helper-link {
-    text-decoration: underline;
-  }
-  .helper-link:hover {
-    cursor: pointer;
-  }
-  .modal-content-container {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .fade {
-    animation-duration: .1s !important;
-    opacity: 1;
-    animation-name: fadein;
-  }
-  @keyframes fadein {
+.helper-link {
+  text-decoration: underline;
+}
+.helper-link:hover {
+  cursor: pointer;
+}
+.modal-content-container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.fade {
+  animation-duration: 0.1s !important;
+  opacity: 1;
+  animation-name: fadein;
+}
+@keyframes fadein {
   from {
     opacity: 0;
   }

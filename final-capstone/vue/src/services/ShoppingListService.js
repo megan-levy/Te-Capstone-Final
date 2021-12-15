@@ -12,6 +12,7 @@ export default {
         return axios.get(`/group/${groupId}/lists`, { params: { "groupId": groupId } });
     },
     updateListInfo(list, listId) {
+        console.log(list);
         return axios.put(`/lists/${listId}`, list, { params: { "listId": listId } });
     },
     deleteList(listId) {
