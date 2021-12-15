@@ -47,17 +47,23 @@ public class JdbcShoppingListDao implements ShoppingListDAO {
 
     @Override
     public ShoppingList getUserNameByListId(Long listId){
-        ShoppingList shoppingList = null;
-        String sql ="SELECT username FROM users \n" +
+
+        return jdbcTemplate.queryForObject("SELECT username FROM users \n" +
                 "JOIN member_of ON users.user_id = member_of.user_id\n" +
                 "JOIN groups ON groups.group_id = member_of.group_id\n" +
                 "JOIN lists ON groups.group_id = lists.group_id\n" +
-                "WHERE list_id = ?";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, listId);
-        if(results.next()){
-            shoppingList = mapRowToList(results);
-        }
-        return shoppingList;
+                "WHERE list_id = ?", ShoppingList.class, listId);
+//        ShoppingList shoppingList = null;
+//        String sql ="SELECT username FROM users \n" +
+//                "JOIN member_of ON users.user_id = member_of.user_id\n" +
+//                "JOIN groups ON groups.group_id = member_of.group_id\n" +
+//                "JOIN lists ON groups.group_id = lists.group_id\n" +
+//                "WHERE list_id = ?";
+//        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, listId);
+//        if(results.next()){
+//            shoppingList = mapRowToList(results);
+//        }
+//        return shoppingList;
     }
 
     @Override
