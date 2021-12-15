@@ -6,7 +6,7 @@
     </div>
     <p>{{ list.listDescription }}</p>
 
-    <p>{{list.listClaimed}}</p>
+    <p>This list is claimed by: {{list.listClaimed}}</p>
     <div>
       <hr />
       <div class="buttons-groups">

@@ -84,6 +84,7 @@ export default {
     listClaimed: {
       set(listClaimed) {
         this.$store.commit("SET_LIST", { listClaimed });
+        //console.log()
       },
       get() {
         return this.list.listClaimed;
@@ -98,6 +99,7 @@ export default {
       this.$store.dispatch("UPDATE_LIST");
       this.switched(false);
     },
+    
   },
 };
 </script>
