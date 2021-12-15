@@ -35,7 +35,7 @@ public class JdbcShoppingListDao implements ShoppingListDAO {
     @Override
     public ShoppingList getIndividualList(Long listId) {
         ShoppingList shoppingList = null;
-        String sql = "SELECT list_id, list_name, group_id, list_claimed, list_description FROM lists WHERE lists.list_id = ?";
+        String sql = "SELECT list_id, list_name, group_id, list_claimed_by, list_description FROM lists WHERE lists.list_id = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, listId);
         if (results.next()) {
             shoppingList = mapRowToList(results);
@@ -78,10 +78,10 @@ public class JdbcShoppingListDao implements ShoppingListDAO {
     }
 
     @Override
-    public void create(String listName, String listDescription, Long groupId) {
+    public void create(String listName, String listDescription, Long groupId, Long userId) {
         String insertList ="INSERT INTO lists(list_name, list_description, group_id, list_claimed_By)" +
                 " VALUES(?,?,?,?)";
-        jdbcTemplate.update(insertList, listName, listDescription, groupId, false);
+        jdbcTemplate.update(insertList, listName, listDescription, groupId, userId);
     }
 
     @Override
