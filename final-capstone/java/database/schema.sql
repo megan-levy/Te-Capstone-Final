@@ -44,7 +44,7 @@ CREATE TABLE groups (
  list_id SERIAL ,
  list_name varchar(50)NOT NULL,
  group_id int ,
- list_claimed boolean,
+ list_claimed_by varchar(50),
  list_description varchar(50),
  CONSTRAINT PK_lists PRIMARY KEY (list_id),
  CONSTRAINT FK_lists_group_id FOREIGN KEY (group_id) REFERENCES groups (group_id)
