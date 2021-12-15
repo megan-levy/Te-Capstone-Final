@@ -21,10 +21,11 @@
         <a
           class="addBtn new-group-button"
           v-on:click="toggleJoin = !toggleJoin"
-          v-if="$store.state.token != ''"
+          v-if="$store.state.token != '' && editable"
           >Edit</a
         >
         <div v-if="toggleJoin" class="modal">
+
           <edits-toggle
           @howdy="funcRun"
             v-model="toggleJoin"
@@ -104,6 +105,9 @@ export default {
         return this.list.listName;
       },
     },
+    editable: function() {
+      return !this.listClaimed || ( this.listClaimed && parseInt(this.user.id) === parseInt(this.listClaimedBy))
+    },
     claimedByName: {
       set(claimedByName) {
         this.$store.commit("SET_LIST", { claimedByName });
@@ -111,6 +115,14 @@ export default {
       },
       get() {
         return this.list.claimedByName;
+      },
+    },
+    listClaimedBy: {
+      set(listClaimedBy) {
+        this.$store.commit("SET_LIST", { listClaimedBy });
+      },
+      get() {
+        return this.list.listClaimedBy;
       },
     },
 
