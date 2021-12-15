@@ -79,9 +79,9 @@ public class JdbcShoppingListDao implements ShoppingListDAO {
     }
 
     @Override
-    public void updateShoppingList(String listName, String listDescription, Long groupId){
-        String updateList ="UPDATE lists SET list_name = ?, list_description =? WHERE list_id =?";
-        jdbcTemplate.update(updateList, listName, listDescription, groupId);
+    public void updateShoppingList(String listName, String listDescription, Long groupId, Boolean listClaimed){
+        String updateList ="UPDATE lists SET list_name = ?, list_description =?, listClaimed =? WHERE list_id =?";
+        jdbcTemplate.update(updateList, listName, listDescription, groupId, listClaimed);
     }
 
 
