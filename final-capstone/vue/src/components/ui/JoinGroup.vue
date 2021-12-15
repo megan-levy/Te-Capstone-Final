@@ -45,7 +45,8 @@ export default {
    },  
    methods: {
       joinGroup() {
-        MemberService.joinGroup(this.code);
+        MemberService.joinGroup(this.code)
+        this.$router.go(); //this refreshes the page
         console.log(this.$route);
       },
       switched(isOn) {
