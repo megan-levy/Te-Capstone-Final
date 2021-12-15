@@ -79,7 +79,7 @@ export default {
     // the html
     listClaimed: {
       set(listClaimed) {
-        this.$store.commit("SET_LIST", { listClaimed});
+        this.$store.commit("SET_LIST", { listClaimed });
         if (listClaimed) {
           this.$store.commit("SET_LIST", { listClaimedBy: this.user.id});
           // console.log(this.user.username);
@@ -88,7 +88,7 @@ export default {
         }
       },
       get() {
-        return this.list.listClaimed
+        return this.list.listClaimed;
        
       },
     },
@@ -96,6 +96,7 @@ export default {
   methods: {
     switched(isOn) {
       this.$emit("input", isOn);
+      this.$emit("howdy", isOn);
     },
     saveList() {
      // console.log(((this.list.listClaimedBy) && (!this.list.listClaimed)));
@@ -104,6 +105,7 @@ export default {
      }
       this.$store.dispatch("UPDATE_LIST");
       this.switched(false);
+      // this.$router.go();
     },
   },
 

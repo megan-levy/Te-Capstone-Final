@@ -51,7 +51,7 @@ export default new Vuex.Store({
       state.lists = lists;
     },
     SET_LIST(state, list) {
-      state.list = Object.assign({}, state.list, list);
+        state.list = Object.assign({}, state.list, list);
     },
     SET_ITEMS(state, items) {
       state.items = items;
@@ -75,16 +75,18 @@ export default new Vuex.Store({
   },
   actions: {
     GET_LIST({ commit }, listId) {
-      ShoppingListService.getShoppingList(listId).then(list => commit('SET_LIST', list.data));
+      ShoppingListService.getShoppingList(listId).then(list => { commit('SET_LIST', list.data) });
     },
     GET_LISTS({ commit }, groupId) {
-      ShoppingListService.list(groupId).then(lists => commit('SET_LISTS', lists.data));
+      ShoppingListService.list(groupId).then(lists => {
+        commit('SET_LISTS', lists.data)
+    });
     },
     UPDATE_LIST({state}) {
-      ShoppingListService.updateListInfo(state.list, state.list.listId).then( r => console.log(r));
+      ShoppingListService.updateListInfo(state.list, state.list.listId);
     },
     POST_LIST({state}) {
-      ShoppingListService.createShoppingList(state.list, state.list.listId).then( r => console.log(r));
+      ShoppingListService.createShoppingList(state.list, state.list.listId);
     },
 
 

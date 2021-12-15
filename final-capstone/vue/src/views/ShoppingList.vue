@@ -1,11 +1,12 @@
 <template>
   <div id="shopping-list" class="shopping-list">
     <div>
-      <h1>{{ list.listName }}</h1>
+      <h1>{{ listName }}</h1>
     </div>
-    <p>{{ list.listDescription }}</p>
+    <p>{{ listDescription }}</p>
 
-    <p v-if="list.listClaimed">This list is claimed by: {{list.claimedByName}}</p>
+    IS LIST CLAIMED? {{list.listName}}
+    <p>This list is claimed by: {{claimedByName}}</p>
     <div>
       <hr />
       <div class="buttons-groups">
@@ -24,6 +25,7 @@
         >
         <div v-if="toggleJoin" class="modal">
           <edits-toggle
+          @howdy="funcRun"
             v-model="toggleJoin"
 
           />
@@ -77,20 +79,83 @@ export default {
   },
   data() {
     return {
-      listId: "",
-      listName: "",
-      listDescription: "",
+      // listId: "",
+      // listName: "",
+      // listDescription: "",
       toggleJoin: false,
-      listClaimed: false
+      // listClaimed: false
     };
   },
-  computed: mapState(['list']),
+    // computed allows us to two-way-bind our state with v-model
+  computed: {
+    // get the list 'subtree'?...to use 'this.list'
+    // in reactive var getters
+    ...mapState(["list", "user"]),
+
+    // this is the listName 'reactive var' we want to use in
+    // the html
+    // get and set allow it to work with v-model?
+    listName: {
+      set(listName) {
+        this.$store.commit("SET_LIST", { listName });
+      },
+      get() {
+        return this.list.listName;
+      },
+    },
+    claimedByName: {
+      set(claimedByName) {
+        this.$store.commit("SET_LIST", { claimedByName });
+        // this.list.listClaimed && this.list.listClaimedBy ? this.$store.commit("SET_LIST", { claimedByName }) : this.$store.commit("SET_LIST", { claimedByName: null });
+      },
+      get() {
+        return this.list.claimedByName;
+      },
+    },
+
+    // this is the listDescription 'reactive var' we want to use in
+    // the html
+    listDescription: {
+      set(listDescription) {
+        this.$store.commit("SET_LIST", { listDescription });
+      },
+      get() {
+        return this.list.listDescription;
+      },
+    },
+
+    // this is the listClaimed 'reactive var' we want to use in
+    // the html
+    listClaimed: {
+      set(listClaimed) {
+        this.$store.commit("SET_LIST", { listClaimed });
+        if (listClaimed) {
+          this.$store.commit("SET_LIST", { listClaimedBy: this.user.id});
+          // console.log(this.user.username);
+        } else {
+          this.$store.commit("SET_LIST", {'listClaimedBy': null});
+        }
+      },
+      get() {
+        return this.list.listClaimed
+       
+      },
+    },
+  },
   created() {
     this.setListId();
     this.$store.dispatch('GET_LIST', this.$route.params.listId);
     this.getItemsList();
   },
+  mounted() {
+    this.$store.dispatch('GET_LIST', this.$route.params.listId);
+  },
   methods: {
+    funcRun() {
+      setTimeout(() => {
+        this.$store.dispatch('GET_LIST', this.$route.params.listId);
+      },50)
+    },
     setListId() {
       this.$store.commit("SET_LIST_ID", this.$route.params.listId);
     },
