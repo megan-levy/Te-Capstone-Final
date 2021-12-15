@@ -1,12 +1,12 @@
 <template>
   <div id="shopping-list" class="shopping-list">
     <div>
-      <h1>{{ list.data.listName }}</h1>
+      <h1>{{ list.listName }}</h1>
       <!-- <span v-if="listClaimed">List claimed by: userId</span> -->
     </div>
-    <p>{{ list.data.listDescription }}</p>
+    <p>{{ list.listDescription }}</p>
 
-    <p>{{list.data.listClaimed}}</p>
+    <p>{{list.listClaimed}}</p>
     <div>
       <hr />
       <div class="buttons-groups">
@@ -23,17 +23,10 @@
           v-if="$store.state.token != ''"
           >Edit</a
         >
-        <div v-if="toggleJoin" class="join-modal">
+        <div v-if="toggleJoin" class="modal">
           <edits-toggle
             v-model="toggleJoin"
 
-            v-bind:list="{
-              listId: $route.params.listId,
-              listName,
-              listDescription,
-              checked
-            }"
-           
           />
         </div>
         <a class="addBtn new-group-button" v-if="$store.state.token != ''"
@@ -95,20 +88,7 @@ export default {
   computed: mapState(['list']),
   created() {
     this.setListId();
-    // console.log(this.$route.params);
     this.$store.dispatch('GET_LIST', this.$route.params.listId);
-
-
-    setTimeout(console.log(this.$store.state.list.data), 200);
-    
-    // ShoppingListService.getShoppingList(this.$route.params.listId).then(
-    //   (response) => {
-    //     console.log(response);
-    //     this.listName = response.data.listName;
-    //     this.listClaimed = response.data.listClaimed;
-    //     this.listDescription = response.data.listDescription;
-    //   }
-    // );
     this.getItemsList();
   },
   methods: {
@@ -228,4 +208,5 @@ li:hover {
     padding: 10px;
   }
 }
+
 </style>

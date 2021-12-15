@@ -15,7 +15,7 @@
         v-if="$store.state.token != ''"
         >Join</a
       >
-      <div v-if="toggleJoin" class="join-modal">
+      <div v-if="toggleJoin" class="modal">
         <groups-toggle v-model="toggleJoin" />
       </div>
     </div>
@@ -41,7 +41,6 @@
 </template>
 
 <script>
-import GroupService from "@/services/GroupService.js";
 import ListCard from "../components/ui/ListCard.vue";
 import JoinGroup from "../components/ui/JoinGroup.vue";
 
@@ -56,10 +55,11 @@ export default {
   },
   methods: {
     listGroups() {
-      GroupService.listByUserId().then((groups) => {
+      this.$store.dispatch('GET_GROUPS');
+      // GroupService.listByUserId().then((groups) => {
 
-        this.$store.commit("SET_GROUPS", groups.data);
-      });
+      //   this.$store.commit("SET_GROUPS", groups.data);
+      // });
     },
   },
   data() {
@@ -116,16 +116,6 @@ export default {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   width: 100%;
   padding-inline-start: 0px;
-}
-
-.join-modal {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: #12121268;
-  top: 0;
-  left: 0;
-  border-radius: 6px;
 }
 .new-group-button {
   font-size: 16px;

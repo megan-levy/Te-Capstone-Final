@@ -83,13 +83,10 @@ export default {
             if (response.status == 200 || response.status == 201) {
               let newRoute = this.$route.fullPath.split("/");
               newRoute.splice(newRoute.length - 2);
-              //console.log(this.$store.state.lists)
-              // let newLists = this.$store.state.lists;
               this.$store.dispatch('GET_LISTS', this.$route.params.groupId);
               setTimeout(() => {
                 this.$router.push(newRoute.join("/"));
-              }, 200);
-              
+              }, 50);
             }
           })
           .catch((error) => {
@@ -135,7 +132,7 @@ export default {
 }
 .amount {
   padding: 10px;
-  background-color: #e1e5f2;
+  background-color: #f3f6fa;
   border: none;
   border-radius: 4px;
   width: 1rem;

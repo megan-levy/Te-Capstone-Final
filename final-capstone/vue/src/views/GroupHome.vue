@@ -1,13 +1,12 @@
 <template>
   <div class="groups" v-if="$store.state.group">
     <div class="title-add">
-      <h1>{{ $store.state.group.name }}</h1>
+      <h1>{{ group.name }}</h1>
       <span class="group-code tooltip" @click="(e) => copyToClip(e)">
-         <span class="invite-code">{{this.$store.state.group.interleaveInvite}}</span>
+         <span class="invite-code">{{ group.interleaveInvite }}</span>
         <span class="tool-tip-text">Copy to clipboard</span>
       </span>
-      <p>{{ $store.state.group.groupDescription }}</p>
-
+      <p>{{ group.groupDescription }}</p>
     <hr />
       <router-link
         class="addBtn new-group-button"
@@ -46,34 +45,24 @@
 <script>
 import { mapState } from 'vuex'; 
 import ListCard from "../components/ui/ListCard.vue";
-import GroupService from "@/services/GroupService.js";
 import ShoppingListService from "@/services/ShoppingListService.js";
 
 export default {
-  name: "groups",
+  name: "group-home",
   components: {
     ListCard,
   },
+  computed: mapState(['lists','group']),
   mounted() {
-    // this.displayGroupLists(this.$route.params.groupId);
     this.getGroup(this.$route.params.groupId);
-     this.$store.dispatch('GET_LISTS', this.$route.params.groupId);
+    this.$store.dispatch('GET_LISTS', this.$route.params.groupId);
   },
   methods: {
-    displayGroupLists() {
-      ShoppingListService.list(this.$route.params.groupId).then((lists) => {
-        console.log(lists);
-        this.$store.commit("SET_LISTS", lists.data);
-      });
-    },
     getGroup(groupId) {
-      GroupService.getSingle(groupId).then((group) => {
-        this.$store.commit("SET_GROUP", group.data);
-      });
+      this.$store.dispatch('GET_GROUP', groupId);
     },
     copyToClip(e) {
       navigator.clipboard.writeText(e.target.textContent);
-      
     },
      getItemsList(listId) {
       ShoppingListService.getItemList(listId).then(
@@ -82,8 +71,7 @@ export default {
         }
       );
     },
-  },
-  computed: mapState(['lists']),
+  }
 };
 </script>
 <style>

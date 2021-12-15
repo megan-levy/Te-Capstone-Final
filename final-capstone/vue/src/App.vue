@@ -30,7 +30,6 @@ export default {
   },
   mounted() {
     this.routeArr = this.route.split("/");
-    console.log(this.routeArr);
   },
 };
 </script>
@@ -123,7 +122,7 @@ input[type="number"],
 textarea {
   /* margin-top: 4px; */
   padding: 10px;
-  background-color: #e1e5f2;
+  background-color: #f3f6fa !important;
   border: none;
   border-radius: 4px;
   font-size: 16px;
@@ -168,7 +167,7 @@ textarea {
   min-width: 350px;
   max-width: 350px;
   box-sizing: border-box;
-  background-color: #e1e5f2;
+  background-color: #f3f6fa;
   border: none;
   border-radius: 4px;
   padding: 10px;
@@ -212,5 +211,38 @@ span {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+}
+.modal {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  /* background-color: #12121268; */
+  top: 0;
+  left: 0;
+  border-radius: 6px;
+  animation-duration: .4s;
+    background: rgb(225 229 242);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+  animation-name: fadein;
+}
+@keyframes fadein {
+  from {
+    background: rgb(225 229 242 / 0%);
+    -webkit-backdrop-filter: saturate(0%) blur(0px);
+    backdrop-filter: saturate(0%) blur(0px);
+  }
+  to {
+    background: rgb(225 229 242);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+  }
+}
+.fade {
+  animation-duration: .9s;
+    background: rgb(225 229 242);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+  animation-name: fadein;
 }
 </style>

@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
 import ShoppingListService from '../services/ShoppingListService';
+import GroupService from '../services/GroupService';
 
 Vue.use(Vuex);
 
@@ -44,13 +45,13 @@ export default new Vuex.Store({
       state.groups = groups;
     },
     SET_GROUP(state, group) {
-      state.group = group;
+      state.group = Object.assign({}, state.group, group);
     },
     SET_LISTS(state, lists) {
       state.lists = lists;
     },
     SET_LIST(state, list) {
-      state.list = list;
+      state.list = Object.assign({}, state.list, list);
     },
     SET_ITEMS(state, items) {
       state.items = items;
@@ -64,9 +65,6 @@ export default new Vuex.Store({
     SET_ITEM(state, item) {
       state.item = item;
     },
-
-    
-    
     LOGOUT(state) {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
@@ -77,15 +75,34 @@ export default new Vuex.Store({
   },
   actions: {
     GET_LIST({ commit }, listId) {
-      ShoppingListService.getShoppingList(listId).then(list => commit('SET_LIST', list));
+      ShoppingListService.getShoppingList(listId).then(list => commit('SET_LIST', list.data));
     },
     GET_LISTS({ commit }, groupId) {
       ShoppingListService.list(groupId).then(lists => commit('SET_LISTS', lists.data));
+    },
+    UPDATE_LIST({state}) {
+      ShoppingListService.updateListInfo(state.list, state.list.listId).then( r => console.log(r));
+    },
+    POST_LIST({state}) {
+      ShoppingListService.createShoppingList(state.list, state.list.listId).then( r => console.log(r));
+    },
 
-      // ShoppingListService.list(this.$route.params.groupId).then((lists) => {
-      //   console.log(lists);
-      //   this.$store.commit("SET_LISTS", lists.data);
-      // });
-    }
+
+    GET_GROUP({ commit }, groupId) {
+      // ShoppingListService.getShoppingList(groupId).then(group => commit('SET_GROUP', group.data));
+      GroupService.getSingle(groupId).then(group => commit('SET_GROUP', group.data));
+    },
+    GET_GROUPS({ commit }) {
+      // ShoppingListService.list(groupId).then(lists => commit('SET_LISTS', lists.data));
+      GroupService.listByUserId().then(groups => commit('SET_GROUPS', groups.data));
+    },
+    // UPDATE_GROUP({state}) {
+    //   // ShoppingListService.updateListInfo(state.list, state.list.listId).then( r => console.log(r));
+    // },
+    POST_GROUP({state}) {
+      // ShoppingListService.createShoppingList(state.list, state.list.listId).then( r => console.log(r));
+      GroupService.createGroup(state.group).then(r => console.log(r));
+    },
+
   }
 });
