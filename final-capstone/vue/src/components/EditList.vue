@@ -51,8 +51,12 @@ export default {
   props: ['list', 'toggleForm'],
   data() {
     return {
-      listContent: this.$props.list 
+      listContent: this.$props.list
+      // checkedProp: this.$props.checked
     };
+  },
+  mounted() {
+    console.log(this.listContent.checked);
   },
   methods: {
       updateListContent() {

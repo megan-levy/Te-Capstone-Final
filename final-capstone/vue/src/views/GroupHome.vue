@@ -29,7 +29,7 @@
     <div class="items-container">
       <ul class="vertical-list" id="lists-listed">
         <list-card
-          v-for="list in $store.state.lists"
+          v-for="list in lists"
           :key="list.listId"
           v-bind:id="list.listId"
           v-bind:type="'list'"
@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'; 
 import ListCard from "../components/ui/ListCard.vue";
 import GroupService from "@/services/GroupService.js";
 import ShoppingListService from "@/services/ShoppingListService.js";
@@ -54,8 +55,9 @@ export default {
     ListCard,
   },
   mounted() {
-    this.displayGroupLists(this.$route.params.groupId);
+    // this.displayGroupLists(this.$route.params.groupId);
     this.getGroup(this.$route.params.groupId);
+     this.$store.dispatch('GET_LISTS', this.$route.params.groupId);
   },
   methods: {
     displayGroupLists() {
@@ -81,6 +83,7 @@ export default {
       );
     },
   },
+  computed: mapState(['lists']),
 };
 </script>
 <style>

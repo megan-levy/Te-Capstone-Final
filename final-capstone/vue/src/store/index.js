@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
+import ShoppingListService from '../services/ShoppingListService';
 
 Vue.use(Vuex);
 
@@ -48,6 +49,9 @@ export default new Vuex.Store({
     SET_LISTS(state, lists) {
       state.lists = lists;
     },
+    SET_LIST(state, list) {
+      state.list = list;
+    },
     SET_ITEMS(state, items) {
       state.items = items;
     },
@@ -60,6 +64,7 @@ export default new Vuex.Store({
     SET_ITEM(state, item) {
       state.item = item;
     },
+
     
     
     LOGOUT(state) {
@@ -71,8 +76,16 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    GET_LIST(
-      
-    )
+    GET_LIST({ commit }, listId) {
+      ShoppingListService.getShoppingList(listId).then(list => commit('SET_LIST', list));
+    },
+    GET_LISTS({ commit }, groupId) {
+      ShoppingListService.list(groupId).then(lists => commit('SET_LISTS', lists.data));
+
+      // ShoppingListService.list(this.$route.params.groupId).then((lists) => {
+      //   console.log(lists);
+      //   this.$store.commit("SET_LISTS", lists.data);
+      // });
+    }
   }
 });

@@ -82,11 +82,14 @@ export default {
           .then((response) => {
             if (response.status == 200 || response.status == 201) {
               let newRoute = this.$route.fullPath.split("/");
-              newRoute.splice(newRoute.length - 1);
+              newRoute.splice(newRoute.length - 2);
               //console.log(this.$store.state.lists)
-              let newLists = this.$store.state.lists;
-              console.log(newLists);
-             // this.$router.push(newRoute.join("/"));
+              // let newLists = this.$store.state.lists;
+              this.$store.dispatch('GET_LISTS', this.$route.params.groupId);
+              setTimeout(() => {
+                this.$router.push(newRoute.join("/"));
+              }, 200);
+              
             }
           })
           .catch((error) => {

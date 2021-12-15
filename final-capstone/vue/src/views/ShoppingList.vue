@@ -1,10 +1,12 @@
 <template>
   <div id="shopping-list" class="shopping-list">
     <div>
-      <h1>{{ listName }}</h1>
+      <h1>{{ list.data.listName }}</h1>
       <!-- <span v-if="listClaimed">List claimed by: userId</span> -->
     </div>
-    <p>{{ listDescription }}</p>
+    <p>{{ list.data.listDescription }}</p>
+
+    <p>{{list.data.listClaimed}}</p>
     <div>
       <hr />
       <div class="buttons-groups">
@@ -24,11 +26,14 @@
         <div v-if="toggleJoin" class="join-modal">
           <edits-toggle
             v-model="toggleJoin"
+
             v-bind:list="{
               listId: $route.params.listId,
               listName,
               listDescription,
+              checked
             }"
+           
           />
         </div>
         <a class="addBtn new-group-button" v-if="$store.state.token != ''"
@@ -69,6 +74,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'; 
 import ShoppingListService from "@/services/ShoppingListService.js";
 import EditList from "../components/EditList.vue";
 
@@ -86,17 +92,23 @@ export default {
       listClaimed: false
     };
   },
+  computed: mapState(['list']),
   created() {
     this.setListId();
     // console.log(this.$route.params);
-    ShoppingListService.getShoppingList(this.$route.params.listId).then(
-      (response) => {
-        console.log(response);
-        this.listName = response.data.listName;
-        this.listClaimed = response.data.listClaimed;
-        this.listDescription = response.data.listDescription;
-      }
-    );
+    this.$store.dispatch('GET_LIST', this.$route.params.listId);
+
+
+    setTimeout(console.log(this.$store.state.list.data), 200);
+    
+    // ShoppingListService.getShoppingList(this.$route.params.listId).then(
+    //   (response) => {
+    //     console.log(response);
+    //     this.listName = response.data.listName;
+    //     this.listClaimed = response.data.listClaimed;
+    //     this.listDescription = response.data.listDescription;
+    //   }
+    // );
     this.getItemsList();
   },
   methods: {
