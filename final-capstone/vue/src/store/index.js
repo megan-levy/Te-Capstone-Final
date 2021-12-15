@@ -70,4 +70,9 @@ export default new Vuex.Store({
       axios.defaults.headers.common = {};
     }
   },
+  actions: {
+    GET_LIST(
+      
+    )
+  }
 });
