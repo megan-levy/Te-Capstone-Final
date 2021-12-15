@@ -31,10 +31,12 @@ public class ShoppingListController {
 
         shoppingListDAO.create(newList.getListName(), newList.getListDescription(), Long.parseLong(groupId));
     }
-
+    @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value ="/lists/{listId}", method = RequestMethod.PUT)
     public void updateShopList(@RequestBody ShoppingList shoppingList, @PathVariable Long listId){
+        System.out.println(listId);
         shoppingList.setListId(listId);
+        shoppingListDAO.updateShoppingList(shoppingList.getListName(), shoppingList.getListDescription(), listId, shoppingList.getListClaimed());
     }
 
     @RequestMapping(value = "/group/{groupId}/lists", method = RequestMethod.GET)
