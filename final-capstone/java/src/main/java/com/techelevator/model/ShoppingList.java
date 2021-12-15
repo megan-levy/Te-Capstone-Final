@@ -7,6 +7,7 @@ public class ShoppingList {
     private Long groupId;
     private Long itemCount;
     //private String retailName;
+    private Boolean listClaimed;
     private Integer listClaimedBy;
     private String listDescription;
     private String claimedByName;
@@ -15,7 +16,7 @@ public class ShoppingList {
 
 
 
-    public ShoppingList(Long listId, String listName, Long groupId, Integer listClaimedBy, String listDescription, Long itemCount, String claimedByName){
+    public ShoppingList(Long listId, String listName, Long groupId, Integer listClaimedBy, String listDescription, Long itemCount, String claimedByName, Boolean listClaimed){
         this.listId = listId;
         this.listName = listName;
         this.groupId = groupId;
@@ -24,6 +25,15 @@ public class ShoppingList {
         this.listDescription = listDescription;
         this.itemCount = itemCount;
         this.claimedByName = claimedByName;
+        this.listClaimed = listClaimed;
+    }
+
+    public Boolean getListClaimed() {
+        return listClaimed;
+    }
+
+    public void setListClaimed(Boolean listClaimed) {
+        this.listClaimed = listClaimed;
     }
 
     public void setClaimedByName(String claimedByName) {
