@@ -23,15 +23,13 @@ export default {
     },
     getItemList(listId){
         return axios.get(`/lists/${listId}/items`,  { params: { "listId": listId } });
+    },
+    deleteItemFromList(itemId) {
+        return axios.delete(`/items/${itemId}`, {params: {"itemId": itemId}});
     }
-   
-
     
     // updateItem(item, itemId){
     //     return axios.put(`/items/${itemId}`, item, { params: { "itemId": itemId } });
     // },
-    // deleteItemFromList(itemId) {
-    //     return axios.delete(`/items/${itemId}`, {params: {"itemId": itemId}});
-    // }
     
 }

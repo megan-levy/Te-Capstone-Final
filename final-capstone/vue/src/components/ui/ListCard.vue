@@ -20,11 +20,13 @@
 
     <div v-if="itemType === 'list'">
       <p>Number of Items: {{ itemCount }}</p>
+      <p>This List Has Been Claimed by {{claimedByName}}!</p>
     </div>
   </router-link>
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
   props: ["id", "type", "title", "description", "date", "item_count"],
   data() {
@@ -38,6 +40,19 @@ export default {
       itemDate: this.$props.date,
       itemCount: this.$props.item_count,
     };
+  },
+  computed: {
+    ...mapState(["list", "user"]),
+  claimedByName: {
+
+      set(claimedByName) {
+        this.$store.commit("SET_LIST", { claimedByName });
+        // this.list.listClaimed && this.list.listClaimedBy ? this.$store.commit("SET_LIST", { claimedByName }) : this.$store.commit("SET_LIST", { claimedByName: null });
+      },
+      get() {
+        return this.list.claimedByName;
+      }
+    }
   },
   mounted() {
     switch (this.$props.type) {
@@ -62,6 +77,9 @@ export default {
   },
 };
 </script>
+
+
+
 <style scoped>
 .top-line {
   display: flex;
