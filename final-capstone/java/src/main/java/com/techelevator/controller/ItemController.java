@@ -46,9 +46,9 @@ public class ItemController {
     }
 //    updateItem
     @RequestMapping(value = "/items/{itemId}", method = RequestMethod.PUT)
-    public void updateItem(@RequestBody Item item, @PathVariable Long itemId) {
+    public void updateItem(@RequestBody Item item, @PathVariable Long itemId, Principal user) {
         if (!item.getListItemId().equals(itemId)) return;
-        itemDao.updateItem(itemId, item.getItemName(), item.getItemAmount(), item.getFavorite());
+        itemDao.updateItem(itemId, item.getItemName(), item.getItemAmount(), item.getFavorite(), (long) userDao.findIdByUsername(user.getName()));
     }
 
     @RequestMapping(value = "/items/{itemId}", method = RequestMethod.GET)
