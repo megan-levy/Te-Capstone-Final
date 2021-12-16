@@ -3,7 +3,6 @@
     tag="a"
     class="group-list-item"
     v-bind:to="{ name: itemBindLinkTo, params: params }"
-    v-on:click="logData"
   >
     <div v-if="itemType === 'group'" class="top-line">
       <h1>{{ itemTitle }}</h1>
@@ -71,11 +70,6 @@ export default {
           };
           break;
       }
-    },
-    methods: {
-      logData() {
-        console.log(this.itemParams);
-      },
     },
 };
 </script>

@@ -81,7 +81,6 @@ export default {
     },
     leaveGroup() {
       let groupId = this.$route.params.groupId;
-      console.log(groupId);
       this.$store.dispatch('LEAVE_GROUP', groupId).then(() => {
         this.$router.push("/");
       });

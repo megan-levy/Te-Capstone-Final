@@ -47,7 +47,6 @@ export default {
       joinGroup() {
         MemberService.joinGroup(this.code)
         this.$router.go(); //this refreshes the page
-        console.log(this.$route);
       },
       switched(isOn) {
         this.$emit("input", isOn)

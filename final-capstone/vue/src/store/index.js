@@ -91,10 +91,8 @@ export default new Vuex.Store({
       ShoppingListService.createShoppingList(state.list, state.list.listId);
     },
     DELETE_LIST_ITEMS({state}, listId) {
-      console.log(state.list.listId);
       ItemService.deleteAllItemsFromList(state.list.listId).then( () => {
         this.dispatch('GET_ITEMS', listId);
-        // this.dispatch('GET_LISTS', this.$route.params.groupId);
         this.dispatch('GET_LIST', listId);
       })
     },
@@ -105,19 +103,13 @@ export default new Vuex.Store({
     },
 
     GET_GROUP({ commit }, groupId) {
-      // ShoppingListService.getShoppingList(groupId).then(group => commit('SET_GROUP', group.data));
       GroupService.getSingle(groupId).then(group => commit('SET_GROUP', group.data));
     },
     GET_GROUPS({ commit }) {
-      // ShoppingListService.list(groupId).then(lists => commit('SET_LISTS', lists.data));
       GroupService.listByUserId().then(groups => commit('SET_GROUPS', groups.data));
     },
-    // UPDATE_GROUP({state}) {
-    //   // ShoppingListService.updateListInfo(state.list, state.list.listId).then( r => console.log(r));
-    // },
     POST_GROUP({state}) {
-      // ShoppingListService.createShoppingList(state.list, state.list.listId).then( r => console.log(r));
-      GroupService.createGroup(state.group).then(r => console.log(r));
+      GroupService.createGroup(state.group)
     },
     GET_ITEMS({ commit }, listId) {
       ItemService.getItemList(listId).then(items => {

@@ -86,7 +86,6 @@ export default {
         }
 
         if (hasUpper && hasLower && hasNum) {
-          console.log("Conditions Met.");
           if (this.user.password != this.user.confirmPassword) {
             this.registrationErrors = true;
             this.registrationErrorMsg = 'Password & Confirm Password do not match.';
@@ -109,8 +108,6 @@ export default {
               }
             });
           } 
-        } else {
-          console.log("Conditions not met.")
         }
       }
     },
