@@ -13,6 +13,7 @@ public interface ShoppingListDAO {
 
     ShoppingList findListByUserId(Long userId);
 
+    void deleteItemsCascade(Long listId);
 
     //Trying to get the lists that have not been claimed. Not sure if this is how.
     Integer findByListClaimed (Integer listClaimedBy);

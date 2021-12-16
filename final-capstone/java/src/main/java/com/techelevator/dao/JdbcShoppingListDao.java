@@ -96,6 +96,28 @@ public class JdbcShoppingListDao implements ShoppingListDAO {
         return jdbcTemplate.queryForObject("select username FROM users JOIN lists ON lists.list_claimed_by = users.user_id WHERE lists.list_id = ?", String.class, listId);
     }
 
+    @Override
+    public void deleteItemsCascade(Long listId){
+
+        // lists are set to cascade delete for items
+        // cascade delete requires deleting the parent
+        // which is not what we want; just want to
+        // delete items
+
+        // The solution is the following sql string.
+        // This will temporarily catch the all of the
+        // values of the deleted list which we can
+        // safely restore once the cascade delete has finished.
+        String deleteList =
+                "WITH old_list AS ( DELETE FROM lists WHERE list_id = ? RETURNING * )\n" +
+                "INSERT INTO lists\n" +
+                "SELECT *\n" +
+                "FROM old_list;";
+        jdbcTemplate.update(deleteList, listId);
+
+
+    }
+
 
     private ShoppingList mapRowToList(SqlRowSet rs) {
         ShoppingList shoppingList = new ShoppingList();

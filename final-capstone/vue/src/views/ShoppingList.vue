@@ -24,6 +24,12 @@
           v-if="$store.state.token != '' && editable"
           >Edit</a
         >
+        <a
+          class="addBtn new-group-button"
+          @click="clearList"
+          v-if="$store.state.token != '' && editable"
+          >Clear</a
+        >
         <div v-if="toggleJoin" class="modal">
 
           <edits-toggle
@@ -182,6 +188,10 @@ export default {
     deleteItem(e, itemId) {
       if (!this.editable) return;
       this.$store.dispatch('DELETE_ITEM', itemId);
+    },
+    clearList() {
+      if (!this.editable) return;
+      this.$store.dispatch('DELETE_LIST_ITEMS', this.$route.params.listId);
     }
   },
 };

@@ -53,6 +53,13 @@ public class ShoppingListController {
         return shoppingListDAO.getIndividualList(Long.parseLong(listId));
     }
 
+    @DeleteMapping(path="/lists/{listId}/items")
+    public void deleteAllItemsInList(@PathVariable Long listId){
+        shoppingListDAO.deleteItemsCascade(listId);
+    }
+
+
+
 //    @ResponseStatus(HttpStatus.OK)
 //    @RequestMapping(value = "/lists/{listId}", method = RequestMethod.GET)
 //    public ShoppingList getUserNameByListId(@RequestParam Long listId){
