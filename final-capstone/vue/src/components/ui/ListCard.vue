@@ -12,6 +12,7 @@
         {{ itemDate }}
       </span>
     </div>
+    
     <div v-else class="top-line">
       <h1>{{ itemTitle }}</h1>
     </div>

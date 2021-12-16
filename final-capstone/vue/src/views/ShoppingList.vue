@@ -72,7 +72,9 @@
               </h3>
               <span>Quantity: {{ item.itemAmount }}</span>
             </div>
-            <div v-if="editable">
+           
+           <div >
+            <div v-if="editable" class="list-item-editor">
               <a
                 class="edit-btn"
                 @click="
@@ -82,6 +84,7 @@
                 "
                 >Edit</a
               >
+
               <a
                 class="del-btn"
                 @click="
@@ -91,6 +94,7 @@
                 "
                 >Delete</a
               >
+            </div>
             </div>
           </div>
         </a>
@@ -243,8 +247,15 @@ export default {
   height: calc(100% - 120px);
 }
 
+.list-item-editor {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .named-and-claimed {
   display: flex;
+  flex-wrap: wrap;
 }
 
 #return {
@@ -355,5 +366,18 @@ li:hover {
   flex-direction: column;
   min-height: 150px;
   justify-content: space-between;
+}
+
+.edit-btn {
+  background-color: #1f7a8c;
+  border-radius: 6px;
+  color: #ffffff;
+  border: 2px solid #1f7a8c;
+  padding: 10px;
+  text-decoration: none;
+}
+.edit-btn:hover {
+  background-color: transparent;
+  color: #1f7a8c;
 }
 </style>

@@ -1,14 +1,17 @@
 <template>
   <div class="groups" v-if="$store.state.group">
     <div class="title-add">
+    <div class="group-handling">
       <h1>{{ group.name }}</h1>
+        <button id ="leave-group" class="" @click="leaveGroup">
+         Leave Group
+        </button>
+    </div>
       <span class="group-code tooltip" @click="(e) => copyToClip(e)">
          <span class="invite-code">{{ group.interleaveInvite }}</span>
         <span class="tool-tip-text">Copy to clipboard</span>
       </span>
-      <span class="" @click="leaveGroup">
-         Leave Group
-      </span>
+     
       <p>{{ group.groupDescription }}</p>
     <hr />
       <router-link
@@ -89,6 +92,17 @@ export default {
 <style>
 li {
   text-decoration: none;
+}
+
+.group-handling {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.group-handling h1 {
+  font-size: 30px;
+  padding-bottom: 10px;
 }
 
 #lists-listed {

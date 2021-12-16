@@ -5,9 +5,12 @@
       <hr />
       <br />
 
+    <div class="checkbox-container">
       <input type="checkbox" class="checkbox" v-model="listClaimed" />
       <label for="checkbox">Claim List</label>
+    </div>
 
+      <br/>
       <label for="text" class="sr-only">
         <span>Name (optional)</span>
         <input
@@ -119,6 +122,15 @@ export default {
 .helper-link:hover {
   cursor: pointer;
 }
+
+.checkbox-container {
+  display: block;
+  position: relative;
+  margin-bottom: 12px;
+  font-weight: 500;
+  color: #555b6d;
+}
+
 .modal-content-container {
   height: 100%;
   display: flex;
