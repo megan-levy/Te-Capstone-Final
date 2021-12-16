@@ -75,12 +75,14 @@ public class JdbcItemDao implements ItemDao {
     }
 
     @Override
-    public void delete(String name){
-            String deleteItem ="DELETE FROM items WHERE item_name = ?";
+    public void delete(Long itemId){
+            String deleteItem = "DELETE FROM items WHERE list_item_id = ?";
+            jdbcTemplate.update(deleteItem, itemId);
     }
 
     private Item mapRowToList(SqlRowSet rowSet) {
         Item item = new Item();
+        item.setListItemId(rowSet.getLong("list_item_id"));
         item.setItemName(rowSet.getString("item_name"));
         item.setItemAmount(rowSet.getInt("item_amount"));
         item.setListId(rowSet.getLong("list_id"));

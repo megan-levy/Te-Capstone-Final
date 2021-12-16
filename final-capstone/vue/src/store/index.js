@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 import axios from 'axios';
 import ShoppingListService from '../services/ShoppingListService';
 import GroupService from '../services/GroupService';
+import ItemService from '../services/ItemService';
 
 Vue.use(Vuex);
 
@@ -105,6 +106,28 @@ export default new Vuex.Store({
       // ShoppingListService.createShoppingList(state.list, state.list.listId).then( r => console.log(r));
       GroupService.createGroup(state.group).then(r => console.log(r));
     },
+
+    // GET_ITEM({ commit }, itemId) {
+    //   ShoppingListService.getShoppingList(listId).then(list => { commit('SET_LIST', list.data) });
+    // },
+    GET_ITEMS({ commit }, listId) {
+      ShoppingListService.getItemList(listId).then(items => {
+        commit('SET_ITEMS', items.data)
+    });
+    },
+    DELETE_ITEM({state}, itemId) {
+      ItemService.deleteItemFromList(itemId).then( () => {
+        this.dispatch('GET_ITEMS', state.list.listId);
+        this.dispatch('GET_LISTS', state.group.groupId);
+      })
+
+    },
+    // UPDATE_LIST({state}) {
+    //   ShoppingListService.updateListInfo(state.list, state.list.listId);
+    // },
+    // POST_LIST({state}) {
+    //   ShoppingListService.createShoppingList(state.list, state.list.listId);
+    // },
 
   }
 });
