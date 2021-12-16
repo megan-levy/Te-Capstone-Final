@@ -131,7 +131,35 @@ INSERT INTO items (item_name, item_amount, list_id, user_id, favorite) VALUES ('
 INSERT INTO items (item_name, item_amount, list_id, user_id, favorite) VALUES ('Leash', 4, 3, 5, false);
 INSERT INTO items (item_name, item_amount, list_id, user_id, favorite) VALUES ('Fish food', 2, 3, 5, false);
 
+INSERT INTO lists (list_name, group_id, list_claimed_by, list_description) VALUES ('Putter PARty', 4, null, 'putting away the puns');
+INSERT INTO items (item_name, item_amount, list_id, user_id, favorite) VALUES ('Putters', 5, 4, 4, false);
+INSERT INTO items (item_name, item_amount, list_id, user_id, favorite) VALUES ('Golf Balls', 5, 4, 4, false);
+INSERT INTO items (item_name, item_amount, list_id, user_id, favorite) VALUES ('Tees', 5, 4, 4, false);
 
+INSERT INTO lists (list_name, group_id, list_claimed_by, list_description) VALUES ('Sharpie Soiree', 3, null, 'C# Celebration');
+INSERT INTO items (item_name, item_amount, list_id, user_id, favorite) VALUES ('Sharp Cheddar', 2, 5 , 8, false);
+INSERT INTO items (item_name, item_amount, list_id, user_id, favorite) VALUES ('Crackers', 6, 4, 8, false);
+INSERT INTO items (item_name, item_amount, list_id, user_id, favorite) VALUES ('Salami', 3, 4, 8, false);
+
+INSERT INTO lists (list_name, group_id, list_claimed_by, list_description) VALUES ('Shelter Open House', 7, null, 'Come see the unique animals');
+INSERT INTO items (item_name, item_amount, list_id, user_id, favorite) VALUES ('Bird Bath', 1, 6 , 6, false);
+INSERT INTO items (item_name, item_amount, list_id, user_id, favorite) VALUES ('Cat Litter', 4, 6, 6, false);
+INSERT INTO items (item_name, item_amount, list_id, user_id, favorite) VALUES ('Cake', 2, 6, 6, false);
+
+INSERT INTO lists (list_name, group_id, list_claimed_by, list_description) VALUES ('Read A Thon', 8, null, 'Raising funds for book night');
+INSERT INTO items (item_name, item_amount, list_id, user_id, favorite) VALUES ('Bookmarks', 9, 7 , 5, false);
+INSERT INTO items (item_name, item_amount, list_id, user_id, favorite) VALUES ('notepads', 4, 7, 5, false);
+INSERT INTO items (item_name, item_amount, list_id, user_id, favorite) VALUES ('pens', 2, 7, 5, false);
+
+INSERT INTO lists (list_name, group_id, list_claimed_by, list_description) VALUES ('Property Management Expo', 9, null, 'How to deal with tenants');
+INSERT INTO items (item_name, item_amount, list_id, user_id, favorite) VALUES ('Calculators', 3, 8 , 4, false);
+INSERT INTO items (item_name, item_amount, list_id, user_id, favorite) VALUES ('paint cans', 6, 8, 4, false);
+INSERT INTO items (item_name, item_amount, list_id, user_id, favorite) VALUES ('paint brushes', 8, 8, 4, false);
+
+INSERT INTO lists (list_name, group_id, list_claimed_by, list_description) VALUES ('Techies Techout session', 6, null, 'positive tech brainstorm');
+INSERT INTO items (item_name, item_amount, list_id, user_id, favorite) VALUES ('frozen pizza', 6, 9 , 8, false);
+INSERT INTO items (item_name, item_amount, list_id, user_id, favorite) VALUES ('drinks', 5, 9, 8, false);
+INSERT INTO items (item_name, item_amount, list_id, user_id, favorite) VALUES ('chips', 2, 9, 8, false);
 
 
 
