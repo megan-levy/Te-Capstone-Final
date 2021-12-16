@@ -1,12 +1,10 @@
 <template>
   <div id="app">
     <div id="nav">
-      <!-- <img :src="require('public\shopping_logo.png')"/> -->
+      <router-link v-bind:to="{ name: 'groups' }" id="title-of-project">
+        <img class="img-logo" :src="require('../public/shopping_logo.png')"/>
+      </router-link>
       <div>
-        <router-link v-bind:to="{ name: 'groups' }" id="title-of-project">
-          Shared Shopping List
-        </router-link>
-        ||
         <router-link
           v-bind:to="{ name: 'logout' }"
           v-if="$store.state.token != ''"
@@ -244,5 +242,9 @@ span {
     -webkit-backdrop-filter: saturate(180%) blur(20px);
     backdrop-filter: saturate(180%) blur(20px);
   animation-name: fadein;
+}
+.img-logo {
+  height: 90px;
+  width: auto;
 }
 </style>
