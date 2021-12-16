@@ -105,20 +105,13 @@ public class JdbcShoppingListDao implements ShoppingListDAO {
         shoppingList.setListDescription(rs.getString("list_description"));
         shoppingList.setListClaimedBy(rs.getInt("list_claimed_by"));
         shoppingList.setListClaimed(shoppingList.getListClaimedBy() != null && shoppingList.getListClaimedBy() != 0);
-
         shoppingList.setItemCount(itemDao.getItemCount((long) shoppingList.getListId()));
-        System.out.println(shoppingList.getListClaimedBy());
-       if (shoppingList.getListClaimedBy() != null && shoppingList.getListClaimedBy() != 0) {
-           shoppingList.setClaimedByName(
-                   this.getUserNameFromUserId(
-                           shoppingList.getListId()));
-           System.out.println(shoppingList.getClaimedByName());
-       } else {
-           shoppingList.setClaimedByName(null);
-       }
-
-           return shoppingList;
-
+        if (shoppingList.getListClaimedBy() != null && shoppingList.getListClaimedBy() != 0) {
+            shoppingList.setClaimedByName(this.getUserNameFromUserId(shoppingList.getListId()));
+        } else {
+            shoppingList.setClaimedByName(null);
+        }
+        return shoppingList;
     }
 
 }
