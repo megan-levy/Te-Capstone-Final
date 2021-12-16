@@ -80,7 +80,7 @@ CREATE TABLE groups (
  favorite boolean,
  --rewards_id varchar(100) UNIQUE,
  CONSTRAINT PK_items_table PRIMARY KEY (list_item_id),
- CONSTRAINT FK_items_list_id FOREIGN KEY (list_id) REFERENCES lists(list_id),
+ CONSTRAINT FK_items_list_id FOREIGN KEY (list_id) REFERENCES lists(list_id) ON DELETE CASCADE,
  CONSTRAINT FK_item_user_id FOREIGN KEY (user_id) REFERENCES users (user_id)
  --CONSTRAINT FK_item_savings FOREIGN KEY (rewards_id) REFERENCES retailer_store(rewards)
  );

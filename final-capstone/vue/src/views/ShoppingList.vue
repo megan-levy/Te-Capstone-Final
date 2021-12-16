@@ -24,6 +24,12 @@
           v-if="$store.state.token != ''"
           >Edit</a
         >
+        <a
+          class="addBtn new-group-button"
+          @click="clearList"
+          v-if="$store.state.token != '' && editable"
+          >Clear</a
+        >
         <div v-if="toggleJoin" class="modal">
           <edits-toggle
           @howdy="funcRun"
@@ -53,14 +59,18 @@
           tag="a"
           class="group-list-item shopping-list-item"
           v-bind:to="{ name: '', params: { itemId: `${item.itemId}` } }"
-          v-for="item in $store.state.items"
+          v-for="item in this.items"
           :key="item.itemId"
         >
-          <div>
-            <h3>
-              {{ item.itemName }}
-            </h3>
-            <span>Quantity: {{ item.itemAmount }}</span>
+          <div class="item-card">
+            <div class="top-line">
+              <h3>
+                {{ item.itemName }}
+              </h3>
+              <span>Quantity: {{ item.itemAmount }}</span>
+            </div>
+
+            <a class="del-btn" href="." @click="(e) => {deleteItem(e, item.listItemId)}">Delete</a>
           </div>
         </router-link>
       </ul>
@@ -70,7 +80,7 @@
 
 <script>
 import { mapState } from 'vuex'; 
-import ShoppingListService from "@/services/ShoppingListService.js";
+// import ShoppingListService from "@/services/ShoppingListService.js";
 import EditList from "../components/EditList.vue";
 
 export default {
@@ -91,7 +101,7 @@ export default {
   computed: {
     // get the list 'subtree'?...to use 'this.list'
     // in reactive var getters
-    ...mapState(["list", "user"]),
+    ...mapState(["list", "user", "items"]),
 
     // this is the listName 'reactive var' we want to use in
     // the html
@@ -161,12 +171,16 @@ export default {
       this.$store.commit("SET_LIST_ID", this.$route.params.listId);
     },
     getItemsList() {
-      ShoppingListService.getItemList(this.$route.params.listId).then(
-        (items) => {
-          this.$store.commit("SET_ITEMS", items.data);
-        }
-      );
+      this.$store.dispatch('GET_ITEMS', this.$route.params.listId);
     },
+    deleteItem(e, itemId) {
+      if (!this.editable) return;
+      this.$store.dispatch('DELETE_ITEM', itemId);
+    },
+    clearList() {
+      if (!this.editable) return;
+      this.$store.dispatch('DELETE_LIST_ITEMS', this.$route.params.listId);
+    }
   },
 };
 </script>
@@ -277,5 +291,26 @@ li:hover {
     padding: 10px;
   }
 }
-
+.del-btn {
+  background-color: #1f7a8c;
+  border-radius: 6px;
+  color: #ffffff;
+  border: 2px solid #1f7a8c;
+  padding: 10px;
+  text-decoration: none;
+}
+.del-btn:hover {
+  background-color: transparent;
+  color: #1f7a8c;
+}
+.top-line {
+  display: flex;
+  justify-content: space-between;
+}
+.item-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 150px;
+  justify-content: space-between;
+}
 </style>

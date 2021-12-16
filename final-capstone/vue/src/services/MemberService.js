@@ -13,6 +13,6 @@ export default {
     },
     //for joining group with valid id
     leaveGroup(groupId) {
-        return axios.delete(`/members/${groupId}`, { params: { "groupId": groupId }});
+        return axios.delete(`/members/${groupId}`);
     },
 }

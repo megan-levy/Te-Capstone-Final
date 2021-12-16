@@ -16,5 +16,8 @@ export default {
     },
     deleteItemFromList(itemId) {
         return axios.delete(`/items/${itemId}`, {params: {"itemId": itemId}});
+    },
+    deleteAllItemsFromList(listId) {
+        return axios.delete(`/lists/${listId}/items`);
     }
 }

@@ -62,10 +62,13 @@ public class GroupController {
     public void joinGroup(@RequestBody InviteCode invite, Principal user) {
         //Need to have something so you can't join the same group more than once.
 
-
-//        System.out.println(invite.getCode());
-
         groupDao.joinGroup(invite.getCode(), (long) userDao.findIdByUsername(user.getName()));
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(value= "/members/{groupId}", method = RequestMethod.DELETE)
+    public void deleteItem(@PathVariable Long groupId, Principal user){
+        groupDao.leaveGroup(groupId, (long) userDao.findByUsername(user.getName()).getId());
     }
 
 

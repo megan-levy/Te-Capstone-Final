@@ -150,6 +150,14 @@ public class JdbcGroupDao implements GroupDao {
         }
     }
 
+    @Override
+    public void leaveGroup(Long groupId, Long userId) {
+        String deleteMember = "DELETE FROM member_of WHERE group_id = ? AND user_id = ?";
+        jdbcTemplate.update(deleteMember, groupId, userId);
+    }
+
+
+
     //Below Override was to make implements happy for now until we figure out why
     @Override
     public Group getGroup(Long groupId) {

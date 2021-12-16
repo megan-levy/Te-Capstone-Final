@@ -35,8 +35,10 @@ public class ItemController {
     }
 
 
-    @DeleteMapping(path="/groups/{groupId}/lists/{listId}" ) //need to confirm this is correct path
-    public void deleteItem(@PathVariable String itemName){itemDao.delete(itemName);}
+    @DeleteMapping(path="/items/{itemId}")
+    public void deleteItem(@PathVariable Long itemId){
+        itemDao.delete(itemId);
+    }
 
 
     @RequestMapping(value= "/lists/{listId}/items/count", method = RequestMethod.GET)
