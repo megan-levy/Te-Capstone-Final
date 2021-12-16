@@ -89,6 +89,55 @@ CREATE TABLE groups (
 
 INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
+INSERT INTO users (username,password_hash,role) VALUES ('FieriGuy@example.com','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
+INSERT INTO users (username,password_hash,role) VALUES ('John@example.com','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
+INSERT INTO users (username,password_hash,role) VALUES ('FredFlinstone@example.com','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
+INSERT INTO users (username,password_hash,role) VALUES ('MayorDave@example.com','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
+INSERT INTO users (username,password_hash,role) VALUES ('Forgetful@example.com','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
+INSERT INTO users (username,password_hash,role) VALUES ('Elevate@example.com','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
+
+
+INSERT INTO groups (name, group_description, invite_code) VALUES ('Mayor Dave Gatherings','community gatherings', 'M1C2E4');
+INSERT INTO groups (name, group_description, invite_code) VALUES ('Java Junction', 'Cohort 12 Shenannigans', '0L3RD7');
+INSERT INTO groups (name, group_description, invite_code) VALUES ('See #ies', 'A sharp set of folks', '2ZY4R8');
+INSERT INTO groups (name, group_description, invite_code) VALUES ('Golf Tracker', 'fore-get me nots', 'G6RN98');
+INSERT INTO groups (name, group_description, invite_code) VALUES ('Zig Zaggers','neighborhood', 'N5F3X2');
+INSERT INTO groups (name, group_description, invite_code) VALUES ('Cincy Techies For Good', 'coding sessions for good', 'H2D4E0');
+INSERT INTO groups (name, group_description, invite_code) VALUES ('Animal Shelter', 'so you dont keep hounding me', 'U6EL24');
+INSERT INTO groups (name, group_description, invite_code) VALUES ('Family Readers', 'dont make me fine you', 'B4R3EL');
+INSERT INTO groups (name, group_description, invite_code) VALUES ('Rental Property Managers', 'you act like you own this space', 'XF53EF');
+INSERT INTO groups (name, group_description, invite_code) VALUES ('Pet Play Pals', 'so we dont have a catastrophe', 'G6E3W3');
+INSERT INTO groups (name, group_description, invite_code) VALUES ('Pub Hub', 'ale you need to know is rye here', 'P7L8Y5');
+
+
+INSERT INTO lists (list_name, group_id, list_claimed_by, list_description) VALUES ('Daveville Donut Days', 1, null, 'prepare for the donut day kick off');
+INSERT INTO items (item_name, item_amount, list_id, user_id, favorite) VALUES ('Chocolate Donuts', 6, 1, 6, false);
+INSERT INTO items (item_name, item_amount, list_id, user_id, favorite) VALUES ('Sprinkle Donuts', 4, 1, 6, false);
+INSERT INTO items (item_name, item_amount, list_id, user_id, favorite) VALUES ('Glazed Donuts', 9, 1, 6, false);
+INSERT INTO items (item_name, item_amount, list_id, user_id, favorite) VALUES ('Donut Holes', 10, 1, 3, false);
+INSERT INTO items (item_name, item_amount, list_id, user_id, favorite) VALUES ('Daves Dragonberry Donuts', 2, 1, 3, false);
+
+INSERT INTO lists (list_name, group_id, list_claimed_by, list_description) VALUES ('Java Jubilee', 2, 8, 'Java group celebration');
+INSERT INTO items (item_name, item_amount, list_id, user_id, favorite) VALUES ('Coffee Bags', 3, 2, 5, false);
+INSERT INTO items (item_name, item_amount, list_id, user_id, favorite) VALUES ('Biscottis', 5, 2, 5, false);
+INSERT INTO items (item_name, item_amount, list_id, user_id, favorite) VALUES ('Coffee Creamer', 2, 2, 5, false);
+INSERT INTO items (item_name, item_amount, list_id, user_id, favorite) VALUES ('Sugar Cubes', 10, 2, 4, false);
+INSERT INTO items (item_name, item_amount, list_id, user_id, favorite) VALUES ('Coffee Stirrers', 2, 2, 4, false);
+
+INSERT INTO lists (list_name, group_id, list_claimed_by, list_description) VALUES ('Adoption Event', 10, null, 'event to get even more pet play time');
+INSERT INTO items (item_name, item_amount, list_id, user_id, favorite) VALUES ('Dog Bones', 8, 3, 7, false);
+INSERT INTO items (item_name, item_amount, list_id, user_id, favorite) VALUES ('Cat Chow', 5, 3, 7, false);
+INSERT INTO items (item_name, item_amount, list_id, user_id, favorite) VALUES ('Cookies', 2, 3, 5, false);
+INSERT INTO items (item_name, item_amount, list_id, user_id, favorite) VALUES ('Leash', 4, 3, 5, false);
+INSERT INTO items (item_name, item_amount, list_id, user_id, favorite) VALUES ('Fish food', 2, 3, 5, false);
+
+
+
+
+
+INSERT INTO member_of(user_id, group_id, invite_accepted) VALUES (3, 1, true);
+INSERT INTO member_of(user_id, group_id, invite_accepted) VALUES (8, 2, true);
+INSERT INTO member_of(user_id, group_id, invite_accepted) VALUES (8, 6, true);
 
 --INSERT INTO groups (name, group_description) VALUES ('Administrator','house_and_home');
 --INSERT INTO groups (name, group_description) VALUES ('Mickey_Mouse', 'Dave_home');
