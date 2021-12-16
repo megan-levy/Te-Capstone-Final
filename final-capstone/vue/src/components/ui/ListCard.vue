@@ -20,8 +20,9 @@
 
     <div v-if="itemType === 'list'">
       <p>Number of Items: {{ itemCount }}</p>
-      <p>This List Has Been Claimed by {{claimedByName}}!</p>
     </div>
+     <!-- <p v-if="claimed">This List Has Been Claimed By {{claimedByName}}!</p>
+      <p v-else> List Not Claimed Yet</p> -->
   </router-link>
 </template>
 
@@ -43,10 +44,12 @@ export default {
   },
   computed: {
     ...mapState(["list", "user"]),
+  
   claimedByName: {
 
       set(claimedByName) {
         this.$store.commit("SET_LIST", { claimedByName });
+        // let claimed = true;
         // this.list.listClaimed && this.list.listClaimedBy ? this.$store.commit("SET_LIST", { claimedByName }) : this.$store.commit("SET_LIST", { claimedByName: null });
       },
       get() {
