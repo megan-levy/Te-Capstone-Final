@@ -73,7 +73,6 @@
               <span>Quantity: {{ item.itemAmount }}</span>
             </div>
            
-           <div >
             <div v-if="editable" class="list-item-editor">
               <a
                 class="edit-btn"
@@ -94,7 +93,6 @@
                 "
                 >Delete</a
               >
-            </div>
             </div>
           </div>
         </a>
@@ -265,7 +263,7 @@ export default {
 
 #items-listed {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   width: 100%;
   padding-inline-start: 0px;
 }
@@ -318,7 +316,7 @@ li:hover {
   height: 100%;
 }
 .shopping-list-item {
-  max-width: 300px;
+  max-width: 175px;
 }
 
 @media only screen and (max-width: 600px) {
