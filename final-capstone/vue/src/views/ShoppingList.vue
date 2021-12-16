@@ -1,12 +1,13 @@
 <template>
   <div id="shopping-list" class="shopping-list">
-    <div>
+    <div class="named-and-claimed">
       <h1>{{ listName }}</h1>
+       <p>This list is claimed by: {{claimedByName}}</p>
     </div>
     <p>{{ listDescription }}</p>
 
-    IS LIST CLAIMED? {{list.listName}}
-    <p>This list is claimed by: {{claimedByName}}</p>
+    <!-- IS LIST CLAIMED? {{list.listName}} -->
+   
     <div>
       <hr />
       <div class="buttons-groups">
@@ -195,6 +196,10 @@ export default {
   filter: drop-shadow(0px 4px 4px rgba(221, 221, 221, 0.25));
   padding: 25px;
   height: calc(100% - 120px);
+}
+
+.named-and-claimed {
+  display: flex;
 }
 
 #return {
