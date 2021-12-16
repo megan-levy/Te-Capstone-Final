@@ -20,16 +20,26 @@
 
     <div v-if="itemType === 'list'">
       <p>Number of Items: {{ itemCount }}</p>
+      <p v-if="claimed">This List Has Been Claimed By {{ claimedByName }}!</p>
+      <p v-else>List Not Claimed Yet</p>
     </div>
-     <!-- <p v-if="claimed">This List Has Been Claimed By {{claimedByName}}!</p>
-      <p v-else> List Not Claimed Yet</p> -->
+
   </router-link>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState } from "vuex";
 export default {
-  props: ["id", "type", "title", "description", "date", "item_count"],
+  props: [
+    "id",
+    "type",
+    "title",
+    "description",
+    "date",
+    "item_count",
+    "claimed",
+    "claimedByName"
+  ],
   data() {
     return {
       itemId: this.$props.id,
@@ -43,41 +53,29 @@ export default {
     };
   },
   computed: {
-    ...mapState(["list", "user"]),
-  
-  claimedByName: {
-
-      set(claimedByName) {
-        this.$store.commit("SET_LIST", { claimedByName });
-        // let claimed = true;
-        // this.list.listClaimed && this.list.listClaimedBy ? this.$store.commit("SET_LIST", { claimedByName }) : this.$store.commit("SET_LIST", { claimedByName: null });
-      },
-      get() {
-        return this.list.claimedByName;
+    ...mapState(["list", "user", "lists"]),
+  },
+  created() {
+      switch (this.$props.type) {
+        case "list":
+          this.itemBindLinkTo = "shopping-list";
+          this.params = {
+            listId: `${this.itemId}`,
+          };
+          break;
+        case "group":
+          this.itemBindLinkTo = "group-home";
+          this.params = {
+            groupId: `${this.itemId}`,
+          };
+          break;
       }
-    }
-  },
-  mounted() {
-    switch (this.$props.type) {
-      case "list":
-        this.itemBindLinkTo = "shopping-list";
-        this.params = {
-          listId: `${this.itemId}`,
-        };
-        break;
-      case "group":
-        this.itemBindLinkTo = "group-home";
-        this.params = {
-          groupId: `${this.itemId}`,
-        };
-        break;
-    }
-  },
-  methods: {
-    logData() {
-      console.log(this.itemParams);
     },
-  },
+    methods: {
+      logData() {
+        console.log(this.itemParams);
+      },
+    },
 };
 </script>
 

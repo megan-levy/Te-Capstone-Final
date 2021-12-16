@@ -31,7 +31,7 @@
     <div class="items-container">
       <ul class="vertical-list" id="lists-listed">
         <list-card
-          v-for="list in lists"
+          v-for="list in this.lists"
           :key="list.listId"
           v-bind:id="list.listId"
           v-bind:type="'list'"
@@ -39,6 +39,8 @@
           v-bind:description="list.listDescription"
           v-bind:date="null"
           v-bind:item_count="list.itemCount"
+          v-bind:claimed="list.listClaimed"
+          v-bind:claimedByName="list.claimedByName"
         />
       </ul>
     </div>

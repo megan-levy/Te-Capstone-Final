@@ -20,7 +20,7 @@ public interface ShoppingListDAO {
 
     void create(String listName, String listDescription, Long groupId, Long userId);
 
-    void updateShoppingList(String listName, String listDescription, Long listId, Integer listClaimedBy);
+    void updateShoppingList(Long listId, String listName, String listDescription, Integer listClaimedBy);
 
     ShoppingList getUserNameByListId(Long listId);
 

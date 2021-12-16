@@ -1,6 +1,7 @@
 BEGIN TRANSACTION;
 
 DROP TABLE IF EXISTS users, groups, lists, items, member_of CASCADE;
+DROP TRIGGER IF EXISTS set_item_timestamp ON items CASCADE;
 DROP SEQUENCE IF EXISTS seq_user_id;
 
 CREATE SEQUENCE seq_user_id
@@ -8,6 +9,14 @@ CREATE SEQUENCE seq_user_id
   NO MAXVALUE
   NO MINVALUE
   CACHE 1;
+
+CREATE OR REPLACE FUNCTION trigger_set_timestamp()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.date_updated = NOW();
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
 
 
 CREATE TABLE users (
@@ -76,6 +85,7 @@ CREATE TABLE groups (
  item_amount int,
  list_id int NOT NULL,
  date_added DATE DEFAULT CURRENT_TIMESTAMP,
+ date_updated TIMESTAMP NOT NULL DEFAULT NOW(),
  user_id int,
  favorite boolean,
  --rewards_id varchar(100) UNIQUE,
@@ -84,6 +94,11 @@ CREATE TABLE groups (
  CONSTRAINT FK_item_user_id FOREIGN KEY (user_id) REFERENCES users (user_id)
  --CONSTRAINT FK_item_savings FOREIGN KEY (rewards_id) REFERENCES retailer_store(rewards)
  );
+
+ CREATE TRIGGER set_item_timestamp
+ BEFORE UPDATE ON items
+ FOR EACH ROW
+ EXECUTE PROCEDURE trigger_set_timestamp();
  
 
 

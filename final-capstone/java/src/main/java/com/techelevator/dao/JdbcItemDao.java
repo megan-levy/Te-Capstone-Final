@@ -25,7 +25,7 @@ public class JdbcItemDao implements ItemDao {
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, listId);
 
         while (results.next()){
-            itemList.add(mapRowToList(results));
+            itemList.add(mapRowToItem(results));
         }
         return itemList;
     }
@@ -75,12 +75,34 @@ public class JdbcItemDao implements ItemDao {
     }
 
     @Override
+    public void updateItem(Long itemId, String itemName, int itemAmount, Boolean favorite, Long userId) {
+        String updateItem = "UPDATE items SET " +
+                "item_name = ?, " +
+                "item_amount = ?, " +
+                "user_id = ?, " +
+                "favorite = ? " +
+                "WHERE list_item_id = ?";
+        jdbcTemplate.update(updateItem, itemName, itemAmount, userId, favorite, itemId);
+    }
+
+    @Override
     public void delete(Long itemId){
             String deleteItem = "DELETE FROM items WHERE list_item_id = ?";
             jdbcTemplate.update(deleteItem, itemId);
     }
 
-    private Item mapRowToList(SqlRowSet rowSet) {
+    @Override
+    public Item getItemByItemId(Long itemId) {
+        Item item = null;
+        String getItem = "SELECT * FROM items WHERE list_item_id = ?";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(getItem, itemId);
+        if (results.next()) {
+            item = mapRowToItem(results);
+        }
+        return item;
+    }
+
+    private Item mapRowToItem(SqlRowSet rowSet) {
         Item item = new Item();
         item.setListItemId(rowSet.getLong("list_item_id"));
         item.setItemName(rowSet.getString("item_name"));

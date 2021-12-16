@@ -37,10 +37,11 @@ public class ShoppingListController {
     }
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value ="/lists/{listId}", method = RequestMethod.PUT)
-    public void updateShopList(@RequestBody ShoppingList shoppingList, @PathVariable Long listId){
+    public void updateShopList(@RequestBody ShoppingList shoppingList, @PathVariable Long listId, Principal user){
         System.out.println(listId);
         shoppingList.setListId(listId);
-        shoppingListDAO.updateShoppingList(shoppingList.getListName(), shoppingList.getListDescription(), listId, shoppingList.getListClaimedBy());
+        shoppingListDAO.updateShoppingList(
+                listId, shoppingList.getListName(), shoppingList.getListDescription(), shoppingList.getListClaimedBy());
     }
 
     @RequestMapping(value = "/group/{groupId}/lists", method = RequestMethod.GET)
