@@ -121,6 +121,9 @@ public class JdbcShoppingListDao implements ShoppingListDAO {
                 "FROM old_list;";
         jdbcTemplate.update(deleteList, listId);
 
+        String updateClaim = "UPDATE lists SET list_claimed_By = ? WHERE list_id = ?";
+        jdbcTemplate.update(updateClaim, null, listId);
+
 
     }
 

@@ -91,9 +91,11 @@ export default new Vuex.Store({
       ShoppingListService.createShoppingList(state.list, state.list.listId);
     },
     DELETE_LIST_ITEMS({state}, listId) {
-      ItemService.deleteAllItemsFromList(listId).then( () => {
+      console.log(state.list.listId);
+      ItemService.deleteAllItemsFromList(state.list.listId).then( () => {
         this.dispatch('GET_ITEMS', listId);
-        this.dispatch('GET_LISTS', state.group.groupId);
+        // this.dispatch('GET_LISTS', this.$route.params.groupId);
+        this.dispatch('GET_LIST', listId);
       })
     },
     LEAVE_GROUP({state}) {

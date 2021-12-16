@@ -139,10 +139,6 @@ export default {
       },
     },
     editable: function () {
-      console.log(this.user.id);
-      console.log(this.list.listClaimed);
-      console.log(this.list.listClaimedBy);
-
       return (
         !this.list.listClaimed ||
         (this.list.listClaimed &&
@@ -192,7 +188,6 @@ export default {
     this.$store.dispatch("GET_LIST", this.$route.params.listId);
 
     this.getItemsList();
-    console.log(this.items);
   },
   mounted() {
     this.$store.dispatch("GET_LIST", this.$route.params.listId);
