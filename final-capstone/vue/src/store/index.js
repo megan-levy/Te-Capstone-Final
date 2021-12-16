@@ -4,6 +4,7 @@ import axios from 'axios';
 import ShoppingListService from '../services/ShoppingListService';
 import GroupService from '../services/GroupService';
 import ItemService from '../services/ItemService';
+import MemberService from '../services/MemberService';
 
 Vue.use(Vuex);
 
@@ -95,7 +96,11 @@ export default new Vuex.Store({
         this.dispatch('GET_LISTS', state.group.groupId);
       })
     },
-
+    LEAVE_GROUP({state}) {
+      MemberService.leaveGroup(state.group.groupId).then(() => {
+        this.dispatch('GET_GROUPS');
+      });
+    },
 
     GET_GROUP({ commit }, groupId) {
       // ShoppingListService.getShoppingList(groupId).then(group => commit('SET_GROUP', group.data));

@@ -26,5 +26,7 @@ public interface GroupDao {
 
     void joinGroup(String inviteCode, Long userId);
 
+    void leaveGroup(Long groupId, Long userId);
+
     //void joinGroup(String inviteCode, Random randomCode);
 }

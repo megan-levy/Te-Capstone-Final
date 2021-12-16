@@ -6,6 +6,9 @@
          <span class="invite-code">{{ group.interleaveInvite }}</span>
         <span class="tool-tip-text">Copy to clipboard</span>
       </span>
+      <span class="" @click="leaveGroup">
+         Leave Group
+      </span>
       <p>{{ group.groupDescription }}</p>
     <hr />
       <router-link
@@ -64,13 +67,20 @@ export default {
     copyToClip(e) {
       navigator.clipboard.writeText(e.target.textContent);
     },
-     getItemsList(listId) {
+    getItemsList(listId) {
       ShoppingListService.getItemList(listId).then(
         (items) => {
           this.$store.commit("SET_ITEMS", items.data);
         }
       );
     },
+    leaveGroup() {
+      let groupId = this.$route.params.groupId;
+      console.log(groupId);
+      this.$store.dispatch('LEAVE_GROUP', groupId).then(() => {
+        this.$router.push("/");
+      });
+    }
   }
 };
 </script>
