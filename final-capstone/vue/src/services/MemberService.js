@@ -4,8 +4,6 @@ export default {
 
     //for joining group with valid id
     joinGroup(code) {
-        console.log(code);
-
         let data = {
             code
         }

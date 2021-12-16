@@ -95,7 +95,6 @@ export default {
       this.$emit("updateAndClose", isOn);
     },
     updateItem() {
-     // console.log(((this.list.listClaimedBy) && (!this.list.listClaimed)));
      if ((this.item.itemName.length < 1)) {
         alert("List items must have a name. Either delete the item or add a name");
         return;
