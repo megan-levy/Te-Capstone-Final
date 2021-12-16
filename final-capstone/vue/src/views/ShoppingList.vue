@@ -40,11 +40,11 @@
         <div v-if="toggleItemEdit" class="modal">
           <edit-item @updateAndClose="funcRun" v-model="toggleItemEdit" />
         </div>
-        <div v-if="editable">
+        <!-- <div v-if="editable">
           <a class="addBtn new-group-button" v-if="$store.state.token != ''"
             >Delete</a
           >
-        </div>
+        </div> -->
       </div>
     </div>
 
