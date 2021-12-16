@@ -28,23 +28,32 @@ public class ItemController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(value= "/lists/{listId}/items", method = RequestMethod.POST)
-    public void createItem(@RequestParam String listId, @Valid @RequestBody Item newItem, Principal principal){
+    public void createItem(@RequestParam String listId, @Valid @RequestBody Item newItem, Principal principal) {
         int userId = userDao.findIdByUsername(principal.getName());
         int id = Integer.parseInt(listId);
         itemDao.create(newItem.getItemName(), newItem.getItemAmount(), id, userId);
     }
 
-
     @DeleteMapping(path="/items/{itemId}")
-    public void deleteItem(@PathVariable Long itemId){
+    public void deleteItem(@PathVariable Long itemId) {
         itemDao.delete(itemId);
     }
 
-
     @RequestMapping(value= "/lists/{listId}/items/count", method = RequestMethod.GET)
-    public int getItemCount(@RequestParam String listId){
+    public int getItemCount(@RequestParam String listId) {
         long id = Long.parseLong(listId);
         return (int) itemDao.getItemCount(id);
+    }
+//    updateItem
+    @RequestMapping(value = "/items/{itemId}", method = RequestMethod.PUT)
+    public void updateItem(@RequestBody Item item, @PathVariable Long itemId) {
+        if (!item.getListItemId().equals(itemId)) return;
+        itemDao.updateItem(itemId, item.getItemName(), item.getItemAmount(), item.getFavorite());
+    }
+
+    @RequestMapping(value = "/items/{itemId}", method = RequestMethod.GET)
+    public Item getSingleItem(@PathVariable Long itemId) {
+        return itemDao.getItemByItemId(itemId);
     }
 
     @RequestMapping(value= "/lists/{listId}/items", method = RequestMethod.GET)

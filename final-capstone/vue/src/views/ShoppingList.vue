@@ -2,26 +2,26 @@
   <div id="shopping-list" class="shopping-list">
     <div class="named-and-claimed">
       <h1>{{ listName }}</h1>
-       <p>This list is claimed by: {{claimedByName}}</p>
+      <p>This list is claimed by: {{ claimedByName }}</p>
     </div>
     <p>{{ listDescription }}</p>
 
     <!-- IS LIST CLAIMED? {{list.listName}} -->
-   
+
     <div>
-      <hr />    
+      <hr />
       <div class="buttons-groups">
         <router-link
           class="addBtn new-group-button"
           v-on:click="setListId"
           v-bind:to="{ name: 'new-item' }"
-          v-if="$store.state.token != ''"
+          v-if="$store.state.token != '' && editable"
           >Add</router-link
         >
         <a
           class="addBtn new-group-button"
           v-on:click="toggleJoin = !toggleJoin"
-          v-if="$store.state.token != ''"
+          v-if="$store.state.token != '' && editable"
           >Edit</a
         >
         <a
@@ -32,14 +32,19 @@
         >
         <div v-if="toggleJoin" class="modal">
           <edits-toggle
-          @howdy="funcRun"
+            @howdy="funcRun"
+            v-if="$store.state.token != '' && editable"
             v-model="toggleJoin"
-
           />
         </div>
-        <a class="addBtn new-group-button" v-if="$store.state.token != ''"
-          >Delete</a
-        >
+        <div v-if="toggleItemEdit" class="modal">
+          <edit-item @updateAndClose="funcRun" v-model="toggleItemEdit" />
+        </div>
+        <div v-if="editable">
+          <a class="addBtn new-group-button" v-if="$store.state.token != ''"
+            >Delete</a
+          >
+        </div>
       </div>
     </div>
 
@@ -55,12 +60,10 @@
     </router-link>
     <div class="grocery-list">
       <ul class="vertical-list" id="items-listed">
-        <router-link
-          tag="a"
+        <a
           class="group-list-item shopping-list-item"
-          v-bind:to="{ name: '', params: { itemId: `${item.itemId}` } }"
           v-for="item in this.items"
-          :key="item.itemId"
+          :key="item.listItemId"
         >
           <div class="item-card">
             <div class="top-line">
@@ -69,35 +72,51 @@
               </h3>
               <span>Quantity: {{ item.itemAmount }}</span>
             </div>
-
-            <a class="del-btn" href="." @click="(e) => {deleteItem(e, item.listItemId)}">Delete</a>
+            <div v-if="editable">
+              <a
+                class="edit-btn"
+                @click="
+                  () => {
+                    startItemEdit(item);
+                  }
+                "
+                >Edit</a
+              >
+              <a
+                class="del-btn"
+                @click="
+                  (e) => {
+                    deleteItem(e, item.listItemId);
+                  }
+                "
+                >Delete</a
+              >
+            </div>
           </div>
-        </router-link>
+        </a>
       </ul>
     </div>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'; 
-// import ShoppingListService from "@/services/ShoppingListService.js";
+import { mapState } from "vuex";
 import EditList from "../components/EditList.vue";
+import EditItem from "../components/EditItem.vue";
 
 export default {
   name: "shopping-list",
   components: {
     editsToggle: EditList,
+    EditItem,
   },
   data() {
     return {
-      // listId: "",
-      // listName: "",
-      // listDescription: "",
       toggleJoin: false,
-      // listClaimed: false
+      toggleItemEdit: false,
     };
   },
-    // computed allows us to two-way-bind our state with v-model
+  // computed allows us to two-way-bind our state with v-model
   computed: {
     // get the list 'subtree'?...to use 'this.list'
     // in reactive var getters
@@ -106,6 +125,11 @@ export default {
     // this is the listName 'reactive var' we want to use in
     // the html
     // get and set allow it to work with v-model?
+    itemsStore: {
+      get() {
+        return this.items;
+      },
+    },
     listName: {
       set(listName) {
         this.$store.commit("SET_LIST", { listName });
@@ -113,6 +137,17 @@ export default {
       get() {
         return this.list.listName;
       },
+    },
+    editable: function () {
+      console.log(this.user.id);
+      console.log(this.list.listClaimed);
+      console.log(this.list.listClaimedBy);
+
+      return (
+        !this.list.listClaimed ||
+        (this.list.listClaimed &&
+          parseInt(this.user.id) === parseInt(this.list.listClaimedBy))
+      );
     },
     claimedByName: {
       set(claimedByName) {
@@ -141,46 +176,59 @@ export default {
       set(listClaimed) {
         this.$store.commit("SET_LIST", { listClaimed });
         if (listClaimed) {
-          this.$store.commit("SET_LIST", { listClaimedBy: this.user.id});
+          this.$store.commit("SET_LIST", { listClaimedBy: this.user.id });
           // console.log(this.user.username);
         } else {
-          this.$store.commit("SET_LIST", {'listClaimedBy': null});
+          this.$store.commit("SET_LIST", { listClaimedBy: null });
         }
       },
       get() {
-        return this.list.listClaimed
-       
+        return this.list.listClaimed;
       },
     },
   },
   created() {
     this.setListId();
-    this.$store.dispatch('GET_LIST', this.$route.params.listId);
+    this.$store.dispatch("GET_LIST", this.$route.params.listId);
+
     this.getItemsList();
+    console.log(this.items);
   },
   mounted() {
-    this.$store.dispatch('GET_LIST', this.$route.params.listId);
+    this.$store.dispatch("GET_LIST", this.$route.params.listId);
   },
   methods: {
     funcRun() {
+      this.toggleItemEdit = false;
       setTimeout(() => {
-        this.$store.dispatch('GET_LIST', this.$route.params.listId);
-      },50)
+        this.$store.dispatch("GET_LIST", this.$route.params.listId).then(() => {
+          this.$store.dispatch("GET_ITEMS", this.$route.params.listId);
+        });
+      }, 100);
+    },
+    startItemEdit(item) {
+      if (item && item.listItemId) {
+        // , item.listItemId
+        this.$store.dispatch("GET_ITEM", item.listItemId).then(() => {
+          this.toggleItemEdit = !this.toggleItemEdit;
+        });
+      }
     },
     setListId() {
       this.$store.commit("SET_LIST_ID", this.$route.params.listId);
     },
+
     getItemsList() {
-      this.$store.dispatch('GET_ITEMS', this.$route.params.listId);
+      this.$store.dispatch("GET_ITEMS", this.$route.params.listId);
     },
     deleteItem(e, itemId) {
       if (!this.editable) return;
-      this.$store.dispatch('DELETE_ITEM', itemId);
+      this.$store.dispatch("DELETE_ITEM", itemId);
     },
     clearList() {
       if (!this.editable) return;
-      this.$store.dispatch('DELETE_LIST_ITEMS', this.$route.params.listId);
-    }
+      this.$store.dispatch("DELETE_LIST_ITEMS", this.$route.params.listId);
+    },
   },
 };
 </script>

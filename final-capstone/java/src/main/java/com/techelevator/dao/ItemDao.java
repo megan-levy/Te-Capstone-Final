@@ -25,6 +25,10 @@ public interface ItemDao {
 
    void delete(Long itemId);
 
+   Item getItemByItemId(Long itemId);
+
+   void updateItem(Long itemId, String itemName, int itemAmount, Boolean favorite);
+
    //Decide if we want to include Coupon and Favorite Item when created or is it done with user input once Item created
 
 

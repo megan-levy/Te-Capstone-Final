@@ -13,10 +13,12 @@ public class JdbcShoppingListDao implements ShoppingListDAO {
 
     private JdbcTemplate jdbcTemplate;
     private ItemDao itemDao;
+    private UserDao userDao;
 
-    public JdbcShoppingListDao(JdbcTemplate jdbcTemplate, ItemDao itemDao) {
+    public JdbcShoppingListDao(JdbcTemplate jdbcTemplate, ItemDao itemDao, UserDao userDao) {
         this.jdbcTemplate = jdbcTemplate;
         this.itemDao = itemDao;
+        this.userDao = userDao;
     }
 
     @Override
@@ -40,9 +42,7 @@ public class JdbcShoppingListDao implements ShoppingListDAO {
         if (results.next()) {
             shoppingList = mapRowToList(results);
         }
-
         return shoppingList;
-//        return jdbcTemplate.queryForObject(sql, ShoppingList.class, listId);
     }
 
     @Override
@@ -73,7 +73,6 @@ public class JdbcShoppingListDao implements ShoppingListDAO {
 
     @Override
     public Integer findByListClaimed(Integer listClaimedBy) {
-
         return listClaimedBy;
     }
 
@@ -85,14 +84,21 @@ public class JdbcShoppingListDao implements ShoppingListDAO {
     }
 
     @Override
-    public void updateShoppingList(String listName, String listDescription, Long listId, Integer listClaimedBy) {
+    public void updateShoppingList(Long listId, String listName, String listDescription, Integer listClaimedBy) {
         String updateList = "UPDATE lists SET list_name = ?, list_description = ?, list_claimed_By = ? WHERE list_id = ?";
-        jdbcTemplate.update(updateList, listName, listDescription, listClaimedBy, listId);
+        if (listClaimedBy == null || listClaimedBy == 0) {
+            jdbcTemplate.update(updateList, listName, listDescription, null, listId );
+        } else {
+            jdbcTemplate.update(updateList, listName, listDescription, listClaimedBy, listId );
+        }
     }
 
-
     @Override
-    public String getUserNameFromUserId( Long listId) {
+    public String getUserNameFromUserId(Long listId) {
+        if (listId == null) {
+            System.out.println("listId is Null.");
+            return "";
+        }
         return jdbcTemplate.queryForObject("select username FROM users JOIN lists ON lists.list_claimed_by = users.user_id WHERE lists.list_id = ?", String.class, listId);
     }
 

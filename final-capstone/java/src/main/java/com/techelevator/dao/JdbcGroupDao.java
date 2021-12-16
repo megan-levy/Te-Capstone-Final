@@ -107,22 +107,6 @@ public class JdbcGroupDao implements GroupDao {
 
 
 
-//    @Override
-//    public List<Group> findAll() {
-//        List<Group> groups = new ArrayList<Group>();
-//
-//        String sql = "SELECT * FROM groups JOIN member_of ON member_of.group_id= groups.group_id" +
-//                " JOIN user ON user_id = member_of.user_id WHERE user_id = ?;";
-//
-//        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
-//        while (results.next()) {
-//            Group group = mapRowToGroup(results);
-//            groups.add(group);
-//        }
-//        return groups;
-//    }
-
-
     @Override
     //public boolean create(String name, String groupDescription, Date joinedOn) {
     public void create(String name, String groupDescription, Long userId) {

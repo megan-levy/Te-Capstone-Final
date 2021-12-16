@@ -9,10 +9,10 @@ export default {
         return axios.get(`/lists/${listId}/items`,  { params: { "listId": listId } });
     },
     getSingleItem(itemId) {
-        return axios.get(`/items/${itemId}`, { params: { "itemId": itemId } });
+        return axios.get(`/items/${itemId}`);
     },
     updateItem(item, itemId) {
-        return axios.put(`/items/${itemId}`, item, { params: { "itemId": itemId } });
+        return axios.put(`/items/${itemId}`, item);
     },
     deleteItemFromList(itemId) {
         return axios.delete(`/items/${itemId}`, {params: {"itemId": itemId}});
