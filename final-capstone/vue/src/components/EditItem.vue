@@ -16,7 +16,7 @@
             required
           />
         </label>
-        <label for="text" class="sr-only amount-label">
+        <label for="text" class="sr-only amount-label" id = "counter-wheel">
           <!-- <span>Add Quantity Needed:</span>
             <textarea placeholder="Enter A Quantity" class="form-control" v-model="item.itemAmount"/> -->
           <span
@@ -141,5 +141,71 @@ export default {
   to {
     opacity: 1;
   }
+}
+.form-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+  justify-content: space-between;
+  grid-gap: 12px;
+}
+.amount-label {
+  flex-direction: row;
+  grid-column-end: 10;
+  /* grid-column-start: 6; */
+}
+.name-label {
+  grid-column-end: 3;
+}
+.sr-only {
+  margin-bottom: 0 !important;
+}
+.amount {
+  padding: 10px;
+  background-color: #f3f6fa;
+  border: none;
+  border-radius: 4px;
+  width: 1rem;
+  text-align: center;
+}
+.amount::-webkit-outer-spin-button,
+.amount::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+.amount-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+}
+.spinner {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  height: 40px;
+  position: relative;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  align-self: end;
+  text-align: center;
+  padding: 0 10px;
+  margin-bottom: 0;
+}
+
+#counter-wheel {
+  flex-direction: row;
+}
+.spinner:hover {
+  cursor: pointer;
+}
+.spinner.left:hover {
+  color: #ff6161;
+}
+.spinner.right:hover {
+  color: #2a9eb5;
 }
 </style>
